@@ -5,8 +5,7 @@ import {HiNGConfig} from '../hi.config';
 
 @Component({
   selector: 'hi-confirm-dialog',
-  templateUrl: './confirm-dialog.template.html',
-  styleUrls: ['./dialog.template.scss']
+  templateUrl: './confirm-dialog.template.html'
 })
 export class ConfirmDialogComponent implements Modal {
   context: DialogOptions;

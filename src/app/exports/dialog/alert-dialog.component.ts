@@ -5,8 +5,7 @@ import {HiNGConfig} from '../hi.config';
 
 @Component({
   selector: 'hi-alert-dialog',
-  templateUrl: './alert-dialog.template.html',
-  styleUrls: ['./dialog.template.scss'],
+  templateUrl: './alert-dialog.template.html'
 })
 export class AlertDialogComponent implements Modal {
   context: DialogOptions;

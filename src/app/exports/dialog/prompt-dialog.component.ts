@@ -6,8 +6,7 @@ import {HiNGConfig} from '../hi.config';
 
 @Component({
   selector: 'hi-prompt',
-  templateUrl: './prompt-dialog.template.html',
-  styleUrls: ['./dialog.template.scss']
+  templateUrl: './prompt-dialog.template.html'
 })
 
 export class PromptDialogComponent implements Modal, OnInit {
