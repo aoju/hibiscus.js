@@ -1,0 +1,331 @@
+<div class="validators-demo">
+  <section>
+    <h4>Required with trim:</h4>
+    <form>
+      <div class="form-group">
+        <label for="firstNameWithRequired">First name</label>
+        <input type="text" id="firstNameWithRequired" name="firstNameWithRequired" class="form-control"
+               [(ngModel)]="model['firstNameWithRequired']" hiRequiredWithTrim
+               #firstNameWithRequired="ngModel"/>
+
+        <hi-alert-box *ngIf="firstNameWithRequired.errors &&  firstNameWithRequired.touched" type="danger">
+          <div *ngIf="firstNameWithRequired.errors.requiredWithTrim">First name should be not empty.</div>
+        </hi-alert-box>
+      </div>
+    </form>
+  </section>
+  <section>
+    <h4>Range Length:</h4>
+    <form>
+      <div class="form-group">
+        <label for="firstName">First name</label>
+        <input type="text" id="firstName" name="name" class="form-control" [(ngModel)]="model['firstName']"
+               [hiRangeLength]="[5,10]" #firstName="ngModel"/>
+
+        <hi-alert-box *ngIf="firstName.errors &&  firstName.touched" type="danger">
+          <div *ngIf="firstName.errors.hiRangeLength">Length of first name should range between 5 and 10.</div>
+        </hi-alert-box>
+      </div>
+    </form>
+  </section>
+  <section>
+    <h4>Min & Max number:</h4>
+    <form>
+      <div class="form-group">
+        <label for="age">Age</label>
+        <input type="number" id="age" name="age" class="form-control" [(ngModel)]="model['age']"
+               [hiMin]="18" [hiMax]="100" #age="ngModel"/>
+
+        <hi-alert-box *ngIf="age.errors &&  age.touched" type="danger">
+          <div *ngIf="age.errors.hiMin">Age should greater than 18.</div>
+          <div *ngIf="age.errors.hiMax">Age should less than 100.</div>
+        </hi-alert-box>
+      </div>
+    </form>
+  </section>
+
+  <section>
+    <h4>Number range:</h4>
+    <form>
+      <div class="form-group">
+        <label for="age2">Age</label>
+        <input type="number" id="age2" name="age2" class="form-control" [(ngModel)]="model['age2']"
+               [hiRange]="[18,100]" #age2="ngModel"/>
+
+        <hi-alert-box *ngIf="age2.errors &&  age2.touched" type="danger">
+          <div *ngIf="age2.errors.hiRange">Age should between 18 and 100.</div>
+        </hi-alert-box>
+      </div>
+    </form>
+  </section>
+
+  <section>
+    <h4>Digits:</h4>
+    <form>
+      <div class="form-group">
+        <label for="orderNumber">Order number</label>
+        <input type="text" id="orderNumber" name="orderNumber" class="form-control" [(ngModel)]="model['orderNumber']"
+               hiDigits #orderNumber="ngModel"/>
+
+        <hi-alert-box *ngIf="orderNumber.errors &&  orderNumber.touched" type="danger">
+          <div *ngIf="orderNumber.errors.hiDigits">Order number should be digits.</div>
+        </hi-alert-box>
+      </div>
+    </form>
+  </section>
+
+  <section>
+    <h4>Number:</h4>
+    <form>
+      <div class="form-group">
+        <label for="amount">Amount</label>
+        <input type="text" id="amount" name="amount" class="form-control" [(ngModel)]="model['amount']"
+               hiNumber #amount="ngModel"/>
+
+        <hi-alert-box *ngIf="amount.errors &&  amount.touched" type="danger">
+          <div *ngIf="amount.errors.hiNumber">Amount should be number.</div>
+        </hi-alert-box>
+      </div>
+    </form>
+  </section>
+
+  <section>
+    <h4>Url:</h4>
+    <form>
+      <div class="form-group">
+        <label for="url">Url</label>
+        <input type="text" id="url" name="url" class="form-control" [(ngModel)]="model['url']"
+               hiUrl #url="ngModel"/>
+
+        <hi-alert-box *ngIf="url.errors &&  url.touched" type="danger">
+          <div *ngIf="url.errors.hiUrl">It is a invalid url.</div>
+        </hi-alert-box>
+      </div>
+    </form>
+  </section>
+
+  <section>
+    <h4>Email:</h4>
+    <form>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" id="email" name="email" class="form-control" [(ngModel)]="model['email']"
+               hiEmail #email="ngModel"/>
+
+        <hi-alert-box *ngIf="email.errors &&  email.touched" type="danger">
+          <div *ngIf="email.errors.hiEmail">It is a invalid email.</div>
+        </hi-alert-box>
+      </div>
+    </form>
+  </section>
+
+  <section>
+    <h4>Date:</h4>
+    <form>
+      <div class="form-group">
+        <label for="Date">Date</label>
+        <input type="text" id="Date" name="Date" class="form-control" [(ngModel)]="model['date']"
+               hiDate #date="ngModel"/>
+
+        <hi-alert-box *ngIf="date.errors &&  date.touched" type="danger">
+          <div *ngIf="date.errors.hiDate">It is a invalid date.</div>
+        </hi-alert-box>
+      </div>
+    </form>
+  </section>
+
+  <section>
+    <h4>ISO Date:</h4>
+    <form>
+      <div class="form-group">
+        <label for="isoDate">ISO Date</label>
+        <input type="text" id="isoDate" name="isoDate" class="form-control" [(ngModel)]="model['isoDate']"
+               hiDateISO #isoDate="ngModel"/>
+
+        <hi-alert-box *ngIf="isoDate.errors &&  isoDate.touched" type="danger">
+          <div *ngIf="isoDate.errors.hiDateISO">It is a invalid ISO date.</div>
+        </hi-alert-box>
+      </div>
+    </form>
+  </section>
+
+  <section>
+    <h4>JSON</h4>
+    <form>
+      <div class="form-group">
+        <label for="json">JSON</label>
+        <textarea id="json" name="json" class="form-control" [(ngModel)]="model['json']"
+                  hiJson #json="ngModel"></textarea>
+
+        <hi-alert-box *ngIf="json.errors &&  json.touched" type="danger">
+          <div *ngIf="json.errors.hiJson">It is a invalid json.</div>
+        </hi-alert-box>
+      </div>
+    </form>
+  </section>
+
+
+  <section>
+    <h4>Base64</h4>
+    <form>
+      <div class="form-group">
+        <label for="base64">Base64</label>
+        <textarea id="base64" name="base64" class="form-control" [(ngModel)]="model['base64']"
+                  hiBase64 #base64="ngModel"></textarea>
+
+        <hi-alert-box *ngIf="base64.errors &&  base64.touched" type="danger">
+          <div *ngIf="base64.errors.hiBase64">It is a invalid base64 encoding.</div>
+        </hi-alert-box>
+      </div>
+    </form>
+  </section>
+
+  <section>
+    <h4>Phone</h4>
+    <form>
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input id="phone" type="tel" name="phone" class="form-control" [(ngModel)]="model['phone']"
+               hiPhone="zh-CN" #phone="ngModel"/>
+
+        <hi-alert-box *ngIf="phone.errors &&  phone.touched" type="danger">
+          <div *ngIf="phone.errors.hiPhone">It is a invalid phone number.</div>
+        </hi-alert-box>
+      </div>
+    </form>
+  </section>
+
+  <section>
+    <h4>UUID</h4>
+    <form>
+      <div class="form-group">
+        <label for="uuid">UUID</label>
+        <input id="uuid" type="text" name="uuid" class="form-control" [(ngModel)]="model['uuid']"
+               hiUUID #uuid="ngModel"/>
+
+        <hi-alert-box *ngIf="uuid.errors &&  uuid.touched" type="danger">
+          <div *ngIf="uuid.errors.hiUUID">It is a invalid uuid.</div>
+        </hi-alert-box>
+      </div>
+    </form>
+  </section>
+
+  <section>
+    <h4>Equal constant value</h4>
+    <form>
+      <div class="form-group">
+        <label for="equal10">Equal 10</label>
+        <input id="equal10" type="text" name="equal10" class="form-control" [(ngModel)]="model['equal10']"
+               hiEqual="10" #equal10="ngModel"/>
+
+        <hi-alert-box *ngIf="equal10.errors &&  equal10.touched" type="danger">
+          <div *ngIf="equal10.errors.hiEqual">The number should equal 10.</div>
+        </hi-alert-box>
+      </div>
+    </form>
+  </section>
+
+  <section>
+    <h4>Includes in ['hi', 'polang']</h4>
+    <form>
+      <div class="form-group">
+        <label for="includes">Equal 10</label>
+        <input id="includes" type="text" name="includes" class="form-control" [(ngModel)]="model['includes']"
+               [hiIncludes]="['hi', 'polang']" #includes="ngModel"/>
+
+        <hi-alert-box *ngIf="includes.errors &&  includes.touched" type="danger">
+          <div *ngIf="includes.errors.hiIncludes">The name should includes in ['hi', 'polang'].</div>
+        </hi-alert-box>
+      </div>
+    </form>
+  </section>
+
+  <section>
+    <h4>Equal to control:</h4>
+    <form>
+      <div class="form-group">
+        <label for="pwd">Password</label>
+        <input id="pwd" type="password" name="pwd" class="form-control" [(ngModel)]="model['pwd']"/>
+      </div>
+      <div class="form-group">
+        <label for="confirm">Confirm</label>
+        <input id="confirm" type="password" name="confirm" class="form-control" [(ngModel)]="model['confirm']"
+               hiEqualTo="pwd" #confirm="ngModel"/>
+
+        <hi-alert-box *ngIf="confirm.errors &&  confirm.touched" type="danger">
+          <div *ngIf="confirm.errors.hiEqualTo">It should equal to password.</div>
+        </hi-alert-box>
+      </div>
+    </form>
+  </section>
+
+  <section>
+    <h4>Before Date:</h4>
+    <form>
+      <div class="form-group">
+        <label for="beforeToday">Before Today</label>
+        <input id="beforeToday" type="date" name="beforeToday" class="form-control" [(ngModel)]="model['beforeToday']"
+               hiBeforeDate="" #hiBeforeDate="ngModel"/>
+
+        <hi-alert-box *ngIf="hiBeforeDate.errors && hiBeforeDate.touched" type="danger">
+          <div *ngIf="hiBeforeDate.errors.hiBeforeDate">It should before today.</div>
+        </hi-alert-box>
+      </div>
+
+      <div class="form-group">
+        <label for="beforeDate">Before 2017-05-01</label>
+        <input id="beforeDate" type="date" name="beforeDate" class="form-control" [(ngModel)]="model['beforeDate']"
+               hiBeforeDate="2017-05-01" #beforeDate="ngModel"/>
+
+        <hi-alert-box *ngIf="beforeDate.errors && beforeDate.touched" type="danger">
+          <div *ngIf="beforeDate.errors.hiBeforeDate">It should before 2017-05-01</div>
+        </hi-alert-box>
+      </div>
+
+      <div class="form-group">
+        <label>Before <input type="date" name="date" [(ngModel)]="model['date']"> </label>
+        <input type="date" name="beforeDate1" class="form-control" [(ngModel)]="model['beforeDate1']"
+               [hiBeforeDate]="model['date']" #beforeDate1="ngModel"/>
+
+        <hi-alert-box *ngIf="beforeDate1.errors && beforeDate1.touched" type="danger">
+          <div *ngIf="beforeDate1.errors.hiBeforeDate">It should before {{model['date']| date}}</div>
+        </hi-alert-box>
+      </div>
+    </form>
+  </section>
+
+  <section>
+    <h4>After Date:</h4>
+    <form>
+      <div class="form-group">
+        <label for="afterToday">After Today</label>
+        <input id="afterToday" type="date" name="afterToday" class="form-control" [(ngModel)]="model['afterToday']"
+               [hiAfterDate]="today" #hiAfterDate="ngModel"/>
+
+        <hi-alert-box *ngIf="hiAfterDate.errors &&  hiAfterDate.touched" type="danger">
+          <div *ngIf="hiAfterDate.errors.hiAfterDate">It should after today.</div>
+        </hi-alert-box>
+      </div>
+
+      <div class="form-group">
+        <label for="afterDate">After 2017-05-01</label>
+        <input id="afterDate" type="date" name="afterDate" class="form-control" [(ngModel)]="model['afterDate']"
+               hiAfterDate="2017-05-01" #afterDate="ngModel"/>
+
+        <hi-alert-box *ngIf="afterDate.errors &&  afterDate.touched" type="danger">
+          <div *ngIf="afterDate.errors.hiAfterDate">It should after 2017-05-01</div>
+        </hi-alert-box>
+      </div>
+
+      <div class="form-group">
+        <label>After <input type="date" name="date" [(ngModel)]="model['date']"> </label>
+        <input type="date" name="afterDate1" class="form-control" [(ngModel)]="model['afterDate1']"
+               [hiAfterDate]="model['date']" #afterDate1="ngModel"/>
+
+        <hi-alert-box *ngIf="afterDate1.errors &&  afterDate1.touched" type="danger">
+          <div *ngIf="afterDate1.errors.hiAfterDate">It should after {{model['date']| date}}</div>
+        </hi-alert-box>
+      </div>
+    </form>
+  </section>
+</div>

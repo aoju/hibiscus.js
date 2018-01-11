@@ -1,0 +1,23 @@
+<div class="radio-group-demo">
+
+  <section>
+    <h4>Sex:</h4>
+    <hi-radio-group [options]="sexOptions" [(ngModel)]="sex"></hi-radio-group>
+    <pre>{{sex | json}}</pre>
+  </section>
+
+  <section>
+    <h4>Season:</h4>
+    <hi-radio-group [options]="seasonOptions" [(ngModel)]="season"></hi-radio-group>
+    <pre>{{season | json}}</pre>
+  </section>
+
+  <section>
+    <h4>Season with customise value:</h4>
+    <hi-radio-group [options]="seasonOptions" [(ngModel)]="seasonValue" [inline]="true"
+                    [valueParser]="valueParser"></hi-radio-group>
+    <pre>{{seasonValue | json}}</pre>
+  </section>
+
+
+</div>

@@ -1,0 +1,41 @@
+
+  <hi-doc-content [content]="component.component"></hi-doc-content>
+  <hr/>
+  <div class="nav-tabs-horizontal">
+    <hi-tabs type="tabs" cssClass="mb-4" (activeTabChange)="activeTabChange($event)">
+      <hi-tab id="html" title="HTML" *ngIf="component.html">
+        <ng-template hiTabContent>
+          <div class="html" #html>
+            <pre>{{component.html}}</pre>
+          </div>
+        </ng-template>
+      </hi-tab>
+      <hi-tab id="typescript" title="TypeScript" *ngIf="component.typescript">
+        <ng-template hiTabContent>
+          <div class="typescript" #typescript>
+            <pre>{{component.typescript}}</pre>
+          </div>
+        </ng-template>
+      </hi-tab>
+      <hi-tab id="data" title="Data" *ngIf="component.data">
+        <ng-template hiTabContent>
+          <div class="data" #data>
+            <pre>{{component.data}}</pre>
+          </div>
+        </ng-template>
+      </hi-tab>
+      <hi-tab id="usage" title="Usage" *ngIf="component.usage">
+        <ng-template hiTabContent>
+          <div class="data" #usage>
+            <pre>{{component.usage}}</pre>
+          </div>
+        </ng-template>
+      </hi-tab>
+      <hi-tab id="document" title="Document" *ngIf="component.document">
+        <ng-template hiTabContent>
+          <div class="markdown" [innerHTML]="component.readme"></div>
+        </ng-template>
+      </hi-tab>
+
+    </hi-tabs>
+  </div>

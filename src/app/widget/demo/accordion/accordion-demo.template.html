@@ -1,0 +1,39 @@
+<section>
+  <h4>Examples:</h4>
+
+  <p>
+    <button type="button" class="btn btn-primary btn-sm" (click)="status.isOpen = !status.isOpen">Toggle</button>
+    <button type="button" class="btn btn-primary btn-sm" (click)="status.isDisabled = ! status.isDisabled">
+      Enable / Disable
+    </button>
+  </p>
+
+  <hi-accordion>
+    <hi-accordion-item header="Static Header, initially expanded"
+                       [isOpen]="status.isOpen"
+                       [isDisabled]="status.isDisabled">
+      This content is straight in the template.
+    </hi-accordion-item>
+
+    <hi-accordion-item [isOpen]="status.isOpen">
+      <div hi-accordion-header class="clearfix">
+        I can have markup, too!
+        <span class="badge badge-secondary float-right pull-right">Some HTML here</span>
+      </div>
+      This is just some content to illustrate fancy headings.
+    </hi-accordion-item>
+
+    <hi-accordion-item header="Dynamic Body Content">
+      <p>The body of the accordion group grows to fit the contents</p>
+      <button type="button" class="btn btn-primary btn-sm" (click)="addItem()">Add
+        Item
+      </button>
+      <div *ngFor="let item of items">{{item}}</div>
+    </hi-accordion-item>
+
+    <hi-accordion-item *ngFor="let group of groups" [header]="group.title">
+      {{ group?.content }}
+    </hi-accordion-item>
+  </hi-accordion>
+
+</section>

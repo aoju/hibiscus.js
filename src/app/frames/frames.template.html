@@ -1,0 +1,37 @@
+<div class="card">
+  <div class="card-header">
+    <span class="hi_core_title">
+        <strong>Hibiscus.js</strong>
+    </span>
+  </div>
+  <div class="card-body">
+    <div class="nav-tabs-horizontal">
+      <div class="row">
+        <div class="col-lg-3">
+          <div class="table-of-contents">
+            <h4 class="mb-3 text-black">
+              <strong>Components</strong>
+            </h4>
+            <hr>
+            <div class="px-3 mb-5">
+              <ng-container *ngFor="let menu of menus">
+                <ul class="list-unstyled">
+                  <ng-container *ngFor="let child of menu?.children; let i = index">
+                    <li>
+                      <a class="text-secondary" href="javascript:;" [routerLink]="child.url">
+                        <h6>{{child.name}}</h6>
+                      </a>
+                    </li>
+                  </ng-container>
+                </ul>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-9">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

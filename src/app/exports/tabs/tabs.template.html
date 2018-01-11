@@ -1,0 +1,19 @@
+<ul class="nav nav-{{type}} {{cssClass}}" [ngClass]="{'nav-stacked': vertical,'nav-justified': justified}"
+    role="tablist">
+  <li class="nav-item" *ngFor="let tab of tabs">
+    <a class="nav-link" role="tab" (click)="select(tab.id)"
+       [class.active]="tab.id == activeTab" data-toggle="tab" [attr.aria-expanded]="tab.id == activeTab">
+      <i class="{{tab.icon}}"></i>
+      <ng-template *ngIf="!tab.title" [ngTemplateOutlet]="tab.titleTpl?.templateRef"></ng-template>
+      {{tab.title}}
+    </a>
+  </li>
+</ul>
+<div class="tab-content">
+  <ng-container *ngFor="let tab of tabs">
+    <div class="tab-pane" role="tabcard" [ngClass]="{'in active': tab.id == activeTab}">
+      <ng-template [ngTemplateOutlet]="tab?.contentTpl?.templateRef"></ng-template>
+      {{tab.content}}
+    </div>
+  </ng-container>
+</div>

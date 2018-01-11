@@ -1,0 +1,76 @@
+<div class="card-body">
+  <div class="row">
+    <div class="col-lg-6">
+      <h5 class="text-black"><strong>Horizontal Tabs</strong></h5>
+      <p class="text-muted">Outer element: <code>.nav-tabs-horizontal</code></p>
+      <div class="mb-5">
+        <div class="nav-tabs-horizontal">
+          <hi-tabs type="tabs" cssClass="mb-4" [(activeTab)]="tab.activeId">
+            <hi-tab *ngFor="let item of tabA" title="{{item.title}}" content="{{item.content}}" [disabled]="item.disabled" [id]="item.id">
+            </hi-tab>
+          </hi-tabs>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <h5 class="text-black"><strong>Horizontal Tabs w/ Icons</strong></h5>
+      <p class="text-muted">Outer element: <code>.nav-tabs-horizontal</code></p>
+      <div class="mb-5">
+        <div class="nav-tabs-horizontal">
+          <hi-tabs type="tabs" cssClass="mb-4">
+            <hi-tab *ngFor="let item of tabA" icon="{{item.icon}}" title="{{item.title}}" content="{{item.content}}" [disabled]="item.disabled" [id]="item.id">
+            </hi-tab>
+          </hi-tabs>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <h5 class="text-black"><strong>Vertical Tabs</strong></h5>
+      <p class="text-muted">Outer element: <code>.nav-tabs-vertical</code></p>
+      <div class="mb-5">
+        <div class="nav-tabs-vertical">
+          <hi-tabs type="tabs" cssClass="mb-4">
+            <hi-tab *ngFor="let item of tabB" title="{{item.title}}" content="{{item.content}}" [disabled]="item.disabled" [id]="item.id">
+            </hi-tab>
+          </hi-tabs>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <h5 class="text-black"><strong>Vertical Tabs w/ Icons</strong></h5>
+      <p class="text-muted">Outer element: <code>.nav-tabs-vertical</code></p>
+      <div class="mb-5">
+        <div class="nav-tabs-vertical">
+          <hi-tabs type="tabs" cssClass="mb-4">
+            <hi-tab *ngFor="let item of tabB" icon="{{item.icon}}" title="{{item.title}}" content="{{item.content}}" [disabled]="item.disabled" [id]="item.id">
+            </hi-tab>
+          </hi-tabs>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <h5 class="text-black"><strong>Default Tabs</strong></h5>
+      <div class="mb-5">
+        <div>
+          <hi-tabs type="tabs" cssClass="mb-4">
+            <hi-tab *ngFor="let item of tabA" icon="{{item.icon}}" [disabled]="item.disabled" [id]="item.id">
+              <ng-template hiTabTitle>
+                {{item.title}}
+              </ng-template>
+              <ng-template hiTabContent>
+                {{item.content}}
+                <hr>
+                Tabs source:
+                <pre>{{tabA | json}}</pre>
+              </ng-template>
+            </hi-tab>
+          </hi-tabs>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

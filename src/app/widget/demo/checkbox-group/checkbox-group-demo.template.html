@@ -1,0 +1,43 @@
+<div class="checkbox-group-demo">
+
+  <section>
+    <h4>Checkbox</h4>
+    <hi-checkbox [(ngModel)]="checked" label="Agree"></hi-checkbox>
+    <pre>{{checked | json}}</pre>
+  </section>
+
+  <section>
+    <h4>Checkbox with customise value</h4>
+    <hi-checkbox [(ngModel)]="yesno" label="Agree" checkedValue="YES" unCheckedValue="NO"></hi-checkbox>
+    <pre>{{yesno | json}}</pre>
+  </section>
+
+  <section>
+    <h4>Season string:</h4>
+    <hi-checkbox-group [options]="seasonLabelOptions" [(ngModel)]="seasonLabel"></hi-checkbox-group>
+    <pre>{{seasonLabel | json}}</pre>
+  </section>
+
+  <section>
+    <h4>Season Object:</h4>
+    <hi-checkbox-group [options]="seasonOptions" [(ngModel)]="season"></hi-checkbox-group>
+    <pre>{{season | json}}</pre>
+  </section>
+
+  <section>
+    <h4>Season value:</h4>
+
+
+    <hi-checkbox-group #checkboxgroup [options]="seasonOptions" [(ngModel)]="seasonValue" [inline]="true"
+                       [valueParser]="valueParser"></hi-checkbox-group>
+    <div>
+      <button class="btn btn-primary" (click)="selectAll(checkboxgroup, true)">Select All</button>
+      <button class="btn btn-info" (click)="selectAll(checkboxgroup, false)">Unselect All</button>
+      <button class="btn btn-success" (click)="invertAll(checkboxgroup)">Invert Select</button>
+    </div>
+
+    <hr>
+    <pre>{{seasonValue | json}}</pre>
+  </section>
+
+</div>

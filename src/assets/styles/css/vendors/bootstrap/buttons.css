@@ -1,0 +1,11 @@
+/* BUTTONS */
+
+
+.btn {
+  outline: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  -webkit-transition: color .2s ease-in-out, background .2s ease-in-out, border .2s ease-in-out;
+  transition: color .2s ease-in-out, background .2s ease-in-out, border .2s ease-in-out;
+  font-size: 0.8rem;
+}

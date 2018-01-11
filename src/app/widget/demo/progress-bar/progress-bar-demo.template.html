@@ -1,0 +1,40 @@
+<h5 class="text-black"><strong>Page Loading Progress Bar</strong></h5>
+<div class="mb-5">
+  <button type="button" class="btn btn-default mr-2 mb-2" data-toggle="modal" (click)="isNPStart()">
+    NProgress Start
+  </button>
+  <button type="button" class="btn btn-default mr-2 mb-2" data-toggle="modal" (click)="isNPSet()">
+    NProgress Set 40%
+  </button>
+  <button type="button" class="btn btn-default mr-2 mb-2" data-toggle="modal" (click)="isNPInc()">
+    NProgress Increment
+  </button>
+  <button type="button" class="btn btn-default mr-2 mb-2" data-toggle="modal" (click)="isNPDone()">
+    NProgress Done
+  </button>
+</div>
+<h5 class="text-black"><strong>Default Progress Bars</strong></h5>
+<div class="mb-5">
+  <div class="mb-5">
+    <hi-progress-bar cssClass="mb-2" [value]="10" [text]="10 + '%'"></hi-progress-bar>
+    <hi-progress-bar cssClass="mb-2" type="success" [value]="100" [text]="100 + '%'"></hi-progress-bar>
+    <hi-progress-bar cssClass="mb-2" type="info" [value]="35" [text]="35 + '%'"></hi-progress-bar>
+    <hi-progress-bar cssClass="mb-2" type="warning" [striped]="true" [text]="'Copy file ' + 100 + ' of 55'" [value]="55" [max]="100"></hi-progress-bar>
+    <hi-progress-bar cssClass="mb-2" type="danger" [striped]="true" [animate]="true" [value]="50"></hi-progress-bar>
+  </div>
+</div>
+<h5 class="text-black"><strong>Striped Progress Bars</strong></h5>
+<div class="mb-5">
+  <div class="mb-5">
+    <hi-progress-bar cssClass="mb-2" type="striped bg-success" [value]="10" [text]="10 + '%'"></hi-progress-bar>
+    <hi-progress-bar cssClass="mb-2" type="striped bg-info" [value]="25" [text]="25 + '%'"></hi-progress-bar>
+    <hi-progress-bar cssClass="mb-2" type="striped bg-warning" [value]="50" [text]="50 + '%'"></hi-progress-bar>
+    <hi-progress-bar cssClass="mb-2" type="striped bg-danger" [value]="100" [text]="100 + '%'"></hi-progress-bar>
+  </div>
+</div>
+<h5 class="text-black"><strong>Striped and Animated Progress Bars</strong></h5>
+<div class="mb-5">
+  <div class="mb-5">
+    <hi-progress-bar cssClass="mb-2" type="striped progress-bar-animated bg-success" [value]="100" [text]="100 + '%'"></hi-progress-bar>
+  </div>
+</div>

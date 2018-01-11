@@ -1,0 +1,17 @@
+<div class="flow-step-demo">
+  <section>
+    <h4>Arrow:</h4>
+    <hi-flow-step [(active)]="active" [steps]="steps"></hi-flow-step>
+  </section>
+
+
+  <section>
+    <h4>Dot:</h4>
+    <hi-flow-step [(active)]="active" [steps]="steps" type="dot"></hi-flow-step>
+  </section>
+
+  <hr>
+  <button class="btn btn-primary" (click)="active = active + 1">Next step</button>
+  <button class="btn btn-primary" (click)="active = active - 1">Pre step</button>
+</div>
+

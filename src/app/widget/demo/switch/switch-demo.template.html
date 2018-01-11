@@ -1,0 +1,12 @@
+<div class="switch-demo">
+
+  <hi-switch [(ngModel)]="checked" cssClass="card-body" [disabled]="disabled" [type]="'primary'"></hi-switch>
+  <hi-switch [(ngModel)]="checked" [disabled]="disabled" [type]="'success'"></hi-switch>
+  <hi-switch [(ngModel)]="checked" [disabled]="disabled" [type]="'info'" size="lg"></hi-switch>
+  <hi-switch [(ngModel)]="checked" [disabled]="disabled" [type]="'warning'" size="sm"></hi-switch>
+  <hi-switch [(ngModel)]="checked" [disabled]="disabled" [type]="'danger'" size="xs"></hi-switch>
+  <hr>
+  <pre>{{checked | json}}</pre>
+
+  <button class="btn btn-primary" (click)="disabled = !disabled"> {{ disabled? 'Enable' : 'Disabled'}}</button>
+</div>

@@ -1,0 +1,34 @@
+<div class="select-button-demo">
+
+  <section>
+    <h4>Single button:</h4>
+
+    <hi-select-button [(ngModel)]="value" [items]="items"></hi-select-button>
+    <hi-select-button [(ngModel)]="value" [items]="items" type="success" size="lg"></hi-select-button>
+    <hi-select-button [(ngModel)]="value" [items]="items" type="danger" size="xs"></hi-select-button>
+
+    <h4>justified:</h4>
+    <hi-select-button [(ngModel)]="value" [items]="items" [justified]="true"></hi-select-button>
+    <hr>
+    <pre>{{(value | json) || 'No value select!'}}</pre>
+    <button class="btn btn-primary" (click)="value = 'Middle'">Set to Middle</button>
+    <button class="btn btn-primary" (click)="value = null">Clear value</button>
+  </section>
+
+  <section>
+    <h4>Multiple button:</h4>
+
+    <hi-select-button [(ngModel)]="multipleValue" type="warning" [items]="items" [multiple]="true"></hi-select-button>
+    <hr>
+    <pre>{{(multipleValue | json) || 'No value select!'}}</pre>
+    <button class="btn btn-primary" (click)="multipleValue = ['Middle']">Set to Middle</button>
+    <button class="btn btn-primary" (click)="multipleValue = null">Clear value</button>
+  </section>
+
+  <section>
+    <h4>Disabled button:</h4>
+    <hi-select-button [(ngModel)]="value" [items]="items" [disabled]="disabled"></hi-select-button>
+    <button class="btn btn-primary" (click)="disabled = !disabled"> {{ disabled? 'Enable' : 'Disabled'}}</button>
+  </section>
+
+</div>

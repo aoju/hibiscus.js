@@ -1,0 +1,48 @@
+@import "./vendors/bootstrap/bootstrap.css";
+@import "./vendors/nprogress/nprogress.css";
+@import "./vendors/iconfont/icomoon.css";
+@import "./vendors/bootstrap/custom.css";
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -ms-overflow-style: scrollbar;
+  -webkit-tap-highlight-color: transparent
+}
+
+body {
+  margin: 0;
+  font-family:  -apple-system,Helvetica Neue,Helvetica,Arial,PingFang SC,Hiragino Sans GB,Microsoft Yahei, SimSun, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  line-height: 1.35;
+  color: #514d6a;
+  text-align: left;
+}
+
+a {
+  color: #74708d;
+  transition: color .2s ease-in-out;
+}
+
+a:active, a:focus, a:hover {
+  color: #08f;
+  text-decoration: none
+}
+.hi_icons-block li {
+  text-align: center;
+  display: inline-block;
+  width: 2.85rem;
+  height: 2.85rem;
+  line-height: 2.85rem;
+  font-size: 2.57rem;
+  padding: 0.71rem 2.14rem;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+.card{
+  border: 0;
+  border-radius: 0;
+}

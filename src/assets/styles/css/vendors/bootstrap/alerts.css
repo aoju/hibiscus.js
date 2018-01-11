@@ -1,0 +1,4 @@
+.alert-dismissible .close {
+  top: -.2rem;
+  cursor: pointer;
+}

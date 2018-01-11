@@ -1,0 +1,15 @@
+<div class="rating-demo">
+  <section>
+    <h4>default rating:</h4>
+    <hi-rating [(ngModel)]="rating.value" [max]="rating.max"></hi-rating>
+  </section>
+
+  <section>
+    <h4>Customise icons rating:</h4>
+    <hi-rating [(ngModel)]="rating.value" [max]="rating.max" [icons]="icons" [disabled]="disabled"></hi-rating>
+
+    <button class="btn btn-primary" (click)="disabled =!disabled">{{ disabled ? 'Enable': 'Disabled'}} rating</button>
+  </section>
+  <hr>
+  <pre>{{rating | json}}</pre>
+</div>

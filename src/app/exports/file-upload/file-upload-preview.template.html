@@ -1,0 +1,23 @@
+<div class="file-upload-preview">
+  <table class="table">
+    <tbody>
+    <tr *ngFor="let fileItem of selectFiles">
+      <td *ngIf="imgPreview">
+        <a [href]="fileItem.dataUrl" target="_blank">
+          <img *ngIf="fileItem.dataUrl" class="img-responsive" [src]="fileItem.dataUrl" [attr.alt]="fileItem.file.name"
+               [style.width]="previewWidth"/>
+        </a>
+      </td>
+      <td>
+        <i *ngIf="uploaded" class="icmn-checkmark text-success"></i> {{fileItem.name}}
+      </td>
+      <td>
+        {{fileItem.displaySize}}
+      </td>
+      <td>
+        <i class="icmn-cross" (click)="onRemoveFile(fileItem)"></i>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

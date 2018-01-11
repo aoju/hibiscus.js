@@ -1,0 +1,18 @@
+import {NgModule} from '@angular/core';
+
+import {InfiniteScrollComponent} from './infinite-scroll.template';
+import {CommonModule} from '@angular/common';
+
+@NgModule({
+  imports: [
+    CommonModule
+  ],
+  exports: [
+    InfiniteScrollComponent
+  ],
+  declarations: [
+    InfiniteScrollComponent
+  ]
+})
+export class InfiniteScrollModule {
+}

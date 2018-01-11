@@ -1,0 +1,16 @@
+<div class="card">
+  <div class="card-header" role="tab" (click)="toggleOpen($event)">
+    <div role="button" class="accordion-toggle">
+      <div *ngIf="header" [ngClass]="{'text-muted': isDisabled}">
+        {{ header }}
+      </div>
+      <ng-content select="[hi-accordion-header]"></ng-content>
+    </div>
+  </div>
+  <div class="collapse" role="tabpanel" [ngClass]="{show: isOpen}">
+    <div class="card-block card-body">
+      <ng-content></ng-content>
+      <ng-content select="[hi-accordion-body]"></ng-content>
+    </div>
+  </div>
+</div>
