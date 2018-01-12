@@ -190,9 +190,11 @@ export class TimePickerComponent implements OnInit, ControlValueAccessor {
     return !(keyType === ARROW_DOWN && parsedTarget < 1) &&
       (
         (keyType === ARROW_DOWN && key === TIME_UNIT.HOUR && parsedTarget <= MAX_TIME_RANGE.hour) ||
-        (keyType === ARROW_DOWN && (key === TIME_UNIT.MINUTE || key === TIME_UNIT.SECOND) && parsedTarget <= MAX_TIME_RANGE.minute) ||
+        (keyType === ARROW_DOWN && (key === TIME_UNIT.MINUTE ||
+          key === TIME_UNIT.SECOND) && parsedTarget <= MAX_TIME_RANGE.minute) ||
         (keyType === ARROW_UP && key === TIME_UNIT.HOUR && parsedTarget < MAX_TIME_RANGE.hour) ||
-        (keyType === ARROW_UP && (key === TIME_UNIT.MINUTE || key === TIME_UNIT.SECOND) && parsedTarget < MAX_TIME_RANGE.minute)
+        (keyType === ARROW_UP && (key === TIME_UNIT.MINUTE ||
+          key === TIME_UNIT.SECOND) && parsedTarget < MAX_TIME_RANGE.minute)
       );
   }
 

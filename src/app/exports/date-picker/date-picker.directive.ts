@@ -162,7 +162,8 @@ export class DatePickerDirective implements OnInit, ControlValueAccessor, OnDest
     const targetElement = this.cmpRef.location.nativeElement;
     const hostElement = this.elementRef.nativeElement;
     this.renderer.setStyle(targetElement, 'display', 'inline-block');
-    const clientRect = this.positionService.positionElements(hostElement, targetElement, this.placement, this.appendBody);
+    const clientRect = this.positionService.positionElements(
+      hostElement, targetElement, this.placement, this.appendBody);
     this.renderer.setStyle(targetElement, 'left', `${clientRect.left}px`);
     this.renderer.setStyle(targetElement, 'top', `${clientRect.top}px`);
   }

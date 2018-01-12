@@ -238,7 +238,8 @@ export class AutoCompleteDirective implements OnInit, OnDestroy, ControlValueAcc
   positionPopup() {
     const targetElement = this.popupRef.location.nativeElement;
     const hostElement = this.placementElement || this.elementRef.nativeElement;
-    const clientRect = this.positionService.positionElements(hostElement, targetElement, this.placement, this.appendBody);
+    const clientRect = this.positionService.positionElements(
+      hostElement, targetElement, this.placement, this.appendBody);
     this.renderer.setStyle(targetElement, 'left', `${clientRect.left}px`);
     this.renderer.setStyle(targetElement, 'top', `${clientRect.top}px`);
   }

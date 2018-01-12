@@ -4,14 +4,17 @@ import {AnimationEvent} from '@angular/animations';
 
 export class TooltipPopup {
   static ACTIVE_CLASS = 'in';
-  @Input() placement: 'top' | 'top-left' | 'top-right' | 'bottom' | 'bottom-left' | 'bottom-right' | 'left' | 'right' = 'top';
+  @Input() placement: 'top' | 'top-left' | 'top-right' | 'bottom' |
+    'bottom-left' | 'bottom-right' | 'left' | 'right' = 'top';
   @Input() content: string | TemplateRef<any>;
   @Input() context: any;
   @Input() cssClass: string;
   isOpen: boolean;
   animateState = 'initial';
 
-  constructor(protected elementRef: ElementRef, protected renderer: Renderer2, protected changeDetectorRef: ChangeDetectorRef) {
+  constructor(protected elementRef: ElementRef,
+              protected renderer: Renderer2,
+              protected changeDetectorRef: ChangeDetectorRef) {
   }
 
   @HostListener('click', ['$event'])

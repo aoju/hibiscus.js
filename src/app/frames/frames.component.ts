@@ -46,7 +46,8 @@ export class FramesComponent implements OnInit {
           const windowTop = windowEl.scrollTop();
           if (windowTop > tableOffset) {
             if (windowTop < contentEl.height() - tableEl.height() - tableOffset - contentOffset - 20 - 200) {
-              tableEl.css('transform', 'translate3d(0px, ' + (windowTop - tableOffset + contentOffset + 20) + 'px, 0px)');
+              tableEl.css('transform', 'translate3d(0px, ' + (
+                windowTop - tableOffset + contentOffset + 20) + 'px, 0px)');
             }
           } else {
             tableEl.css('transform', 'translate3d(0px, 0px, 0px)');

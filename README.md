@@ -6,8 +6,6 @@
 * [Angular](https://angular.io/) (requires `Angular` version 4.0.0 or higher)
 * [Bootstrap CSS](http://getbootstrap.com/) (`bootstrap-sass` 3.3.7)
 * [DateFns](https://date-fns.org/) (`date-fns` 1.27.2 or higher. It is for `DatePicker` parse & format date)
-* [Echarts](http://echarts.baidu.com/) (`echarts` 3.4.0 or higher)
-
 
 *Notice*: `OnPush` @Input is recommended in `@hibiscus.js`, so use `Immutable.js` will be easy.
 

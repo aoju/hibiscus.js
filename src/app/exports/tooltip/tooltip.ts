@@ -127,7 +127,8 @@ export abstract class Tooltip<T extends TooltipPopup> implements OnInit, OnDestr
   private positionTooltip() {
     const hostElement = this.elementRef.nativeElement;
     const targetElement = this.popupRef.location.nativeElement;
-    const clientRect = this.positionService.positionElements(hostElement, targetElement, this.placement, this.appendBody);
+    const clientRect = this.positionService.positionElements(
+      hostElement, targetElement, this.placement, this.appendBody);
     this.renderer.setStyle(targetElement, 'left', `${clientRect.left}px`);
     this.renderer.setStyle(targetElement, 'top', `${clientRect.top}px`);
   }

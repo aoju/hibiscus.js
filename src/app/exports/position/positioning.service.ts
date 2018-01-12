@@ -71,7 +71,8 @@ export class PositionService {
     return elOffset;
   }
 
-  positionElements(hostElement: HTMLElement, targetElement: HTMLElement, placement: string, appendToBody?: boolean): ClientRect {
+  positionElements(hostElement: HTMLElement,
+                   targetElement: HTMLElement, placement: string, appendToBody?: boolean): ClientRect {
     const hostElPosition = appendToBody ? this.offset(hostElement, false) : this.position(hostElement, false);
     const shiftWidth: any = {
       left: hostElPosition.left,
@@ -142,7 +143,8 @@ export class PositionService {
   private offsetParent(element: HTMLElement): HTMLElement {
     let offsetParentEl = <HTMLElement>element.offsetParent || this.documentRef.documentElement;
 
-    while (offsetParentEl && offsetParentEl !== this.documentRef.documentElement && this.isStaticPositioned(offsetParentEl)) {
+    while (offsetParentEl && offsetParentEl !== this.documentRef.documentElement &&
+    this.isStaticPositioned(offsetParentEl)) {
       offsetParentEl = <HTMLElement>offsetParentEl.offsetParent;
     }
 
@@ -150,11 +152,3 @@ export class PositionService {
   }
 
 }
-
-// const positionService = new Positioning();
-// export function positionElements(hostElement: HTMLElement, targetElement: HTMLElement, placement: string, appendToBody?: boolean): void {
-//   const pos = positionService.positionElements(hostElement, targetElement, placement, appendToBody);
-//
-//   targetElement.style.top = `${pos.top}px`;
-//   targetElement.style.left = `${pos.left}px`;
-// }

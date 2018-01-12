@@ -133,7 +133,8 @@ export class HttpInterceptors implements HttpInterceptor {
 
   }
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpSentEvent | HttpHeaderResponse | HttpProgressEvent | HttpResponse<any> | HttpUserEvent<any>> {
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpSentEvent |
+    HttpHeaderResponse | HttpProgressEvent | HttpResponse<any> | HttpUserEvent<any>> {
     const httpRequest = this.httpProvider.handleRequest(req);
     return next.handle(httpRequest)
       .map(response => {
