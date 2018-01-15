@@ -4,7 +4,7 @@
 
 
 * [Angular](https://angular.io/) (requires `Angular` version 4.0.0 or higher)
-* [Bootstrap CSS](http://getbootstrap.com/) (`bootstrap-sass` 3.3.7)
+* [Bootstrap CSS](http://getbootstrap.com/) (`bootstrap-sass` 4.0.0-beta.3)
 * [DateFns](https://date-fns.org/) (`date-fns` 1.27.2 or higher. It is for `DatePicker` parse & format date)
 
 *Notice*: `OnPush` @Input is recommended in `@hibiscus.js`, so use `Immutable.js` will be easy.
@@ -59,7 +59,7 @@ Once installed you need to import our main module.
 
     import { HiNGModule } from 'hibiscus.js';
   
-Then use `HiNGModule.forRoot()` to declare on your root module:
+Then use `HiNGModule` to declare on your root module:
 
     
     @NgModule({
@@ -68,7 +68,7 @@ Then use `HiNGModule.forRoot()` to declare on your root module:
       ],
       imports: [
         BrowserModule,
-        HiNGModule.forRoot(),
+        HiNGModule,
       ],
       providers: [
       ],
@@ -82,7 +82,7 @@ Then use `HiNGModule.forRoot()` to declare on your root module:
     }
 
 
-And use `RebirthNGModule` to declare on your feature module:
+And use `HiNGModule` to declare on your feature module:
 
     @NgModule({
       imports: [CommonModule, FormsModule, HiNGModule],
@@ -108,9 +108,8 @@ example:
       ],
       imports: [
         BrowserModule,
-        RouterModule.forRoot([]),
-        SharedModule.forRoot(),
-        HiNGModule.forRoot(),
+        SharedModule,
+        HiNGModule,
         BrowserAnimationsModule
       ],
       providers: [],
