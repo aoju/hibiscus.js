@@ -16,7 +16,7 @@ export class ActionButtonDemoComponent {
     {
       id: 1,
       text: 'Save',
-      icon: 'gicmn-floppy-disk'
+      icon: 'icmn-floppy-disk'
     }, {
       id: 2,
       text: 'Refresh',

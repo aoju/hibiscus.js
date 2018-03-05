@@ -1,0 +1,135 @@
+.preview-image {
+  width: 100%;
+}
+
+.modal-title .title-text{
+  max-width: 20em;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+
+@-webkit-keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg)
+  }
+
+  to {
+    transform: rotate(1turn);
+    -webkit-transform: rotate(1turn);
+    -moz-transform: rotate(1turn)
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg)
+  }
+
+  to {
+    transform: rotate(1turn);
+    -webkit-transform: rotate(1turn);
+    -moz-transform: rotate(1turn)
+  }
+}
+
+.image-upload .image-upload-item {
+  border-radius: 4px;
+  border: 1px solid #d9d9d9;
+  float: left;
+  margin: 0 8px 8px 0;
+  overflow: hidden;
+  padding: 8px;
+  position: relative
+}
+
+.image-upload .image-upload-item .preview-image {
+  width: 100%
+}
+
+.image-upload .image-upload-item .image-upload-toolbar {
+  -webkit-transition: all .3s;
+  display: none;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  transition: all .3s;
+  white-space: nowrap;
+  z-index: 10
+}
+
+.image-upload .image-upload-item .image-upload-toolbar .image-upload-toolbar-item {
+  color: #fff;
+  cursor: pointer;
+  margin: 0 8px 8px 0;
+  width: 1rem
+}
+
+.image-upload .image-upload-image-view {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  width: 100%
+}
+
+.image-upload .image-upload-image-view:hover:before {
+  content: " ";
+  -webkit-transition: all .3s;
+  background: #000;
+  height: 100%;
+  opacity: .5;
+  position: absolute;
+  transition: all .3s;
+  width: 100%;
+  z-index: 1
+}
+
+.image-upload .image-upload-image-view:hover   .image-upload-item-info {
+  background: transparent
+}
+
+.image-upload .image-upload-image-view:hover   .image-upload-toolbar {
+  display: block
+}
+
+.image-upload .image-upload-image-view:hover   .image-upload-toolbar .image-upload-toolbar-item {
+  opacity: .5
+}
+
+.image-upload .image-upload-image-view:hover   .image-upload-toolbar .image-upload-toolbar-item:hover {
+  opacity: 1
+}
+
+.image-upload .image-upload-btn {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-color: #fafafa;
+  border: 1px dashed #d9d9d9;
+  cursor: pointer;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: flex;
+  float: left;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  text-align: center
+}
+
+.image-upload .image-upload-btn:hover {
+  border-color: #1890ff
+}
+
+.image-upload .image-upload-btn .image-upload-item-info .uploading {
+  -webkit-animation: rotate 1s linear infinite;
+  animation: rotate 1s linear infinite;
+  display: inline-block
+}

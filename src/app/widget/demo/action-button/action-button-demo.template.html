@@ -17,7 +17,7 @@
   <h4>Customise button:</h4>
 
   <ng-template #buttonTemplate let-action>
-    <i class="icmn-checkbox-unchecked" (click)="action.toggle($event)"></i>
+    <i class="icmn-pen" (click)="action.toggle($event)"></i>
   </ng-template>
 
   <hi-action-button [buttonText]="'Default Action'" type="default" [actions]="actions"
