@@ -169,7 +169,7 @@ export class HiNGConfig {
     type: 'primary',
     newTagText: 'NEW TAG',
     plusIcon: 'icmn-plus',
-    removeIcon: 'icmn-remove',
+    removeIcon: 'icmn-cross',
     maxlength: 20,
     maxSize: 0
   };
@@ -182,6 +182,5 @@ export class HiNGConfig {
     collapseIcon: 'icmn-arrow-right',
     loadingIcon: 'icmn-loop2',
   };
-
 
 }

@@ -56,3 +56,32 @@
 .nav-tabs-vertical .nav-tabs .nav-item .nav-link:hover {
   border-right-color: #b8beca;
 }
+.nav-tabs > li {
+  float: left;
+  margin-bottom: -1px;
+}
+
+.nav > li {
+  position: relative;
+  display: block;
+}
+.nav > li > a {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+}
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus {
+  border: none;
+  -webkit-box-shadow: inset 0 -2px 0 #2196f3;
+  box-shadow: inset 0 -2px 0 #2196f3;
+  color: #2196f3;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+  color: #666666;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-bottom-color: transparent;
+  cursor: default;
+}
+

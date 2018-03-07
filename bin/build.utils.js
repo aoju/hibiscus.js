@@ -26,9 +26,9 @@ const _options = {
     host: HOST,
     port: PORT,
     public: HOST + ':' + PORT,
-    title: 'Orange - API Gateway And System Manage',
-    keywords: 'API Gateway',
-    description: 'Orange - API Gateway',
+    title: 'hibiscus.js',
+    keywords: 'hibiscus',
+    description: 'hibiscus',
     baseUrl: '/',
   },
   path: {
