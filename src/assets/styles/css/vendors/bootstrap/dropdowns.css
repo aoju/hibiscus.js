@@ -2,6 +2,7 @@
 .dropdown-menu {
   border-color: #d2d9e5;
   top: 115%;
+  width: 100%;
   padding: 0.57rem 0;
 }
 
@@ -232,4 +233,18 @@
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
   }
+}
+
+.dropdown-menu .popup-list {
+  margin-bottom: 0;
+  max-height: 250px;
+  overflow: auto;
+}
+.dropdown-menu .dropdown-item{
+  cursor:pointer;
+  padding:8px 1rem;
+  white-space:normal!important
+}
+.dropdown-menu .dropdown-item.selected{
+  font-weight:700
 }

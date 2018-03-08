@@ -147,6 +147,11 @@ export class HiNGConfig {
     icons: {stateOn: 'icmn-star-full', stateOff: 'icmn-star-empty'}
   };
 
+  select = {
+    iconDown: 'glyphicon glyphicon-menu-down',
+    formatter: (item) => item ? (item.label || item.toString()) : '',
+  };
+
   selectButton = {
     type: 'primary',
     justified: false,
@@ -157,6 +162,11 @@ export class HiNGConfig {
     onText: 'ON',
     offText: 'OFF',
     type: 'primary'
+  };
+
+  slider = {
+    max: 100,
+    min: 0
   };
 
   tabs = {

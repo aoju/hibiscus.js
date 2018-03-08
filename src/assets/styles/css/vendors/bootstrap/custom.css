@@ -17,6 +17,17 @@
 @import url(typography.css);
 @import url(utilities.css);
 
+input, button, select, optgroup, textarea button{
+  box-shadow:none !important;
+}
+
+.form-control:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #5cb85c;
+  outline: 0;
+}
+
 /**date-picker*/
 .pull-right {
   float:right !important;
@@ -493,7 +504,6 @@ input[type="checkbox"],
 .checkbox-inline input[type="checkbox"] {
   position:relative;
   margin-bottom:-4px;
-  outline:none;
   border:none;
   cursor:pointer;
   -webkit-appearance:none;
@@ -559,4 +569,94 @@ input[type="checkbox"],
 }
 .tags .tag-input-control {
   max-width:10em;
+}
+
+
+.slider-body {
+  padding: 0 45px;
+  height: 30px
+}
+
+.slider-body, .slider-container {
+  display: inline-block;
+  position: relative;
+  width: 100%
+}
+
+.slider-container {
+  height: 100%;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  z-index: 1
+}
+
+.slider {
+  position: relative;
+  height: 100%;
+  width: 100%
+}
+
+.base-line {
+  height: 6px;
+  width: 100%;
+  border-radius: 3px;
+  background-color: #ddd;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: -3px;
+  overflow: hidden
+}
+
+.active-line {
+  height: 100%;
+  width: 0;
+  position: relative;
+  left: 0
+}
+
+.active-line, .handle {
+  background-color: #2196f3
+}
+
+.handle {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  margin-top: -9px;
+  border: 3px solid #fff;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin-left: -9px
+}
+
+.slider-operator-container .btn {
+  background: transparent;
+  position: absolute;
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  font-size: 12px;
+  padding-left: 20px;
+  padding-right: 20px
+}
+
+.slider-operator-container .btn:focus,
+.slider-operator-container .btn:hover {
+  color: #2196f3
+}
+
+.slider-operator-container .btn.reduce {
+  left: 0;
+  top: 2px;
+}
+
+.slider-operator-container .btn.plus {
+  right: 0;
+  top: 2px;
 }

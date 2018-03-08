@@ -27,8 +27,10 @@ import {
   PopoverDemoComponent,
   ProgressBarDemoComponent,
   RatingDemoComponent,
+  SelectDemoComponent,
   SelectButtonDemoComponent,
   SwitchDemoComponent,
+  SliderDemoComponent,
   TabsDemoComponent,
   TagsDemoComponent,
   TooltipDemoComponent,
@@ -250,12 +252,26 @@ export class DemoService {
       html: require('!raw-loader!./rating/rating-demo.template.html'),
       typescript: require('!raw-loader!./rating/rating-demo.component.ts')
     }, {
+      name: 'Select',
+      directory: 'select',
+      component: SelectDemoComponent,
+      readme: '',
+      html: require('!raw-loader!./select/select-demo.template.html'),
+      typescript: require('!raw-loader!./select/select-demo.component.ts')
+    }, {
       name: 'SelectButton',
       directory: 'select-button',
       component: SelectButtonDemoComponent,
       readme: '',
       html: require('!raw-loader!./select-button/select-button-demo.template.html'),
       typescript: require('!raw-loader!./select-button/select-button-demo.component.ts')
+    }, {
+      name: 'Slider',
+      directory: 'slider',
+      component: SliderDemoComponent,
+      readme: '',
+      html: require('!raw-loader!./slider/slider-demo.template.html'),
+      typescript: require('!raw-loader!./slider/slider-demo.component.ts')
     }, {
       name: 'Switch',
       directory: 'carousel',

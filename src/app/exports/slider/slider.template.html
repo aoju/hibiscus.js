@@ -1,0 +1,15 @@
+<div class="slider-body">
+  <div class="slider-container">
+    <div #slider class="slider">
+      <div class="base-line" (click)="onSliderClick($event)">
+        <div class="active-line" [style.width.px]="handleOffset"></div>
+      </div>
+    </div>
+    <div #sliderDot [style.left.px]="handleOffset" class="handle" [attr.title]="value"></div>
+  </div>
+
+  <div class="slider-operator-container">
+    <i class="btn reduce icmn-minus" (click)="onOperateValue(value - 1)"></i>
+    <i class="btn plus icmn-plus" (click)="onOperateValue(value + 1)"></i>
+  </div>
+</div>

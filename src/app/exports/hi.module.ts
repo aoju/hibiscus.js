@@ -29,7 +29,9 @@ import {PositionService} from './position';
 import {ProgressBarModule} from './progress-bar';
 import {RadioGroupModule} from './radio-group';
 import {RatingModule} from './rating';
+import {SelectModule} from './select';
 import {SelectButtonModule} from './select-button';
+import {SliderModule} from './slider';
 import {StorageModule} from './storage';
 import {SwitchModule} from './switch';
 import {TabsModule} from './tabs';
@@ -73,7 +75,9 @@ import {HiNGConfig} from './hi.config';
     ProgressBarModule,
     RadioGroupModule,
     RatingModule,
+    SelectModule,
     SelectButtonModule,
+    SliderModule,
     StorageModule,
     SwitchModule,
     TabsModule,
@@ -113,7 +117,9 @@ import {HiNGConfig} from './hi.config';
     ProgressBarModule,
     RadioGroupModule,
     RatingModule,
+    SelectModule,
     SelectButtonModule,
+    SliderModule,
     StorageModule,
     SwitchModule,
     TabsModule,
