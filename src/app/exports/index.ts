@@ -8,6 +8,7 @@ export * from './calendar';
 export * from './carousel';
 export * from './checkbox-group';
 export * from './common';
+export * from './data-table';
 export * from './date-picker';
 export * from './dialog';
 export * from './draggable';

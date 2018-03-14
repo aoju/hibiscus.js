@@ -507,6 +507,7 @@ input[type="checkbox"],
   border:none;
   cursor:pointer;
   -webkit-appearance:none;
+  outline: none;
   appearance:none;
 }
 

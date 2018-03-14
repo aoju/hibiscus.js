@@ -1,8 +1,46 @@
 <div class="data-table-demo">
-
   <strong>Notice:</strong>
   <p>We recommend you to use <strong><a href="https://ag-grid.com/best-angular-2-data-grid/?framework=all#">
     ag-grid(https://ag-grid.com/best-angular-2-data-grid/?framework=all#)</a> or <a href="https://swimlane.github.io/ngx-datatable/">
     ngx-datatable(https://swimlane.github.io/ngx-datatable/)</a> </strong>.</p>
+</div>
 
+<div class="card-body">
+  <table class="table table-striped" [data]="data | dataFilter : filterQuery" #d="dataTable"
+         [rowsOnPage]="rowsOnPage" [(sortBy)]="sortBy" [(sortOrder)]="sortOrder">
+    <tr>
+      <th style="width: 20%">Name</th>
+      <th style="width: 40%">Email</th>
+      <th style="width: 10%">Age</th>
+      <th style="width: 20%">City</th>
+      <th style="width: 10%">Action</th>
+    </tr>
+    <tr *ngFor="let item of d.data">
+      <td>{{item.name}}</td>
+      <td>{{item.email}}</td>
+      <td>{{item.age}}</td>
+      <td>{{item.city | uppercase}}</td>
+      <td>
+        <i (click)="remove(item)" class="icmn-bin"></i>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="5">
+        <!--<hi-pagination [total]="pager.total" [pageSize]="pager.pageSize" [(pageIndex)]="pager.pageIndex"
+                       (pageIndexChange)="pageChange($event)" [maxItems]="5"
+                       [headTemplate]="headTemplate" [tailTemplate]="tailTemplate"
+                       firstLink="首页" lastLink="尾页" preLink="前一页" nextLink="下一页">
+        </hi-pagination>
+        <ng-template #headTemplate>
+          <span>共{{pager.total}}数据，当前{{pager.pageIndex}}页/{{totalPage()}}页</span>
+        </ng-template>
+        <ng-template #tailTemplate>
+      <span>跳至 <input type="number" class="pagination－goto" [(ngModel)]="gotoPage"
+                      [ngModelOptions]="{updateOn: 'change'}"
+                      (ngModelChange)="goto()">页</span>
+        </ng-template>-->
+        <hi-data-pagination></hi-data-pagination>
+      </td>
+    </tr>
+  </table>
 </div>

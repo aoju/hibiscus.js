@@ -9,6 +9,7 @@ import {CalendarModule} from './calendar';
 import {CarouselModule} from './carousel';
 import {CheckboxGroupModule} from './checkbox-group';
 import {HiCommonModule, AssetsLoader} from './common';
+import {DataTableModule} from './data-table';
 import {DatePickerModule} from './date-picker';
 import {DialogService, DialogModule} from './dialog';
 import {DraggableModule} from './draggable';
@@ -56,6 +57,7 @@ import {HiNGConfig} from './hi.config';
     CarouselModule,
     CheckboxGroupModule,
     HiCommonModule,
+    DataTableModule,
     DatePickerModule,
     DialogModule,
     DraggableModule,
@@ -98,6 +100,7 @@ import {HiNGConfig} from './hi.config';
     CarouselModule,
     CheckboxGroupModule,
     HiCommonModule,
+    DataTableModule,
     DatePickerModule,
     DialogModule,
     DraggableModule,
