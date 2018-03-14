@@ -52,7 +52,7 @@ import * as _ from 'lodash';
 export class BootstrapPaginator implements OnChanges {
 
   @Input('rowsOnPageSet') rowsOnPageSet = [];
-  @Input('table') mfTable: DataTable;
+  @Input('table') table: DataTable;
   minRowsOnPage = 0;
 
   ngOnChanges(changes: any): any {
