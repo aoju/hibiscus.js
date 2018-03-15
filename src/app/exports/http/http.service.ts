@@ -352,7 +352,7 @@ function methodBuilder(method: string) {
         }
 
         let baseUrl = this.getBaseUrl();
-        let host = baseUrl ? baseUrl.replace(/\/$/, '') + '/' : '';
+        let host = baseUrl ? baseUrl.replace(/\/$/, '') : '';
         const requestUrl = `${host}${resUrl.replace(/^\//, '')}`;
 
         let defaultOptions = descriptor.requestOptions;
