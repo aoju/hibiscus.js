@@ -6,7 +6,7 @@ const ENV = process.env.NODE_ENV || process.env.ENV || process.env.npm_lifecycle
 const HMR = _hasProcessFlag('hot');
 const AOT = process.env.BUILD_AOT || _hasNpmFlag('aot');
 const HOST = process.env.HOST || '127.0.0.1';
-const PORT = process.env.WEBSERVERPORT ? 5000 : 3000;
+const PORT = process.env.WEBSERVERPORT ? 5000 : 2000;
 const isProd = ENV === 'prod';
 const isStats = process.env.STATS === 'true';
 const isDevServer = _isDevServer();
