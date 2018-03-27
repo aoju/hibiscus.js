@@ -6,7 +6,7 @@ import {
   ChangeDetectionStrategy,
   OnInit
 } from '@angular/core';
-import {Modal, ModalService} from '../../../exports';
+import {HiNGConfig, Modal, ModalService} from '../../../exports';
 
 @Component({
   selector: 'hi-modal-test',
@@ -80,8 +80,11 @@ export class ModalTestComponent implements Modal, OnInit {
 })
 export class ModalDemoComponent {
 
-  constructor(private modalService: ModalService,
+  constructor(private hiNGConfig: HiNGConfig,
+              private viewContainerRef: ViewContainerRef,
+              private modalService: ModalService,
               private componentFactoryResolver: ComponentFactoryResolver) {
+    this.hiNGConfig.rootContainer = this.viewContainerRef;
   }
 
   openModal() {

@@ -1,5 +1,5 @@
-import {Component, ChangeDetectionStrategy, ViewEncapsulation, ViewChild, TemplateRef} from '@angular/core';
-import {DialogService} from '../../../exports';
+import {Component, ChangeDetectionStrategy, ViewEncapsulation, ViewChild, TemplateRef, ViewContainerRef} from '@angular/core';
+import {DialogService, HiNGConfig} from '../../../exports';
 import {Validators} from '@angular/forms';
 
 @Component({
@@ -12,7 +12,10 @@ export class DialogDemoComponent {
 
   @ViewChild('selectPromptTemplate') selectPromptTemplate: TemplateRef<any>;
 
-  constructor(private dialogService: DialogService) {
+  constructor(private hiNGConfig: HiNGConfig,
+              private viewContainerRef: ViewContainerRef,
+              private dialogService: DialogService) {
+    this.hiNGConfig.rootContainer = this.viewContainerRef;
   }
 
   alert() {
