@@ -1,0 +1,70 @@
+.linkage {
+  background: #FFF;
+  position: relative;
+  margin: -0.5rem -0.75rem;
+}
+
+.linkage .select input:disabled {
+  cursor: pointer;
+}
+
+.linkage .list-menu {
+  display: -webkit-flex;
+  display: flex;
+  position: absolute;
+  background: #FFF;
+  z-index: 9999;
+  border: 1px solid #CCC;
+  width: 400px;
+}
+
+.linkage .list-menu .sub-list {
+  -webkit-flex: 1;
+  flex: 1;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.linkage .list-menu .sub-list:last-child ul li:after {
+  content: '';
+}
+
+.linkage .list-menu .sub-list ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.linkage .list-menu .sub-list ul li {
+  position: relative;
+  cursor: pointer;
+  padding: 10px;
+  width: 100%;
+}
+
+.linkage .list-menu .sub-list ul li:after {
+  font-family: 'anticon';
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: ">";
+  display: inline-block;
+  font-size: 12px;
+  font-size: 8px;
+  -webkit-transform: scale(0.66667) rotate(0deg);
+  -ms-transform: scale(0.66667) rotate(0deg);
+  transform: scale(0.66667) rotate(0deg);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=1, M12=0, M21=0, M22=1)";
+  zoom: 1;
+  color: rgba(0, 0, 0, 0.43);
+  position: absolute;
+  right: 15px;
+}
+
+.linkage .list-menu .sub-list ul li.active,
+.linkage .list-menu .sub-list ul li:active,
+.linkage .list-menu .sub-list ul li:focus,
+.linkage .list-menu .sub-list ul li:hover {
+  background-color: #f7f7f7;
+  font-weight: bold;
+}

@@ -19,6 +19,7 @@ import {
   IcomoonDemoComponent,
   ImageUploadDemoComponent,
   InfiniteScrollDemoComponent,
+  LinkageDemoComponent,
   ModalDemoComponent,
   NotifyDemoComponent,
   OverlayDemoComponent,
@@ -187,6 +188,13 @@ export class DemoService {
       readme: '',
       html: require('!raw-loader!./infinite-scroll/infinite-scroll-demo.template.html'),
       typescript: require('!raw-loader!./infinite-scroll/infinite-scroll-demo.component.ts')
+    }, {
+      name: 'Linkage',
+      directory: 'linkage',
+      component: LinkageDemoComponent,
+      readme: '',
+      html: require('!raw-loader!./linkage/linkage-demo.template.html'),
+      typescript: require('!raw-loader!./linkage/linkage-demo.component.ts')
     }, {
       name: 'Modal',
       directory: 'modal',

@@ -17,6 +17,7 @@ export * from './flow-step';
 export * from './icon';
 export * from './image-upload';
 export * from './infinite-scroll';
+export * from './linkage';
 export * from './modal';
 export * from './overlay';
 export * from './notify';
