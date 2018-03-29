@@ -82,6 +82,7 @@
     "@angular/http": "~5.1.0",
     "@angular/platform-browser": "~5.1.0",
     "@angular/platform-browser-dynamic": "~5.1.0",
+    "@angular/cdk": "^5.0.0",
     "@angular/router": "~5.1.0",
     "@swimlane/ngx-datatable": "^11.2.0",
     "core-js": "^2.4.1",
