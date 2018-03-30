@@ -19,7 +19,6 @@ import {FlowStepModule} from './flow-step';
 import {HttpModule} from './http';
 import {ImageUploadModule} from './image-upload';
 import {InfiniteScrollModule} from './infinite-scroll';
-import {LinkageModule} from './linkage';
 import {ModalService, ModalModule} from './modal';
 import {NotifyModule, NotifyService} from './notify';
 import {OAauth2Module} from './oauth2';
@@ -69,7 +68,6 @@ import {HiNGConfig} from './hi.config';
     HttpModule,
     ImageUploadModule,
     InfiniteScrollModule,
-    LinkageModule,
     ModalModule,
     NotifyModule,
     OAauth2Module,
@@ -114,7 +112,6 @@ import {HiNGConfig} from './hi.config';
     HttpModule,
     ImageUploadModule,
     InfiniteScrollModule,
-    LinkageModule,
     ModalModule,
     NotifyModule,
     OAauth2Module,

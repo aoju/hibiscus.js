@@ -29,7 +29,7 @@
 - [x] http
 - [x] Image Upload
 - [x] Infinite Scroll
-- [x] Linkage
+- [x] Cascader
 - [x] Modal
 - [x] Notify
 - [x] OAuth2

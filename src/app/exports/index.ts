@@ -18,7 +18,6 @@ export * from './flow-step';
 export * from './http';
 export * from './image-upload';
 export * from './infinite-scroll';
-export * from './linkage';
 export * from './modal';
 export * from './oauth2';
 export * from './overlay';
