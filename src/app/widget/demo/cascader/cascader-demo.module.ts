@@ -4,21 +4,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {NzCascaderModule} from '../../../exports';
-import { CascaderBasicComponent } from './cascader.component';
+import { NzCascaderModule } from '../../../exports';
+import { CascaderDemoComponent } from './cascader-demo.component';
 
 @NgModule({
     imports     : [
-        CommonModule ,
+        CommonModule,
         FormsModule,
         NzCascaderModule
     ],
     declarations: [
-        CascaderBasicComponent
+        CascaderDemoComponent
     ],
     exports     : [
-        CascaderBasicComponent
-    ]
+        CascaderDemoComponent
+    ],
+    entryComponents: [CascaderDemoComponent]
 })
-export class CascaderModule {
+export class CascaderDemoModule {
 }

@@ -41,7 +41,7 @@ import {
   TooltipDemoModule,
   TreeViewDemoModule,
   ValidatorsDemoModule,
-  CascaderModule,
+  CascaderDemoModule,
 } from './index';
 import {RoutesModule} from './demo.routes';
 import {DemoComponent} from './demo.component';
@@ -92,7 +92,7 @@ import {DemoService} from './demo.service';
     TooltipDemoModule,
     TreeViewDemoModule,
     ValidatorsDemoModule,
-    CascaderModule
+    CascaderDemoModule
   ],
   providers: [
     DemoService
