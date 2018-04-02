@@ -37,7 +37,8 @@ import {
   TreeViewDemoComponent,
   TimePickerDemoComponent,
   RadioGroupDemoComponent,
-  ValidatorsDemoComponent
+  ValidatorsDemoComponent,
+  CascaderDemoComponent
 } from './index';
 
 @Injectable()
@@ -110,6 +111,13 @@ export class DemoService {
       readme: '',
       html: require('!raw-loader!./carousel/carousel-demo.template.html'),
       typescript: require('!raw-loader!./carousel/carousel-demo.component.ts')
+    }, {
+      name: 'Cascader',
+      directory: 'cascader',
+      component: CascaderDemoComponent,
+      readme: '',
+      html: require('!raw-loader!./cascader/cascader-demo.template.html'),
+      typescript: require('!raw-loader!./cascader/cascader-demo.component.ts')
     }, {
       name: 'CheckboxGroup',
       directory: 'checkbox-group',

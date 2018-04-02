@@ -39,7 +39,8 @@ import {
   TimePickerDemoModule,
   TooltipDemoModule,
   TreeViewDemoModule,
-  ValidatorsDemoModule
+  ValidatorsDemoModule,
+  CascaderDemoModule,
 } from './index';
 import {RoutesModule} from './demo.routes';
 import {DemoComponent} from './demo.component';
@@ -88,7 +89,8 @@ import {DemoService} from './demo.service';
     TimePickerDemoModule,
     TooltipDemoModule,
     TreeViewDemoModule,
-    ValidatorsDemoModule
+    ValidatorsDemoModule,
+    CascaderDemoModule
   ],
   providers: [
     DemoService

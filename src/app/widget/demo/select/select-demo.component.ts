@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { GroupOption } from '../../../exports/select/select.component';
 
 @Component({
-  selector: 're-select-demo',
+  selector: 'hi-select-demo',
   templateUrl: './select-demo.template.html'
 })
 export class SelectDemoComponent {

@@ -42,6 +42,7 @@ import {TooltipModule} from './tooltip';
 import {TreeViewModule, TreeViewService} from './tree-view';
 import {HiValidatorsModule} from './validators';
 import {COMMON_SERVICES} from './window-ref';
+import {NzCascaderModule} from './cascader';
 
 import {HiNGConfig} from './hi.config';
 
@@ -87,7 +88,8 @@ import {HiNGConfig} from './hi.config';
     TimePickerModule,
     TooltipModule,
     TreeViewModule,
-    HiValidatorsModule
+    HiValidatorsModule,
+    NzCascaderModule
   ],
   exports: [
     AccordionModule,
@@ -130,7 +132,8 @@ import {HiNGConfig} from './hi.config';
     TimePickerModule,
     TooltipModule,
     TreeViewModule,
-    HiValidatorsModule
+    HiValidatorsModule,
+    NzCascaderModule
   ],
   providers:
     [

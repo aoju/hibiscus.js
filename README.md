@@ -22,14 +22,15 @@
 - [x] Carousel
 - [x] Checkbox Group
 - [x] DatePicker
-- [ ] Dialog
+- [x] Dialog
 - [ ] Echarts
 - [x] File Upload
 - [x] Flow Steps
 - [x] http
-- [ ] Image Upload
+- [x] Image Upload
 - [x] Infinite Scroll
-- [ ] Modal
+- [x] Cascader
+- [x] Modal
 - [x] Notify
 - [x] OAuth2
 - [x] Overlay

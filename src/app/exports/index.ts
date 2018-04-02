@@ -44,3 +44,4 @@ export * from './validators';
 export * from './window-ref';
 export * from './hi.config';
 export * from './hi.module';
+export * from './cascader';

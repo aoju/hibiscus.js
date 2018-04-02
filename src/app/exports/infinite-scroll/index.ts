@@ -1,2 +1,2 @@
-export * from './infinite-scroll.template';
+export * from './infinite-scroll.component';
 export * from './infinite-scroll.module';

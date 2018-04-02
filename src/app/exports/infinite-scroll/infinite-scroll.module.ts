@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 
-import {InfiniteScrollComponent} from './infinite-scroll.template';
+import {InfiniteScrollComponent} from './infinite-scroll.component';
 import {CommonModule} from '@angular/common';
 
 @NgModule({
