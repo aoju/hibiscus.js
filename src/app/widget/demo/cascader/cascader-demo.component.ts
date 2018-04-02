@@ -116,30 +116,30 @@ export class CascaderDemoComponent implements OnInit {
   }
 
   /** init data */
-  public nzOptions = null;
+  public options = null;
 
   /** ngModel value */
   public values: any[] = null;
 
   ngOnInit(): void {
 
-    // let's set nzOptions in a asynchronous way
+    // let's set options in a asynchronous way
     setTimeout(() => {
-      this.nzOptions = options;
+      this.options = options;
     }, 100);
 
     this.http.request(
       'http://test.gm.api.hidoctor.cc/router/rest?method=hidoctor.area.all&v=1.0&format=json&pageSize=10&pageNum=1'
     ).subscribe((res) => {
-      this.nzOptions = this._formatData(res.json().data);
+      this.options = this._formatData(res.json().data);
     });
   }
 
   public changeNzOptions(): void {
-    if (this.nzOptions === options) {
-      this.nzOptions = otherOptions;
+    if (this.options === options) {
+      this.options = otherOptions;
     } else {
-      this.nzOptions = options;
+      this.options = options;
     }
   }
 

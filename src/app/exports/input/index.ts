@@ -1,2 +1,2 @@
-export * from './nz-input.module';
-export * from './nz-input-group.component';
+export * from './input.module';
+export * from './input-group.component';
