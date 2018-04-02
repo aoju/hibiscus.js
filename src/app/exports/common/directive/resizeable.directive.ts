@@ -6,14 +6,14 @@ import {fromEvent} from 'rxjs/observable/fromEvent';
 import 'rxjs/add/operator/takeUntil';
 
 @Directive({
-  selector: '[reResizeable]',
+  selector: '[hiResizeable]',
   host: {
     '[class.resizeable]': 'resizeEnabled'
   }
 })
 export class ResizeableDirective implements OnDestroy, AfterViewInit {
 
-  @Input('reResizeable') resizeEnabled = true;
+  @Input('hiResizeable') resizeEnabled = true;
   @Input() minWidth: number;
   @Input() maxWidth: number;
 

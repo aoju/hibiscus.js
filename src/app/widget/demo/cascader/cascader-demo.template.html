@@ -2,7 +2,14 @@
     <div class="col-lg-6">
         <h5 class="text-black"><strong>Default Cascader</strong></h5>
         <div class="mb-5">
-                <cascader-basic></cascader-basic>
+          <hi-cascader
+            [options]="nzOptions"
+            [(ngModel)]="values"
+            (ngModelChange)="onChanges($event)">
+          </hi-cascader>
+          <a href="javascript:;" (click)="changeNzOptions()" class="change-options">
+            Change Options
+          </a>
         </div>
     </div>
 </div>

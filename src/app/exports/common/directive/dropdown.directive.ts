@@ -1,7 +1,7 @@
 import {Directive, HostListener, Output, Input, EventEmitter, Renderer2, ElementRef} from '@angular/core';
 
 @Directive({
-  selector: '[reDropdown]',
+  selector: '[hiDropdown]',
   host: {
     '[class.dropdown]': 'direction !== "up"',
     '[class.dropup]': 'direction === "up"'

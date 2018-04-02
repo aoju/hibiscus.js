@@ -10,10 +10,10 @@ import {
   Renderer2,
   Self
 } from '@angular/core';
-import { NgControl, NgModel } from '@angular/forms';
+import {NgControl, NgModel} from '@angular/forms';
 
-import calculateNodeHeight from '../core/util/calculate-node-height';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import calculateNodeHeight from '../utils/calculate-node-height';
+import {coerceBooleanProperty} from '@angular/cdk/coercion';
 
 export interface AutoSizeType {
   minRows?: number;
@@ -21,12 +21,12 @@ export interface AutoSizeType {
 }
 
 @Directive({
-  selector: '[nz-input]',
-  host    : {
+  selector: '[hi-input]',
+  host: {
     '[class.ant-input]': 'true'
   }
 })
-export class NzInputDirective implements DoCheck, AfterViewInit {
+export class InputDirective implements DoCheck, AfterViewInit {
   private _size = 'default';
   private _disabled = false;
   private _autosize: boolean | AutoSizeType = false;
@@ -37,11 +37,11 @@ export class NzInputDirective implements DoCheck, AfterViewInit {
   private isInit = false;
 
   @Input()
-  get nzSize(): string {
+  get hiSize(): string {
     return this._size;
   }
 
-  set nzSize(value: string) {
+  set hiSize(value: string) {
     this._size = value;
   }
 
@@ -59,7 +59,7 @@ export class NzInputDirective implements DoCheck, AfterViewInit {
   }
 
   @Input()
-  set nzAutosize(value: string | boolean | AutoSizeType) {
+  set hiAutosize(value: string | boolean | AutoSizeType) {
     if (typeof value === 'string') {
       this._autosize = true;
     } else {
@@ -67,31 +67,31 @@ export class NzInputDirective implements DoCheck, AfterViewInit {
     }
   }
 
-  get nzAutosize(): string | boolean | AutoSizeType {
+  get hiAutosize(): string | boolean | AutoSizeType {
     return this._autosize;
   }
 
   @HostBinding(`class.ant-input-lg`)
   get setLgClass(): boolean {
-    return this.nzSize === 'large';
+    return this.hiSize === 'large';
   }
 
   @HostBinding(`class.ant-input-sm`)
   get setSmClass(): boolean {
-    return this.nzSize === 'small';
+    return this.hiSize === 'small';
   }
 
   @HostListener('input')
   textAreaOnChange(): void {
-    if (this.nzAutosize) {
+    if (this.hiAutosize) {
       this.resizeTextArea();
     }
   }
 
   resizeTextArea(): void {
     const textAreaRef = this.el as HTMLTextAreaElement;
-    const maxRows = this.nzAutosize ? (this.nzAutosize as AutoSizeType).maxRows || null : null;
-    const minRows = this.nzAutosize ? (this.nzAutosize as AutoSizeType).minRows || null : null;
+    const maxRows = this.hiAutosize ? (this.hiAutosize as AutoSizeType).maxRows || null : null;
+    const minRows = this.hiAutosize ? (this.hiAutosize as AutoSizeType).minRows || null : null;
     if ((this.previousValue === textAreaRef.value) && (this.previewsMaxRows === maxRows) && (this.previewsMinRows === minRows)) {
       return;
     }
@@ -108,19 +108,22 @@ export class NzInputDirective implements DoCheck, AfterViewInit {
     this.renderer.setStyle(textAreaRef, 'maxHeight', `${textAreaStyles.maxHeight}px`);
   }
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer2, @Optional() private ngModel: NgModel, @Optional() @Self() public ngControl: NgControl) {
+  constructor(private elementRef: ElementRef,
+              private renderer: Renderer2,
+              @Optional() private ngModel: NgModel,
+              @Optional() @Self() public ngControl: NgControl) {
     this.el = this.elementRef.nativeElement;
   }
 
   ngDoCheck(): void {
-    if (this.nzAutosize && this.isInit) {
+    if (this.hiAutosize && this.isInit) {
       this.resizeTextArea();
     }
   }
 
   ngAfterViewInit(): void {
     this.isInit = true;
-    if (this.nzAutosize) {
+    if (this.hiAutosize) {
       this.resizeTextArea();
     }
   }
