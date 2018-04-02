@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {DocumentRef} from '../window-ref/document-ref.service';
+import {DocumentRef} from '../../window-ref/document-ref.service';
 
 @Injectable()
 export class AssetsLoader {

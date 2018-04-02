@@ -1,1 +1,2 @@
-export * from './public-api';
+export * from './input.module';
+export * from './input-group.component';

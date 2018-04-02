@@ -11,7 +11,7 @@
     </button>
   </li>
   <li *ngIf="!disabled && isTyping" class="tag-input-panel">
-    <input [reAutoFocus]="isTyping" type="text" name="tagsInput" class="form-control tag-input-control"
+    <input [hiAutoFocus]="isTyping" type="text" name="tagsInput" class="form-control tag-input-control"
            [maxlength]="maxlength"
            [(ngModel)]="selectValue" (keydown.enter)="addLabel(selectValue)" (blur)="boxBlur()">
   </li>

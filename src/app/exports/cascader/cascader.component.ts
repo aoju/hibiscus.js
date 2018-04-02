@@ -15,20 +15,20 @@ import {
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
-import { BACKSPACE, DOWN_ARROW, ENTER, ESCAPE, LEFT_ARROW, RIGHT_ARROW, UP_ARROW } from '@angular/cdk/keycodes';
-import { ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
-import { NzUpdateHostClassService } from '../core/services/update-host-class.service';
-import { dropDownAnimation } from '../core/animation/dropdown-animations';
+import {BACKSPACE, DOWN_ARROW, ENTER, ESCAPE, LEFT_ARROW, RIGHT_ARROW, UP_ARROW} from '@angular/cdk/keycodes';
+import {ConnectedOverlayPositionChange} from '@angular/cdk/overlay';
+import {coerceBooleanProperty} from '@angular/cdk/coercion';
+import {UpdateHostClassService} from '../common/services/update-host-class.service';
+import {dropDownAnimation} from '../common/animation/dropdown-animations';
 
 function toArray<T>(value: T | T[]): T[] {
   let ret: T[];
   if (value == null) {
     ret = [];
   } else if (!Array.isArray(value)) {
-    ret = [ value ];
+    ret = [value];
   } else {
     ret = value;
   }
@@ -42,7 +42,7 @@ function arrayEquals<T>(array1: T[], array2: T[]): boolean {
 
   const len = array1.length;
   for (let i = 0; i < len; i++) {
-    if (array1[ i ] !== array2[ i ]) {
+    if (array1[i] !== array2[i]) {
       return false;
     }
   }
@@ -51,9 +51,9 @@ function arrayEquals<T>(array1: T[], array2: T[]): boolean {
 
 const defaultDisplayRender = label => label.join(' / ');
 
-export type NzCascaderExpandTrigger = 'click' | 'hover';
-export type NzCascaderTriggerType = 'click' | 'hover';
-export type NzCascaderSize = 'small' | 'large' | 'default' ;
+export type CascaderExpandTrigger = 'click' | 'hover';
+export type CascaderTriggerType = 'click' | 'hover';
+export type CascaderSize = 'small' | 'large' | 'default' ;
 
 export interface CascaderOption {
   value?: string;
@@ -69,47 +69,47 @@ export interface CascaderOption {
 }
 
 @Component({
-  selector           : 'nz-cascader,[nz-cascader]',
+  selector: 'hi-cascader,[hi-cascader]',
   preserveWhitespaces: false,
-  animations         : [
+  animations: [
     dropDownAnimation
   ],
-  template           : `
+  template: `
     <div
       cdkOverlayOrigin
       #origin="cdkOverlayOrigin"
       #trigger
     >
-      <div *ngIf="nzShowInput">
+      <div *ngIf="hiShowInput">
         <input #input
-          nz-input
-          [attr.autoComplete]="'off'"
-          [attr.placeholder]="showPlaceholder ? nzPlaceHolder : null"
-          [attr.autofocus]="nzAutoFocus ? 'autofocus' : null"
-          [readonly]="!nzShowSearch"
-          [disabled]="nzDisabled"
-          [nzSize]="nzSize"
-          [ngClass]="inputCls"
-          [(ngModel)]="inputValue"
-          (blur)="handleInputBlur($event)"
-          (focus)="handleInputFocus($event)"
-          (change)="handlerInputChange($event)"
+               hi-input
+               [attr.autoComplete]="'off'"
+               [attr.placeholder]="showPlaceholder ? hiPlaceHolder : null"
+               [attr.autofocus]="hiAutoFocus ? 'autofocus' : null"
+               [readonly]="!hiShowSearch"
+               [disabled]="hiDisabled"
+               [hiSize]="hiSize"
+               [ngClass]="inputCls"
+               [(ngModel)]="inputValue"
+               (blur)="handleInputBlur($event)"
+               (focus)="handleInputFocus($event)"
+               (change)="handlerInputChange($event)"
         >
         <i *ngIf="showClearIcon"
-          [class]="'anticon anticon-cross-circle'"
-          [ngClass]="clearCls"
-          [attr.title]="nzClearText"
-          (click)="clearSelection($event)"></i>
-        <i *ngIf="nzShowArrow && !isLoading"
-          class="anticon anticon-down"
-          [ngClass]="arrowCls"></i>
+           [class]="'anticon anticon-cross-circle'"
+           [ngClass]="clearCls"
+           [attr.title]="hiClearText"
+           (click)="clearSelection($event)"></i>
+        <i *ngIf="hiShowArrow && !isLoading"
+           class="anticon anticon-down"
+           [ngClass]="arrowCls"></i>
         <i *ngIf="isLoading"
-          class="anticon anticon-loading anticon-spin"
-          [ngClass]="loadingCls"></i>
+           class="anticon anticon-loading anticon-spin"
+           [ngClass]="loadingCls"></i>
         <span [ngClass]="labelCls">
           <ng-container *ngIf="!isLabelRenderTemplate; else labelTemplate">{{ labelRenderText }}</ng-container>
           <ng-template #labelTemplate>
-            <ng-template [ngTemplateOutlet]="nzLabelRender" [ngTemplateOutletContext]="labelRenderContext"></ng-template>
+            <ng-template [ngTemplateOutlet]="hiLabelRender" [ngTemplateOutletContext]="labelRenderContext"></ng-template>
           </ng-template>
         </span>
       </div>
@@ -125,17 +125,17 @@ export interface CascaderOption {
       [cdkConnectedOverlayOpen]="menuVisible"
     >
       <div #menu
-        [ngClass]="menuCls" [ngStyle]="nzMenuStyle"
-        [@dropDownAnimation]="dropDownPosition"
-        (mouseleave)="onTriggerMouseLeave($event)"
+           [ngClass]="menuCls" [ngStyle]="hiMenuStyle"
+           [@dropDownAnimation]="dropDownPosition"
+           (mouseleave)="onTriggerMouseLeave($event)"
       >
-        <ul *ngFor="let options of nzColumns; let i = index;" [ngClass]="menuColumnCls">
+        <ul *ngFor="let options of hiColumns; let i = index;" [ngClass]="menuColumnCls">
           <li *ngFor="let option of options"
-            [attr.title]="option.title || getOptionLabel(option)"
-            [ngClass]="getOptionCls(option, i)"
-            (mouseenter)="onOptionMouseEnter(option, i, $event)"
-            (mouseleave)="onOptionMouseLeave(option, i, $event)"
-            (click)="onOptionClick(option, i, $event)"
+              [attr.title]="option.title || getOptionLabel(option)"
+              [ngClass]="getOptionCls(option, i)"
+              (mouseenter)="onOptionMouseEnter(option, i, $event)"
+              (mouseleave)="onOptionMouseLeave(option, i, $event)"
+              (click)="onOptionClick(option, i, $event)"
           >
             {{ getOptionLabel(option) }}
           </li>
@@ -143,32 +143,32 @@ export interface CascaderOption {
       </div>
     </ng-template>
   `,
-  providers          : [
-    NzUpdateHostClassService,
+  providers: [
+    UpdateHostClassService,
     {
-      provide    : NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => NzCascaderComponent),
-      multi      : true
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => CascaderComponent),
+      multi: true
     }
   ],
-  host               : {
+  host: {
     '[attr.tabIndex]': '"0"'
   },
-  styles             : [
+  styles: [
       `.ant-cascader-menus {
       margin-top: 4px;
       margin-bottom: 4px;
     }`
   ]
 })
-export class NzCascaderComponent implements OnInit, OnDestroy, ControlValueAccessor {
+export class CascaderComponent implements OnInit, OnDestroy, ControlValueAccessor {
   private allowClear = true;
   private autoFocus = false;
   private disabled = false;
   private enableCache = true;
   private showArrow = true;
   private showInput = true;
-  private size: NzCascaderSize = 'default';
+  private size: CascaderSize = 'default';
   private prefixCls = 'ant-cascader';
   private inputPrefixCls = 'ant-input';
   private menuClassName;
@@ -207,7 +207,7 @@ export class NzCascaderComponent implements OnInit, OnDestroy, ControlValueAcces
   // 已激活的选项表示通过键盘方向键选择的选项，并未最终确认（除非按ENTER键）：activaction will not trigger value change
   private activatedOptions: CascaderOption[] = [];
   // 表示当前菜单的数据列：all data columns
-  public nzColumns: CascaderOption[][] = [];
+  public hiColumns: CascaderOption[][] = [];
 
   // 显示或隐藏菜单计时器
   private delayTimer: any;
@@ -230,18 +230,18 @@ export class NzCascaderComponent implements OnInit, OnDestroy, ControlValueAcces
 
   /** Display Render ngTemplate */
   @Input()
-  set nzLabelRender(value: TemplateRef<any>) {
+  set hiLabelRender(value: TemplateRef<any>) {
     this.labelRenderTpl = value;
     this.isLabelRenderTemplate = (value instanceof TemplateRef);
   }
 
-  get nzLabelRender(): TemplateRef<any> {
+  get hiLabelRender(): TemplateRef<any> {
     return this.labelRenderTpl;
   }
 
   /** prefixCls */
   @Input()
-  set nzPrefixCls(prefixCls: string) {
+  set hiPrefixCls(prefixCls: string) {
     this.prefixCls = prefixCls;
     this.setClassMap();
     this.setLabelClass();
@@ -253,41 +253,41 @@ export class NzCascaderComponent implements OnInit, OnDestroy, ControlValueAcces
     this.setMenuColumnClass();
   }
 
-  get nzPrefixCls(): string {
+  get hiPrefixCls(): string {
     return this.prefixCls;
   }
 
   /** Whether is disabled */
   @Input()
-  set nzDisabled(value: boolean) {
+  set hiDisabled(value: boolean) {
     this.disabled = coerceBooleanProperty(value);
     this.setClassMap();
     this.setInputClass();
   }
 
-  get nzDisabled(): boolean {
+  get hiDisabled(): boolean {
     return this.disabled;
   }
 
   /** Input size, one of `large` `default` `small` */
   @Input()
-  set nzSize(value: NzCascaderSize) {
+  set hiSize(value: CascaderSize) {
     this.size = value;
     this.setClassMap();
     this.setInputClass();
   }
 
-  get nzSize(): NzCascaderSize {
+  get hiSize(): CascaderSize {
     return this.size;
   }
 
   /** Whether show input box. Defaults to `true`. */
   @Input()
-  set nzShowInput(value: boolean) {
+  set hiShowInput(value: boolean) {
     this.showInput = coerceBooleanProperty(value);
   }
 
-  get nzShowInput(): boolean {
+  get hiShowInput(): boolean {
     return this.showInput;
   }
 
@@ -295,143 +295,143 @@ export class NzCascaderComponent implements OnInit, OnDestroy, ControlValueAcces
 
   /* // not support yet
   @Input()
-  set nzShowSearch(value: boolean) {
+  set hiShowSearch(value: boolean) {
     this.showSearch = coerceBooleanProperty(value);
   }
-  get nzShowSearch(): boolean {
+  get hiShowSearch(): boolean {
     return this.showSearch;
   }
   */
 
   /** Whether allow clear. Defaults to `true`. */
   @Input()
-  set nzAllowClear(value: boolean) {
+  set hiAllowClear(value: boolean) {
     this.allowClear = coerceBooleanProperty(value);
   }
 
-  get nzAllowClear(): boolean {
+  get hiAllowClear(): boolean {
     return this.allowClear;
   }
 
   /** Whether auto focus. */
   @Input()
-  set nzAutoFocus(value: boolean) {
+  set hiAutoFocus(value: boolean) {
     this.autoFocus = coerceBooleanProperty(value);
   }
 
-  get nzAutoFocus(): boolean {
+  get hiAutoFocus(): boolean {
     return this.autoFocus;
   }
 
   /** Whether to show arrow */
   @Input()
-  set nzShowArrow(value: boolean) {
+  set hiShowArrow(value: boolean) {
     this.showArrow = coerceBooleanProperty(value);
   }
 
-  get nzShowArrow(): boolean {
+  get hiShowArrow(): boolean {
     return this.showArrow;
   }
 
   /** Additional className of popup overlay */
   @Input()
-  set nzMenuClassName(value: string) {
+  set hiMenuClassName(value: string) {
     this.menuClassName = value;
     this.setMenuClass();
   }
 
-  get nzMenuClassName(): string {
+  get hiMenuClassName(): string {
     return this.menuClassName;
   }
 
   /** Additional className of popup overlay column */
   @Input()
-  set nzColumnClassName(value: string) {
+  set hiColumnClassName(value: string) {
     this.columnClassName = value;
     this.setMenuColumnClass();
   }
 
-  get nzColumnClassName(): string {
+  get hiColumnClassName(): string {
     return this.columnClassName;
   }
 
   /** Options for first column, sub column will be load async */
-  @Input() set nzOptions(options: CascaderOption[] | null) {
-    this.nzColumns = options && options.length ? [ options ] : [];
-    if (this.defaultValue && this.nzColumns.length) {
+  @Input() set options(options: CascaderOption[] | null) {
+    this.hiColumns = options && options.length ? [options] : [];
+    if (this.defaultValue && this.hiColumns.length) {
       this.initOptions(0);
     }
   }
 
-  get nzOptions(): CascaderOption[] {
-    return this.nzColumns[ 0 ];
+  get options(): CascaderOption[] {
+    return this.hiColumns[0];
   }
 
   /** Change value on each selection if set to true */
   @Input()
-  set nzChangeOnSelect(value: boolean) {
+  set hiChangeOnSelect(value: boolean) {
     this.changeOnSelect = coerceBooleanProperty(value);
   }
 
-  get nzChangeOnSelect(): boolean {
+  get hiChangeOnSelect(): boolean {
     return this.changeOnSelect;
   }
 
   /** Hover text for the clear icon */
-  @Input() nzClearText = 'Clear';
+  @Input() hiClearText = 'Clear';
 
   /** Expand column item when click or hover, one of 'click' 'hover' */
-  @Input() nzExpandTrigger: NzCascaderExpandTrigger = 'click';
+  @Input() hiExpandTrigger: CascaderExpandTrigger = 'click';
 
   /** Specify content to show when no result matches. */
-  @Input() nzNotFoundContent = 'Not Found';
+  @Input() hiNotFoundContent = 'Not Found';
 
   /** Input placeholder */
-  @Input() nzPlaceHolder = 'Please select';
+  @Input() hiPlaceHolder = 'Please select';
 
   /** Additional style of popup overlay */
-  @Input() nzMenuStyle: { [key: string]: string; };
+  @Input() hiMenuStyle: { [key: string]: string; };
 
   /** Change value on selection only if this function returns `true` */
-  @Input() nzChangeOn: (option: CascaderOption, level: number) => boolean;
+  @Input() hiChangeOn: (option: CascaderOption, level: number) => boolean;
 
-  /** Delay time to show when mouse enter, when `nzExpandTrigger` is `hover`. */
-  @Input() nzMouseEnterDelay = 150; // ms
+  /** Delay time to show when mouse enter, when `hiExpandTrigger` is `hover`. */
+  @Input() hiMouseEnterDelay = 150; // ms
 
-  /** Delay time to hide when mouse enter, when `nzExpandTrigger` is `hover`. */
-  @Input() nzMouseLeaveDelay = 150; // ms
+  /** Delay time to hide when mouse enter, when `hiExpandTrigger` is `hover`. */
+  @Input() hiMouseLeaveDelay = 150; // ms
 
   /** Triggering mode: can be Array<'click'|'hover'> */
-  @Input() nzTriggerAction: NzCascaderTriggerType | NzCascaderTriggerType[] = [ 'click' ];
+  @Input() hiTriggerAction: CascaderTriggerType | CascaderTriggerType[] = ['click'];
 
   /** Property name for getting `value` in the option */
-  @Input() nzValueProperty = 'value';
+  @Input() hiValueProperty = 'value';
 
   /** Property name for getting `label` in the option */
-  @Input() nzLabelProperty = 'label';
+  @Input() hiLabelProperty = 'label';
 
   /** 异步加载数据 */
-  @Input() nzLoadData: (node: CascaderOption, index?: number) => PromiseLike<any>;
+  @Input() hiLoadData: (node: CascaderOption, index?: number) => PromiseLike<any>;
 
   /** Event: emit on popup show or hide */
-  @Output() nzVisibleChange = new EventEmitter<boolean>();
+  @Output() hiVisibleChange = new EventEmitter<boolean>();
 
   /** Event: emit on values changed */
-  @Output() nzChange = new EventEmitter<any[]>();
+  @Output() hiChange = new EventEmitter<any[]>();
 
   /** Event: emit on values and selection changed */
-  @Output() nzSelectionChange = new EventEmitter<CascaderOption[]>();
+  @Output() hiSelectionChange = new EventEmitter<CascaderOption[]>();
 
   /**
    * Event: emit on option selected, event data：{option: any, index: number}
    */
-  @Output() nzSelect = new EventEmitter<{
+  @Output() hiSelect = new EventEmitter<{
     option: CascaderOption,
     index: number
   }>();
 
   /** Event: emit on the clear button clicked */
-  @Output() nzClear = new EventEmitter<any>();
+  @Output() hiClear = new EventEmitter<any>();
 
   /** 浮层菜单 */
   @ViewChild('menu') menu: ElementRef;
@@ -471,19 +471,18 @@ export class NzCascaderComponent implements OnInit, OnDestroy, ControlValueAcces
   }
 
 
-
   private setClassMap(): void {
     const classMap = {
-      [ `${this.prefixCls}` ]                  : 1,
-      [ `${this.prefixCls}-picker` ]           : 1,
-      [ `${this.prefixCls}-lg` ]               : this.nzSize === 'large',
-      [ `${this.prefixCls}-sm` ]               : this.nzSize === 'small',
-      [ `${this.prefixCls}-picker-disabled` ]  : this.disabled,
-      [ `${this.prefixCls}-focused` ]          : this.isFocused,
-      [ `${this.prefixCls}-picker-open` ]      : this.menuVisible,
-      [ `${this.prefixCls}-picker-with-value` ]: this.inputValue && this.inputValue.length
+      [`${this.prefixCls}`]: 1,
+      [`${this.prefixCls}-picker`]: 1,
+      [`${this.prefixCls}-lg`]: this.hiSize === 'large',
+      [`${this.prefixCls}-sm`]: this.hiSize === 'small',
+      [`${this.prefixCls}-picker-disabled`]: this.disabled,
+      [`${this.prefixCls}-focused`]: this.isFocused,
+      [`${this.prefixCls}-picker-open`]: this.menuVisible,
+      [`${this.prefixCls}-picker-with-value`]: this.inputValue && this.inputValue.length
     };
-    this.nzUpdateHostClassService.updateHostClass(this.el, classMap);
+    this.updateHostClassService.updateHostClass(this.el, classMap);
   }
 
   /** 标签 样式 */
@@ -493,7 +492,7 @@ export class NzCascaderComponent implements OnInit, OnDestroy, ControlValueAcces
 
   private setLabelClass(): void {
     this._labelCls = {
-      [ `${this.prefixCls}-picker-label` ]: true
+      [`${this.prefixCls}-picker-label`]: true
     };
   }
 
@@ -504,8 +503,8 @@ export class NzCascaderComponent implements OnInit, OnDestroy, ControlValueAcces
 
   private setArrowClass(): void {
     this._arrowCls = {
-      [ `${this.prefixCls}-picker-arrow` ]       : true,
-      [ `${this.prefixCls}-picker-arrow-expand` ]: this.menuVisible
+      [`${this.prefixCls}-picker-arrow`]: true,
+      [`${this.prefixCls}-picker-arrow-expand`]: this.menuVisible
     };
   }
 
@@ -516,7 +515,7 @@ export class NzCascaderComponent implements OnInit, OnDestroy, ControlValueAcces
 
   private setLoadingClass(): void {
     this._loadingCls = {
-      [ `${this.prefixCls}-picker-arrow` ]: true
+      [`${this.prefixCls}-picker-arrow`]: true
     };
   }
 
@@ -527,7 +526,7 @@ export class NzCascaderComponent implements OnInit, OnDestroy, ControlValueAcces
 
   private setClearClass(): void {
     this._clearCls = {
-      [ `${this.prefixCls}-picker-clear` ]: true
+      [`${this.prefixCls}-picker-clear`]: true
     };
   }
 
@@ -538,10 +537,10 @@ export class NzCascaderComponent implements OnInit, OnDestroy, ControlValueAcces
 
   private setInputClass(): void {
     this._inputCls = {
-      [ `${this.prefixCls}-input` ]        : 1,
-      [ `${this.inputPrefixCls}-disabled` ]: this.nzDisabled,
-      [ `${this.inputPrefixCls}-lg` ]      : this.nzSize === 'large',
-      [ `${this.inputPrefixCls}-sm` ]      : this.nzSize === 'small'
+      [`${this.prefixCls}-input`]: 1,
+      [`${this.inputPrefixCls}-disabled`]: this.hiDisabled,
+      [`${this.inputPrefixCls}-lg`]: this.hiSize === 'large',
+      [`${this.inputPrefixCls}-sm`]: this.hiSize === 'small'
     };
   }
 
@@ -552,9 +551,9 @@ export class NzCascaderComponent implements OnInit, OnDestroy, ControlValueAcces
 
   private setMenuClass(): void {
     this._menuCls = {
-      [ `${this.prefixCls}-menus` ]       : true,
-      [ `${this.prefixCls}-menus-hidden` ]: !this.menuVisible,
-      [ `${this.nzMenuClassName}` ]       : this.nzMenuClassName
+      [`${this.prefixCls}-menus`]: true,
+      [`${this.prefixCls}-menus-hidden`]: !this.menuVisible,
+      [`${this.hiMenuClassName}`]: this.hiMenuClassName
     };
   }
 
@@ -565,19 +564,19 @@ export class NzCascaderComponent implements OnInit, OnDestroy, ControlValueAcces
 
   private setMenuColumnClass(): void {
     this._menuColumnCls = {
-      [ `${this.prefixCls}-menu` ]   : true,
-      [ `${this.nzColumnClassName}` ]: this.nzColumnClassName
+      [`${this.prefixCls}-menu`]: true,
+      [`${this.hiColumnClassName}`]: this.hiColumnClassName
     };
   }
 
   /** 获取列中Option的样式 */
   public getOptionCls(option: CascaderOption, index: number): any {
     return {
-      [ `${this.prefixCls}-menu-item` ]         : true,
-      [ `${this.prefixCls}-menu-item-expand` ]  : !option.isLeaf,
-      [ `${this.prefixCls}-menu-item-active` ]  : this.isActivedOption(option, index),
-      [ `${this.prefixCls}-menu-item-disabled` ]: option.disabled,
-      [ `${this.prefixCls}-menu-item-loading` ] : option.loading
+      [`${this.prefixCls}-menu-item`]: true,
+      [`${this.prefixCls}-menu-item-expand`]: !option.isLeaf,
+      [`${this.prefixCls}-menu-item-active`]: this.isActivedOption(option, index),
+      [`${this.prefixCls}-menu-item-disabled`]: option.disabled,
+      [`${this.prefixCls}-menu-item-loading`]: option.loading
     };
   }
 
@@ -589,7 +588,7 @@ export class NzCascaderComponent implements OnInit, OnDestroy, ControlValueAcces
   /** input element blur */
   public handleInputBlur(event: Event): void {
     /*
-    if (!this.nzShowSearch) {
+    if (!this.hiShowSearch) {
       return;
     }
     */
@@ -603,7 +602,7 @@ export class NzCascaderComponent implements OnInit, OnDestroy, ControlValueAcces
   /** input element focus */
   public handleInputFocus(event: Event): void {
     /*
-    if (!this.nzShowSearch) {
+    if (!this.hiShowSearch) {
       return;
     }
     */
@@ -627,7 +626,7 @@ export class NzCascaderComponent implements OnInit, OnDestroy, ControlValueAcces
   public get showClearIcon(): boolean {
     const isHasValue = this.hasValue();
     const isHasInput = this.hasInput();
-    return this.nzAllowClear && !this.nzDisabled && (isHasValue || isHasInput);
+    return this.hiAllowClear && !this.hiDisabled && (isHasValue || isHasInput);
   }
 
   /** clear the input box and selected options */
@@ -653,13 +652,13 @@ export class NzCascaderComponent implements OnInit, OnDestroy, ControlValueAcces
     const labels: string[] = selectedOptions.map(o => this.getOptionLabel(o));
     // 设置当前控件的显示值
     if (this.isLabelRenderTemplate) {
-      this.labelRenderContext = { labels, selectedOptions };
+      this.labelRenderContext = {labels, selectedOptions};
     } else {
       this.labelRenderText = defaultDisplayRender.call(this, labels, selectedOptions);
     }
   }
 
-  @HostListener('keydown', [ '$event' ])
+  @HostListener('keydown', ['$event'])
   public onKeyDown(event: KeyboardEvent): void {
     const keyCode = event.keyCode;
     if (keyCode !== DOWN_ARROW &&
@@ -701,9 +700,9 @@ export class NzCascaderComponent implements OnInit, OnDestroy, ControlValueAcces
     }
   }
 
-  @HostListener('click', [ '$event' ])
+  @HostListener('click', ['$event'])
   public onTriggerClick(event: MouseEvent): void {
-    if (this.nzDisabled) {
+    if (this.hiDisabled) {
       return;
     }
     this.onTouched(); // set your control to 'touched'
@@ -713,19 +712,19 @@ export class NzCascaderComponent implements OnInit, OnDestroy, ControlValueAcces
     }
   }
 
-  @HostListener('mouseenter', [ '$event' ])
+  @HostListener('mouseenter', ['$event'])
   public onTriggerMouseEnter(event: MouseEvent): void {
-    if (this.nzDisabled) {
+    if (this.hiDisabled) {
       return;
     }
     if (this.isPointerTiggerAction()) {
-      this.delaySetMenuVisible(true, this.nzMouseEnterDelay, true);
+      this.delaySetMenuVisible(true, this.hiMouseEnterDelay, true);
     }
   }
 
-  @HostListener('mouseleave', [ '$event' ])
+  @HostListener('mouseleave', ['$event'])
   public onTriggerMouseLeave(event: MouseEvent): void {
-    if (this.nzDisabled) {
+    if (this.hiDisabled) {
       return;
     }
     if (!this.isMenuVisible() || this.isOpening) {
@@ -741,22 +740,22 @@ export class NzCascaderComponent implements OnInit, OnDestroy, ControlValueAcces
         // 因为浮层的backdrop出现，暂时没有办法自动消失
         return;
       }
-      this.delaySetMenuVisible(false, this.nzMouseLeaveDelay);
+      this.delaySetMenuVisible(false, this.hiMouseLeaveDelay);
     }
   }
 
   private isClickTiggerAction(): boolean {
-    if (typeof this.nzTriggerAction === 'string') {
-      return this.nzTriggerAction === 'click';
+    if (typeof this.hiTriggerAction === 'string') {
+      return this.hiTriggerAction === 'click';
     }
-    return this.nzTriggerAction.indexOf('click') !== -1;
+    return this.hiTriggerAction.indexOf('click') !== -1;
   }
 
   private isPointerTiggerAction(): boolean {
-    if (typeof this.nzTriggerAction === 'string') {
-      return this.nzTriggerAction === 'hover';
+    if (typeof this.hiTriggerAction === 'string') {
+      return this.hiTriggerAction === 'hover';
     }
-    return this.nzTriggerAction.indexOf('hover') !== -1;
+    return this.hiTriggerAction.indexOf('hover') !== -1;
   }
 
   public closeMenu(): void {
@@ -802,7 +801,7 @@ export class NzCascaderComponent implements OnInit, OnDestroy, ControlValueAcces
   }
 
   public setMenuVisible(menuVisible: boolean): void {
-    if (this.nzDisabled) {
+    if (this.hiDisabled) {
       return;
     }
 
@@ -817,7 +816,7 @@ export class NzCascaderComponent implements OnInit, OnDestroy, ControlValueAcces
       if (menuVisible) {
         this.beforeVisible();
       }
-      this.nzVisibleChange.emit(menuVisible);
+      this.hiVisibleChange.emit(menuVisible);
     }
   }
 
@@ -827,7 +826,7 @@ export class NzCascaderComponent implements OnInit, OnDestroy, ControlValueAcces
   }
 
   private loadRootOptions(): void {
-    if (!this.nzColumns.length) {
+    if (!this.hiColumns.length) {
       const root: any = {};
       this.loadChildren(root, -1);
     }
@@ -835,16 +834,16 @@ export class NzCascaderComponent implements OnInit, OnDestroy, ControlValueAcces
 
   /** 获取Option的值，例如，可以指定labelProperty="name"来取Name */
   public getOptionLabel(option: CascaderOption): any {
-    return option[ this.nzLabelProperty || 'label' ];
+    return option[this.hiLabelProperty || 'label'];
   }
 
   /** 获取Option的值，例如，可以指定valueProperty="id"来取ID */
   public getOptionValue(option: CascaderOption): any {
-    return option[ this.nzValueProperty || 'value' ];
+    return option[this.hiValueProperty || 'value'];
   }
 
   private isActivedOption(option: CascaderOption, index: number): boolean {
-    const activeOpt = this.activatedOptions[ index ];
+    const activeOpt = this.activatedOptions[index];
     return activeOpt === option;
   }
 
@@ -860,12 +859,12 @@ export class NzCascaderComponent implements OnInit, OnDestroy, ControlValueAcces
       return;
     }
 
-    this.activatedOptions[ index ] = option;
+    this.activatedOptions[index] = option;
 
     // 当直接选择最后一级时，前面的选项要补全。例如，选择“城市”，则自动补全“国家”、“省份”
     for (let i = index - 1; i >= 0; i--) {
-      if (!this.activatedOptions[ i ]) {
-        this.activatedOptions[ i ] = this.activatedOptions[ i + 1 ].parent;
+      if (!this.activatedOptions[i]) {
+        this.activatedOptions[i] = this.activatedOptions[i + 1].parent;
       }
     }
     // 截断多余的选项，如选择“省份”，则只会有“国家”、“省份”，去掉“城市”、“区县”
@@ -882,8 +881,8 @@ export class NzCascaderComponent implements OnInit, OnDestroy, ControlValueAcces
       this.loadChildren(option, index);
     } else {
       // clicking leaf node will remove any children columns
-      if (index < this.nzColumns.length - 1) {
-        this.nzColumns = this.nzColumns.slice(0, index + 1);
+      if (index < this.hiColumns.length - 1) {
+        this.hiColumns = this.hiColumns.slice(0, index + 1);
       }
     }
 
@@ -894,10 +893,10 @@ export class NzCascaderComponent implements OnInit, OnDestroy, ControlValueAcces
   }
 
   private loadChildren(option: CascaderOption, index: number, success?: () => void, failure?: () => void): void {
-    if (this.nzLoadData) {
+    if (this.hiLoadData) {
       this.isLoading = index < 0;
       option.loading = true;
-      this.nzLoadData(option, index).then(() => {
+      this.hiLoadData(option, index).then(() => {
         option.loading = this.isLoading = false;
         if (option.children) {
           option.children.forEach(child => child.parent = index < 0 ? undefined : option);
@@ -917,11 +916,11 @@ export class NzCascaderComponent implements OnInit, OnDestroy, ControlValueAcces
   }
 
   private onSelectOption(option: CascaderOption, index: number): void {
-    // trigger `nzSelect` event
-    this.nzSelect.emit({ option, index });
+    // trigger `hiSelect` event
+    this.hiSelect.emit({option, index});
 
     // 生成显示
-    if (option.isLeaf || this.nzChangeOnSelect || this.isChangeOn(option, index)) {
+    if (option.isLeaf || this.hiChangeOnSelect || this.isChangeOn(option, index)) {
       this.selectedOptions = this.activatedOptions;
       // 设置当前控件的显示值
       this.buildDisplayLabel();
@@ -931,23 +930,23 @@ export class NzCascaderComponent implements OnInit, OnDestroy, ControlValueAcces
 
     // close menu if click on leaf
     if (option.isLeaf) {
-      this.delaySetMenuVisible(false, this.nzMouseLeaveDelay);
+      this.delaySetMenuVisible(false, this.hiMouseLeaveDelay);
     }
   }
 
   /** 由用户来定义点击后是否变更 */
   private isChangeOn(option: CascaderOption, index: number): boolean {
-    if (typeof this.nzChangeOn === 'function') {
-      return this.nzChangeOn(option, index) === true;
+    if (typeof this.hiChangeOn === 'function') {
+      return this.hiChangeOn(option, index) === true;
     }
     return false;
   }
 
   private setColumnData(options: CascaderOption[], index: number): void {
-    if (!arrayEquals(this.nzColumns[ index ], options)) {
-      this.nzColumns[ index ] = options;
-      if (index < this.nzColumns.length - 1) {
-        this.nzColumns = this.nzColumns.slice(0, index + 1);
+    if (!arrayEquals(this.hiColumns[index], options)) {
+      this.hiColumns[index] = options;
+      if (index < this.hiColumns.length - 1) {
+        this.hiColumns = this.hiColumns.slice(0, index + 1);
       }
     }
   }
@@ -974,7 +973,7 @@ export class NzCascaderComponent implements OnInit, OnDestroy, ControlValueAcces
   /** 按下回车键时选择 */
   private onEnter(): void {
     const columnIndex = Math.max(this.activatedOptions.length - 1, 0);
-    const activeOption = this.activatedOptions[ columnIndex ];
+    const activeOption = this.activatedOptions[columnIndex];
     if (activeOption && !activeOption.disabled) {
       this.onSelectOption(activeOption, columnIndex);
     }
@@ -986,9 +985,9 @@ export class NzCascaderComponent implements OnInit, OnDestroy, ControlValueAcces
   private moveUpOrDown(isUp: boolean): void {
     const columnIndex = Math.max(this.activatedOptions.length - 1, 0);
     // 该组中已经被激活的选项
-    const activeOption = this.activatedOptions[ columnIndex ];
+    const activeOption = this.activatedOptions[columnIndex];
     // 该组所有的选项，用于遍历获取下一个被激活的选项
-    const options = this.nzColumns[ columnIndex ] || [];
+    const options = this.hiColumns[columnIndex] || [];
     const length = options.length;
     let nextIndex = -1;
     if (!activeOption) { // 该列还没有选中的选项
@@ -1002,7 +1001,7 @@ export class NzCascaderComponent implements OnInit, OnDestroy, ControlValueAcces
       if (nextIndex < 0 || nextIndex >= length) {
         break;
       }
-      const nextOption = options[ nextIndex ];
+      const nextOption = options[nextIndex];
       if (!nextOption || nextOption.disabled) {
         continue;
       }
@@ -1034,7 +1033,7 @@ export class NzCascaderComponent implements OnInit, OnDestroy, ControlValueAcces
    */
   private moveRight(): void {
     const length = this.activatedOptions.length;
-    const options = this.nzColumns[ length ];
+    const options = this.hiColumns[length];
     if (options && options.length) {
       const nextOpt = options.find(o => !o.disabled);
       if (nextOpt) {
@@ -1052,7 +1051,7 @@ export class NzCascaderComponent implements OnInit, OnDestroy, ControlValueAcces
    */
   onOptionMouseEnter(option: CascaderOption, index: number, event: Event): void {
     event.preventDefault();
-    if (this.nzExpandTrigger === 'hover' && !option.isLeaf) {
+    if (this.hiExpandTrigger === 'hover' && !option.isLeaf) {
       this.delaySelect(option, index, true);
     }
   }
@@ -1066,7 +1065,7 @@ export class NzCascaderComponent implements OnInit, OnDestroy, ControlValueAcces
    */
   onOptionMouseLeave(option: CascaderOption, index: number, event: Event): void {
     event.preventDefault();
-    if (this.nzExpandTrigger === 'hover' && !option.isLeaf) {
+    if (this.hiExpandTrigger === 'hover' && !option.isLeaf) {
       this.delaySelect(option, index, false);
     }
   }
@@ -1103,21 +1102,21 @@ export class NzCascaderComponent implements OnInit, OnDestroy, ControlValueAcces
       this.value = value;
       this.onChange(value); // Angular need this
       if (value.length === 0) {
-        this.nzClear.emit(); // first trigger `clear` and then `change`
+        this.hiClear.emit(); // first trigger `clear` and then `change`
       }
-      this.nzSelectionChange.emit(this.selectedOptions);
-      this.nzChange.emit(value);
+      this.hiSelectionChange.emit(this.selectedOptions);
+      this.hiChange.emit(value);
     }
   }
 
   constructor(private elementRef: ElementRef,
               private cdr: ChangeDetectorRef,
-              private nzUpdateHostClassService: NzUpdateHostClassService) {
+              private updateHostClassService: UpdateHostClassService) {
     this.el = this.elementRef.nativeElement;
   }
 
   private findOption(option: any, index: number): CascaderOption {
-    const options: CascaderOption[] = this.nzColumns[ index ];
+    const options: CascaderOption[] = this.hiColumns[index];
     if (options) {
       const value = typeof option === 'object' ? this.getOptionValue(option) : option;
       return options.find(o => value === this.getOptionValue(o));
@@ -1126,15 +1125,15 @@ export class NzCascaderComponent implements OnInit, OnDestroy, ControlValueAcces
   }
 
   private isLoaded(index: number): boolean {
-    return this.nzColumns[index] && this.nzColumns[index].length > 0;
+    return this.hiColumns[index] && this.hiColumns[index].length > 0;
   }
 
   private activateOnInit(index: number, value: any): void {
     let option = this.findOption(value, index);
     if (!option) {
       option = typeof value === 'object' ? value : {
-        [ `${this.nzValueProperty || 'value'}` ]: value,
-        [ `${this.nzLabelProperty || 'label'}` ]: value
+        [`${this.hiValueProperty || 'value'}`]: value,
+        [`${this.hiLabelProperty || 'label'}`]: value
       };
     }
     this.setActiveOption(option, index, false, false);
@@ -1152,10 +1151,10 @@ export class NzCascaderComponent implements OnInit, OnDestroy, ControlValueAcces
       }
     };
 
-    if (this.isLoaded(index) || !this.nzLoadData) {
+    if (this.isLoaded(index) || !this.hiLoadData) {
       load();
     } else {
-      const node = this.activatedOptions[ index - 1 ] || {};
+      const node = this.activatedOptions[index - 1] || {};
       this.loadChildren(node, index - 1, load, this.afterWriteValue);
     }
   }
@@ -1194,7 +1193,7 @@ export class NzCascaderComponent implements OnInit, OnDestroy, ControlValueAcces
     if (isDisabled) {
       this.closeMenu();
     }
-    this.nzDisabled = isDisabled;
+    this.hiDisabled = isDisabled;
   }
 
   ngOnInit(): void {

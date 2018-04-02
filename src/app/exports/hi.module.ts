@@ -7,6 +7,7 @@ import {BadgeModule} from './badge';
 import {BreadcrumbsModule} from './breadcrumbs';
 import {CalendarModule} from './calendar';
 import {CarouselModule} from './carousel';
+import {CascaderModule} from './cascader';
 import {CheckboxGroupModule} from './checkbox-group';
 import {HiCommonModule, AssetsLoader} from './common';
 import {DataTableModule} from './data-table';
@@ -42,7 +43,6 @@ import {TooltipModule} from './tooltip';
 import {TreeViewModule, TreeViewService} from './tree-view';
 import {HiValidatorsModule} from './validators';
 import {COMMON_SERVICES} from './window-ref';
-import {NzCascaderModule} from './cascader';
 
 import {HiNGConfig} from './hi.config';
 
@@ -56,6 +56,7 @@ import {HiNGConfig} from './hi.config';
     BreadcrumbsModule,
     CalendarModule,
     CarouselModule,
+    CascaderModule,
     CheckboxGroupModule,
     HiCommonModule,
     DataTableModule,
@@ -88,8 +89,7 @@ import {HiNGConfig} from './hi.config';
     TimePickerModule,
     TooltipModule,
     TreeViewModule,
-    HiValidatorsModule,
-    NzCascaderModule
+    HiValidatorsModule
   ],
   exports: [
     AccordionModule,
@@ -100,6 +100,7 @@ import {HiNGConfig} from './hi.config';
     BreadcrumbsModule,
     CalendarModule,
     CarouselModule,
+    CascaderModule,
     CheckboxGroupModule,
     HiCommonModule,
     DataTableModule,
@@ -132,8 +133,7 @@ import {HiNGConfig} from './hi.config';
     TimePickerModule,
     TooltipModule,
     TreeViewModule,
-    HiValidatorsModule,
-    NzCascaderModule
+    HiValidatorsModule
   ],
   providers:
     [

@@ -94,8 +94,7 @@
     "perfect-scrollbar": "^1.2.0",
     "rxjs": "^5.4.3",
     "screenfull": "^3.2.2",
-    "zone.js": "~0.8.18",
-    "ngx-pagination": "^3.1.0"
+    "zone.js": "~0.8.18"
   },
   "devDependencies": {
     "@angular/compiler-cli": "~5.1.0",

@@ -1,7 +1,7 @@
 import { Injectable, Renderer2 } from '@angular/core';
 
 @Injectable()
-export class NzUpdateHostClassService {
+export class UpdateHostClassService {
   private classMap = {};
 
   updateHostClass(el: HTMLElement, classMap: object): void {

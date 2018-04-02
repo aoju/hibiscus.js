@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {formatDate, parseDate} from '../utils/date-utils';
+import {formatDate, parseDate} from '../../utils/date-utils';
 
 @Pipe({
   name: 'hiDate'

@@ -1,1 +1,3 @@
-export * from './public-api';
+export * from './cascader.component';
+export * from './cascader.module';
+

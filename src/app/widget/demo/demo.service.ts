@@ -8,6 +8,7 @@ import {
   BreadcrumbsDemoComponent,
   CalendarDemoComponent,
   CarouselDemoComponent,
+  CascaderDemoComponent,
   CheckboxGroupDemoComponent,
   DataTableDemoComponent,
   DatePickerDemoComponent,
@@ -37,8 +38,7 @@ import {
   TreeViewDemoComponent,
   TimePickerDemoComponent,
   RadioGroupDemoComponent,
-  ValidatorsDemoComponent,
-  CascaderDemoComponent
+  ValidatorsDemoComponent
 } from './index';
 
 @Injectable()
