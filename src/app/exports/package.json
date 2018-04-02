@@ -1,0 +1,29 @@
+{
+  "name": "hibiscus.js",
+  "version": "1.0.25",
+  "description": "Native Angular directives for Bootstrap4",
+  "keywords": [
+    "angular",
+    "angular2",
+    "angular4",
+    "angular5",
+    "webpack",
+    "typescript"
+  ],
+  "author": "Kimi Liu <839536@qq.com>",
+  "homepage": "https://github.com/839536/hibiscus.js",
+  "license": "MIT",
+  "main": "index.js",
+  "typings": "index.d.ts",
+  "dependencies": {
+    "date-fns": "^1.27.2"
+  },
+  "engines": {
+    "node": ">= 6.0 < 7.0",
+    "npm": ">= 3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/839536/hibiscus.js.git"
+  }
+}
