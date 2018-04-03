@@ -150,7 +150,7 @@ export class FileUpload implements AfterViewInit {
     this.httpUploadAllFile(this.selectFiles);
   }
 
-  private httpUploadAllFile(files) {
+  httpUploadAllFile(files) {
     this.isUploading = true;
     this.fileUploadStart.emit(files);
     const subscriptions = files.map(fileItem => this.httpUploadFile(fileItem));
@@ -161,7 +161,7 @@ export class FileUpload implements AfterViewInit {
       });
   }
 
-  private httpUploadFile(fileItem) {
+  httpUploadFile(fileItem) {
     const formData = new FormData();
     formData.append(this.uploadParamName, fileItem.file);
     return this.http.post(this.uploadUrl, formData, this.uploadRequestOptions)
@@ -169,7 +169,7 @@ export class FileUpload implements AfterViewInit {
       .catch((error) => this.onFileUploadError(fileItem, error));
   }
 
-  protected onFileUploadSuccess(fileItem, res): Observable<any> {
+  onFileUploadSuccess(fileItem, res): Observable<any> {
     fileItem.uploadResponse = res;
     this.selectFiles = this.selectFiles.filter(item => item !== fileItem);
     this.uploadFiles = [...(this.uploadFiles || []), fileItem];
@@ -179,7 +179,7 @@ export class FileUpload implements AfterViewInit {
     return of({ result: res, success: true });
   }
 
-  protected onFileUploadError(fileItem, error): Observable<any> {
+  onFileUploadError(fileItem, error): Observable<any> {
     this.errors.push(`${fileItem.name}: ${error.error || error.statusText}`);
     this.fileUploadError.emit({
       name: fileItem.name,
