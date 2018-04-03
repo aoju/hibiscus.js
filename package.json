@@ -82,7 +82,7 @@
     "@angular/http": "~5.1.0",
     "@angular/platform-browser": "~5.1.0",
     "@angular/platform-browser-dynamic": "~5.1.0",
-    "@angular/cdk": "^5.0.0",
+    "@angular/cdk": "^5.2.4",
     "@angular/router": "~5.1.0",
     "core-js": "^2.4.1",
     "date-fns": "^1.27.2",
