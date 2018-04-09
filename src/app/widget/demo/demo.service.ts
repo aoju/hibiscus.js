@@ -60,8 +60,7 @@ export class DemoService {
       component: AccordionDemoComponent,
       readme: '',
       html: require('!raw-loader!./accordion/accordion-demo.template.html'),
-      typescript: require('!raw-loader!./accordion/accordion-demo.component.ts'),
-      usage: require('!raw-loader!./accordion/usage.md')
+      typescript: require('!raw-loader!./accordion/accordion-demo.component.ts')
     }, {
       name: 'ActionButton',
       directory: 'action-button',
