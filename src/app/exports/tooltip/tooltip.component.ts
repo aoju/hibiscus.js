@@ -17,23 +17,25 @@ import {
   TemplateRef,
   ViewChild
 } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Observable } from 'rxjs/Observable';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {Observable} from 'rxjs/Observable';
 
-import { fadeAnimation } from '../common/animation/fade-animations';
-import { DEFAULT_4_POSITIONS, POSITION_MAP } from '../common/overlay/overlay-position-map';
-import { toBoolean } from '../common/util/convert';
+import {fadeAnimation} from '../common/animation/fade-animations';
+import {DEFAULT_4_POSITIONS, POSITION_MAP} from '../common/overlay/overlay-position-map';
+import {toBoolean} from '../common/util/convert';
 
 @Component({
   selector: 'hi-tooltip',
   preserveWhitespaces: false,
-  animations: [ fadeAnimation ],
-  templateUrl: './hi-tooltip.component.html',
-  styles: [ `
-    .hi-tooltip { position: relative; }
-  ` ]
+  animations: [fadeAnimation],
+  templateUrl: './tooltip.component.html',
+  styles: [`
+    .hi-tooltip {
+      position: relative;
+    }
+  `]
 })
-export class HiToolTipComponent {
+export class TooltipComponent {
   _hasBackdrop = false;
 
   @Input() hiTitle: string;
@@ -76,7 +78,7 @@ export class HiToolTipComponent {
   }
 
   _prefix = 'hi-tooltip-placement';
-  _positions: ConnectionPositionPair[] = [ ...DEFAULT_4_POSITIONS ];
+  _positions: ConnectionPositionPair[] = [...DEFAULT_4_POSITIONS];
   _classMap = {};
   _placement = 'top';
   _trigger = 'hover';
@@ -85,7 +87,7 @@ export class HiToolTipComponent {
   set hiPlacement(value: string) {
     if (value !== this._placement) {
       this._placement = value;
-      this._positions.unshift(POSITION_MAP[ this.hiPlacement ] as ConnectionPositionPair);
+      this._positions.unshift(POSITION_MAP[this.hiPlacement] as ConnectionPositionPair);
     }
   }
 
@@ -102,7 +104,7 @@ export class HiToolTipComponent {
 
   onPositionChange($event: ConnectedOverlayPositionChange): void {
     for (const key in POSITION_MAP) {
-      if (JSON.stringify($event.connectionPair) === JSON.stringify(POSITION_MAP[ key ])) {
+      if (JSON.stringify($event.connectionPair) === JSON.stringify(POSITION_MAP[key])) {
         this.hiPlacement = key;
         break;
       }
@@ -133,8 +135,8 @@ export class HiToolTipComponent {
 
   setClassMap(): void {
     this._classMap = {
-      [ this.hiOverlayClassName ]             : true,
-      [ `${this._prefix}-${this._placement}` ]: true
+      [this.hiOverlayClassName]: true,
+      [`${this._prefix}-${this._placement}`]: true
     };
   }
 
@@ -146,7 +148,8 @@ export class HiToolTipComponent {
   }
 
   private isContentEmpty(): boolean {
+    // Pity, can't detect whether hiTemplate is empty due to can't get it's content before shown up
     // return this.hiTemplate ? !(this.hiTemplate.elementRef.nativeElement as HTMLElement).hasChildNodes() : this.hiTitle === '';
-    return (this.hiTemplate || this.hiContent) ? false : (this.hiTitle === '' || this.hiTitle == null); // Pity, can't detect whether hiTemplate is empty due to can't get it's content before shown up
+    return (this.hiTemplate || this.hiContent) ? false : (this.hiTitle === '' || this.hiTitle == null);
   }
 }

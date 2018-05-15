@@ -14,7 +14,6 @@ import {
   DatePickerDemoComponent,
   DialogDemoComponent,
   DraggableDemoComponent,
-  EllipsisDemoComponent,
   FileUploadDemoComponent,
   FlowStepDemoComponent,
   IcomoonDemoComponent,
@@ -25,7 +24,6 @@ import {
   OverlayDemoComponent,
   PagerDemoComponent,
   PaginationDemoComponent,
-  PopoverDemoComponent,
   ProgressBarDemoComponent,
   RatingDemoComponent,
   SelectDemoComponent,
@@ -154,13 +152,6 @@ export class DemoService {
       html: require('!raw-loader!./draggable/draggable-demo.template.html'),
       typescript: require('!raw-loader!./draggable/draggable-demo.component.ts')
     }, {
-      name: 'Ellipsis',
-      directory: 'ellipsis',
-      component: EllipsisDemoComponent,
-      readme: '',
-      html: require('!raw-loader!./ellipsis/ellipsis-demo.template.html'),
-      typescript: require('!raw-loader!./ellipsis/ellipsis-demo.component.ts')
-    }, {
       name: 'FileUpload',
       directory: 'file-upload',
       component: FileUploadDemoComponent,
@@ -231,13 +222,6 @@ export class DemoService {
       readme: '',
       html: require('!raw-loader!./pagination/pagination-demo.template.html'),
       typescript: require('!raw-loader!./pagination/pagination-demo.component.ts')
-    }, {
-      name: 'Popover',
-      directory: 'popover',
-      component: PopoverDemoComponent,
-      readme: '',
-      html: require('!raw-loader!./popover/popover-demo.template.html'),
-      typescript: require('!raw-loader!./popover/popover-demo.component.ts')
     }, {
       name: 'ProgressBar',
       directory: 'progress-bar',

@@ -8,7 +8,7 @@ import {
 
 import { fadeAnimation } from '../common/animation/fade-animations';
 import { toBoolean } from '../common/util/convert';
-import { HiToolTipComponent } from '../tooltip/hi-tooltip.component';
+import { TooltipComponent } from '../tooltip/tooltip.component';
 
 @Component({
   selector           : 'hi-popconfirm',
@@ -21,7 +21,7 @@ import { HiToolTipComponent } from '../tooltip/hi-tooltip.component';
     }
   ` ]
 })
-export class HiPopconfirmComponent extends HiToolTipComponent {
+export class HiPopconfirmComponent extends TooltipComponent {
   private _condition = false;
   _prefix = 'hi-popover-placement';
   _trigger = 'click';

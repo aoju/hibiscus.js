@@ -1,3 +1,3 @@
-export * from './hi-tooltip.component';
-export * from './hi-tooltip.directive';
-export * from './hi-tooltip.module';
+export * from './tooltip.component';
+export * from './tooltip.directive';
+export * from './tooltip.module';

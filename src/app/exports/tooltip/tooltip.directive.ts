@@ -10,14 +10,14 @@ import {
   ViewContainerRef
 } from '@angular/core';
 
-import { HiToolTipComponent } from './hi-tooltip.component';
+import {TooltipComponent} from './tooltip.component';
 
 @Directive({
   selector: '[hi-tooltip]'
 })
-export class HiTooltipDirective implements AfterViewInit {
- @Input('hi-tooltip')
- 
+export class TooltipDirective implements AfterViewInit {
+  @Input('hi-tooltip')
+
   set hiTitle(title: string) {
     if (this.isDynamicTooltip) {
       this.tooltip.hiTitle = title;
@@ -26,20 +26,20 @@ export class HiTooltipDirective implements AfterViewInit {
 
   @HostBinding('class.hi-tooltip-open') isTooltipOpen;
 
-  private tooltip: HiToolTipComponent;
+  private tooltip: TooltipComponent;
   private isDynamicTooltip = false; // Indicate whether current tooltip is dynamic created
   private delayTimer; // Timer for delay enter/leave
 
   constructor(
-      public elementRef: ElementRef,
-      private hostView: ViewContainerRef,
-      private resolver: ComponentFactoryResolver,
-      private renderer: Renderer2,
-      @Optional() tooltip: HiToolTipComponent) {
+    public elementRef: ElementRef,
+    private hostView: ViewContainerRef,
+    private resolver: ComponentFactoryResolver,
+    private renderer: Renderer2,
+    @Optional() tooltip: TooltipComponent) {
 
     this.tooltip = tooltip;
     if (!this.tooltip) {
-      const factory = this.resolver.resolveComponentFactory(HiToolTipComponent);
+      const factory = this.resolver.resolveComponentFactory(TooltipComponent);
       this.tooltip = this.hostView.createComponent(factory).instance;
       this.isDynamicTooltip = true;
     }
@@ -52,7 +52,8 @@ export class HiTooltipDirective implements AfterViewInit {
       this.renderer.listen(this.elementRef.nativeElement, 'mouseenter', () => this.delayEnterLeave(true, true, this.tooltip.hiMouseEnterDelay));
       this.renderer.listen(this.elementRef.nativeElement, 'mouseleave', () => {
         this.delayEnterLeave(true, false, this.tooltip.hiMouseLeaveDelay);
-        if (this.tooltip.overlay.overlayRef && !overlayElement) { // NOTE: we bind events under "mouseleave" due to the overlayRef is only created after the overlay was completely shown up
+        if (this.tooltip.overlay.overlayRef && !overlayElement) {
+          // NOTE: we bind events under "mouseleave" due to the overlayRef is only created after the overlay was completely shown up
           overlayElement = this.tooltip.overlay.overlayRef.overlayElement;
           this.renderer.listen(overlayElement, 'mouseenter', () => this.delayEnterLeave(false, true));
           this.renderer.listen(overlayElement, 'mouseleave', () => this.delayEnterLeave(false, false));
@@ -89,7 +90,8 @@ export class HiTooltipDirective implements AfterViewInit {
         isEnter ? this.show() : this.hide();
       }, delay * 1000);
     } else {
-      isEnter && isOrigin ? this.show() : this.hide(); // [Compatible] The "isOrigin" is used due to the tooltip will not hide immediately (may caused by the fade-out animation)
+      // [Compatible] The "isOrigin" is used due to the tooltip will not hide immediately (may caused by the fade-out animation)
+      isEnter && isOrigin ? this.show() : this.hide();
     }
   }
 }

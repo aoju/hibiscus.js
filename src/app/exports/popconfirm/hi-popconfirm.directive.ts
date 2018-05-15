@@ -6,14 +6,14 @@ import {
   ViewContainerRef
 } from '@angular/core';
 
-import { HiTooltipDirective } from '../tooltip/hi-tooltip.directive';
+import { TooltipDirective } from '../tooltip/tooltip.directive';
 
 import { HiPopconfirmComponent } from './hi-popconfirm.component';
 
 @Directive({
   selector: '[hi-popconfirm]'
 })
-export class HiPopconfirmDirective extends HiTooltipDirective {
+export class HiPopconfirmDirective extends TooltipDirective {
   constructor(
       elementRef: ElementRef,
       hostView: ViewContainerRef,
