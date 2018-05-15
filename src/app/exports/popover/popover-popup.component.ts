@@ -1,5 +1,5 @@
 import {Component, Renderer2, ElementRef, Input, TemplateRef, ChangeDetectorRef} from '@angular/core';
-import {TooltipPopup} from '../tooltip/tooltip-popup';
+import {TooltipPopup} from '../tooltip-old/tooltip-popup';
 import {trigger, state, style, animate, transition} from '@angular/animations';
 
 @Component({

@@ -1,0 +1,61 @@
+<div class="popconfirm-demo">
+  <section>
+    <h4>最简单的用法。</h4>
+    <hi-popconfirm [hiTitle]="'Are you sure delete this task？'" (hiOnConfirm)="confirm()" (hiOnCancel)="cancel()">
+      <a href="javascript:;" hi-popconfirm>Delete</a>
+    </hi-popconfirm>
+  </section>
+  <section>
+    <h4>用 okText 和 cancelText 自定义按钮文字。</h4>
+    <hi-popconfirm [hiTitle]="'Are you sure delete this task？'" [hiOkText]="'ok'" [hiCancelText]="'cancel'"  (hiOnConfirm)="confirm()" (hiOnCancel)="cancel()">
+      <a href="javascript:;" hi-popconfirm>Delete</a>
+    </hi-popconfirm>
+  </section>
+  <section>
+    <h4>12 个方向。</h4>
+    <div style="margin-left:60px;">
+      <hi-popconfirm [hiTitle]="'Are you sure delete this task?'" [hiPlacement]="'topLeft'" (hiOnConfirm)="confirm()" (hiOnCancel)="cancel()">
+        <button type="button" class="btn btn-primary" hi-popconfirm>TL</button>
+      </hi-popconfirm>
+      <hi-popconfirm [hiTitle]="'Are you sure delete this task?'" [hiPlacement]="'top'" (hiOnConfirm)="confirm()" (hiOnCancel)="cancel()">
+        <button type="button" class="btn btn-primary" hi-popconfirm>Top</button>
+      </hi-popconfirm>
+      <hi-popconfirm [hiTitle]="'Are you sure delete this task?'" [hiPlacement]="'topRight'" (hiOnConfirm)="confirm()" (hiOnCancel)="cancel()">
+        <button type="button" class="btn btn-primary" hi-popconfirm>TR</button>
+      </hi-popconfirm>
+    </div>
+    <div style="float:left;width: 60px;">
+      <hi-popconfirm [hiTitle]="'Are you sure delete this task?'" [hiPlacement]="'leftTop'" (hiOnConfirm)="confirm()" (hiOnCancel)="cancel()">
+        <button type="button" class="btn btn-primary" hi-popconfirm>LT</button>
+      </hi-popconfirm>
+      <hi-popconfirm [hiTitle]="'Are you sure delete this task?'" [hiPlacement]="'left'" (hiOnConfirm)="confirm()" (hiOnCancel)="cancel()">
+        <button type="button" class="btn btn-primary" hi-popconfirm>Left</button>
+      </hi-popconfirm>
+      <hi-popconfirm [hiTitle]="'Are you sure delete this task?'" [hiPlacement]="'leftBottom'" (hiOnConfirm)="confirm()" (hiOnCancel)="cancel()">
+        <button type="button" class="btn btn-primary" hi-popconfirm>LB</button>
+      </hi-popconfirm>
+    </div>
+    <div style="margin-left:270px;width: 60px;">
+      <hi-popconfirm [hiTitle]="'Are you sure delete this task?'" [hiPlacement]="'rightTop'" (hiOnConfirm)="confirm()" (hiOnCancel)="cancel()">
+        <button type="button" class="btn btn-primary" hi-popconfirm>RT</button>
+      </hi-popconfirm>
+      <hi-popconfirm [hiTitle]="'Are you sure delete this task?'" [hiPlacement]="'right'" (hiOnConfirm)="confirm()" (hiOnCancel)="cancel()">
+        <button type="button" class="btn btn-primary" hi-popconfirm>Right</button>
+      </hi-popconfirm>
+      <hi-popconfirm [hiTitle]="'Are you sure delete this task?'" [hiPlacement]="'rightBottom'" (hiOnConfirm)="confirm()" (hiOnCancel)="cancel()">
+        <button type="button" class="btn btn-primary" hi-popconfirm>RB</button>
+      </hi-popconfirm>
+    </div>
+    <div style="margin-left:60px;clear: both;">
+      <hi-popconfirm [hiTitle]="'Are you sure delete this task?'" [hiPlacement]="'bottomLeft'" (hiOnConfirm)="confirm()" (hiOnCancel)="cancel()">
+        <button type="button" class="btn btn-primary" hi-popconfirm>BL</button>
+      </hi-popconfirm>
+      <hi-popconfirm [hiTitle]="'Are you sure delete this task?'" [hiPlacement]="'bottom'" (hiOnConfirm)="confirm()" (hiOnCancel)="cancel()">
+        <button type="button" class="btn btn-primary" hi-popconfirm>Bottom</button>
+      </hi-popconfirm>
+      <hi-popconfirm [hiTitle]="'Are you sure delete this task?'" [hiPlacement]="'bottomRight'" (hiOnConfirm)="confirm()" (hiOnCancel)="cancel()">
+        <button type="button" class="btn btn-primary" hi-popconfirm>BR</button>
+      </hi-popconfirm>
+    </div>
+  </section>
+</div>

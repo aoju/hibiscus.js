@@ -1,0 +1,39 @@
+<ng-content></ng-content>
+<ng-template
+  #overlay="cdkConnectedOverlay"
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="overlayOrigin"
+  [cdkConnectedOverlayHasBackdrop]="_hasBackdrop"
+  (backdropClick)="hide()"
+  (detach)="hide()"
+  (positionChange)="onPositionChange($event)"
+  [cdkConnectedOverlayPositions]="_positions"
+  [cdkConnectedOverlayOpen]="visible$ | async">
+  <div class="hi-popover" [ngClass]="_classMap" [ngStyle]="hiOverlayStyle" [@fadeAnimation]="''+(visible$ | async)"
+    (@fadeAnimation.done)="_afterVisibilityAnimation($event)">
+    <div class="hi-popover-content">
+      <div class="hi-popover-arrow"></div>
+      <div class="hi-popover-inner">
+        <div>
+          <div class="hi-popover-inner-content">
+            <div class="hi-popover-message" *ngIf="!hiTemplate">
+              <i class="anticon anticon-exclamation-circle"></i>
+              <div class="hi-popover-message-title">{{ hiTitle }}</div>
+            </div>
+            <div class="hi-popover-buttons" *ngIf="!hiTemplate">
+              <button type="button" class="btn btn-light btn-sm" (click)="onCancel()">
+                <ng-container *ngIf="hiCancelText">{{ hiCancelText }}</ng-container>
+                <ng-container *ngIf="!hiCancelText">{{ option.cancelText}}</ng-container>
+              </button>
+              <button type="button" class="btn btn-primary btn-sm" (click)="onConfirm()">
+                <ng-container *ngIf="hiOkText">{{ hiOkText }}</ng-container>
+                <ng-container *ngIf="!hiOkText">{{ option.okText}}</ng-container>
+              </button>
+            </div>
+            <ng-template *ngIf="hiTemplate" [ngTemplateOutlet]="hiTemplate"></ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

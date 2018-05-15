@@ -1,0 +1,25 @@
+<ng-content></ng-content>
+<ng-template
+  #overlay="cdkConnectedOverlay"
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="overlayOrigin"
+  [cdkConnectedOverlayHasBackdrop]="_hasBackdrop"
+  (backdropClick)="hide()"
+  (detach)="hide()"
+  (positionChange)="onPositionChange($event)"
+  [cdkConnectedOverlayPositions]="_positions"
+  [cdkConnectedOverlayOpen]="visible$ | async">
+  <div class="hi-tooltip" [ngClass]="_classMap" [ngStyle]="hiOverlayStyle" [@fadeAnimation]="''+(visible$ | async)"
+    (@fadeAnimation.done)="_afterVisibilityAnimation($event)">
+    <div class="hi-tooltip-content">
+      <div class="hi-tooltip-arrow"></div>
+      <div class="hi-tooltip-inner">
+        <span *ngIf="!hiTemplate">{{ hiTitle }}</span>
+        <ng-template
+          *ngIf="hiTemplate"
+          [ngTemplateOutlet]="hiTemplate">
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</ng-template>

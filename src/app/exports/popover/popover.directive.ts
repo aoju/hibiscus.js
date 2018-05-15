@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import {PopoverPopupComponent} from './popover-popup.component';
 import {PositionService} from '../position/positioning.service';
-import {Tooltip} from '../tooltip/tooltip';
+import {Tooltip} from '../tooltip-old/tooltip';
 import {HiNGConfig} from '../hi.config';
 
 @Directive({

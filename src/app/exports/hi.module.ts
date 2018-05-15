@@ -40,6 +40,7 @@ import {TabsModule} from './tabs';
 import {TagsModule} from './tags';
 import {TimePickerModule} from './time-picker';
 import {TooltipModule} from './tooltip';
+import {HiPopconfirmModule} from './popconfirm';
 import {TreeViewModule, TreeViewService} from './tree-view';
 import {HiValidatorsModule} from './validators';
 import {COMMON_SERVICES} from './window-ref';
@@ -88,6 +89,7 @@ import {HiNGConfig} from './hi.config';
     TagsModule,
     TimePickerModule,
     TooltipModule,
+    HiPopconfirmModule,
     TreeViewModule,
     HiValidatorsModule
   ],
@@ -132,6 +134,7 @@ import {HiNGConfig} from './hi.config';
     TagsModule,
     TimePickerModule,
     TooltipModule,
+    HiPopconfirmModule,
     TreeViewModule,
     HiValidatorsModule
   ],

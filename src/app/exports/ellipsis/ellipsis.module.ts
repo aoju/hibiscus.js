@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 
 import {EllipsisComponent} from './ellipsis.component';
 import {CommonModule} from '@angular/common';
-import {TooltipModule} from '../tooltip';
+import {TooltipModule} from '../tooltip-old';
 
 @NgModule({
   imports: [

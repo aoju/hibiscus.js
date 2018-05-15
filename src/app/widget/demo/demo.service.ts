@@ -35,6 +35,7 @@ import {
   TabsDemoComponent,
   TagsDemoComponent,
   TooltipDemoComponent,
+  PopconfirmDemoComponent,
   TreeViewDemoComponent,
   TimePickerDemoComponent,
   RadioGroupDemoComponent,
@@ -315,6 +316,13 @@ export class DemoService {
       readme: '',
       html: require('!raw-loader!./tooltip/tooltip-demo.template.html'),
       typescript: require('!raw-loader!./tooltip/tooltip-demo.component.ts')
+    }, {
+      name: 'Popconfirm',
+      directory: 'popconfirm',
+      component: PopconfirmDemoComponent,
+      readme: '',
+      html: require('!raw-loader!./popconfirm/popconfirm-demo.template.html'),
+      typescript: require('!raw-loader!./popconfirm/popconfirm-demo.component.ts')
     }, {
       name: 'TreeView',
       directory: 'tree-view',
