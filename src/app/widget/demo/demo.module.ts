@@ -39,6 +39,7 @@ import {
   TimePickerDemoModule,
   TooltipDemoModule,
   PopconfirmDemoModule,
+  SpinDemoModule,
   TreeViewDemoModule,
   ValidatorsDemoModule,
   CascaderDemoModule,
@@ -90,6 +91,7 @@ import {DemoService} from './demo.service';
     TimePickerDemoModule,
     TooltipDemoModule,
     PopconfirmDemoModule,
+    SpinDemoModule,
     TreeViewDemoModule,
     ValidatorsDemoModule,
     CascaderDemoModule

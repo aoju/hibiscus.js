@@ -3,14 +3,14 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 
-import { HiPopconfirmComponent } from './hi-popconfirm.component';
-import { HiPopconfirmDirective } from './hi-popconfirm.directive';
+import { PopconfirmComponent } from './hi-popconfirm.component';
+import { PopconfirmDirective } from './hi-popconfirm.directive';
 
 @NgModule({
-  declarations: [ HiPopconfirmComponent, HiPopconfirmDirective ],
-  exports     : [ HiPopconfirmComponent, HiPopconfirmDirective ],
+  declarations: [ PopconfirmComponent, PopconfirmDirective ],
+  exports     : [ PopconfirmComponent, PopconfirmDirective ],
   imports     : [ CommonModule, OverlayModule]
 })
 
-export class HiPopconfirmModule {
+export class PopconfirmModule {
 }

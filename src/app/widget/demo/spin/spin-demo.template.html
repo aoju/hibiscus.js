@@ -1,0 +1,32 @@
+<div class="spin-demo">
+  <section>
+    <h6>基本用法:</h6>
+    <div style="padding: 10px 100px;">
+        <hi-spin></hi-spin>
+    </div>
+  </section>
+  <section>
+      <h6>各种大小:</h6>
+      <div style="padding: 10px 100px;">
+          <hi-spin [hiSize]="'small'"></hi-spin>
+          <hi-spin></hi-spin>
+          <hi-spin [hiSize]="'large'"></hi-spin>
+      </div>
+    </section>
+    <section>
+      <h6>放在一个容器里:</h6>
+      <div style="padding: 10px 100px;">
+          <div class="example">
+            <hi-spin></hi-spin>
+          </div>
+      </div>
+    </section>
+    <section>
+      <h6>自定义描述文案:</h6>
+      <div style="padding: 10px 100px;">
+        <hi-spin hiTip='Loading...'>
+          <div class="example">:</div>
+        </hi-spin>
+      </div>
+    </section>
+</div>

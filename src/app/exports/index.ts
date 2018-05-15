@@ -40,6 +40,7 @@ export * from './tags';
 export * from './time-picker';
 export * from './tooltip';
 export * from './popconfirm';
+export * from './spin';
 export * from './tree-view';
 export * from './utils';
 export * from './validators';

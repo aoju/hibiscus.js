@@ -33,7 +33,7 @@ import { toBoolean } from '../common/util/convert';
     .hi-tooltip { position: relative; }
   ` ]
 })
-export class HiToolTipComponent {
+export class ToolTipComponent {
   _hasBackdrop = false;
 
   @Input() hiTitle: string;

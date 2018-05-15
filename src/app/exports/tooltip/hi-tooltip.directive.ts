@@ -10,12 +10,12 @@ import {
   ViewContainerRef
 } from '@angular/core';
 
-import { HiToolTipComponent } from './hi-tooltip.component';
+import { ToolTipComponent } from './hi-tooltip.component';
 
 @Directive({
   selector: '[hi-tooltip]'
 })
-export class HiTooltipDirective implements AfterViewInit {
+export class TooltipDirective implements AfterViewInit {
  @Input('hi-tooltip')
  
   set hiTitle(title: string) {
@@ -26,7 +26,7 @@ export class HiTooltipDirective implements AfterViewInit {
 
   @HostBinding('class.hi-tooltip-open') isTooltipOpen;
 
-  private tooltip: HiToolTipComponent;
+  private tooltip: ToolTipComponent;
   private isDynamicTooltip = false; // Indicate whether current tooltip is dynamic created
   private delayTimer; // Timer for delay enter/leave
 
@@ -35,11 +35,11 @@ export class HiTooltipDirective implements AfterViewInit {
       private hostView: ViewContainerRef,
       private resolver: ComponentFactoryResolver,
       private renderer: Renderer2,
-      @Optional() tooltip: HiToolTipComponent) {
+      @Optional() tooltip: ToolTipComponent) {
 
     this.tooltip = tooltip;
     if (!this.tooltip) {
-      const factory = this.resolver.resolveComponentFactory(HiToolTipComponent);
+      const factory = this.resolver.resolveComponentFactory(ToolTipComponent);
       this.tooltip = this.hostView.createComponent(factory).instance;
       this.isDynamicTooltip = true;
     }
