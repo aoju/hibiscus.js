@@ -1,6 +1,6 @@
 {
   "name": "hibiscus.js",
-  "version": "1.0.27",
+  "version": "1.0.31",
   "description": "Native Angular directives for Bootstrap4",
   "keywords": [
     "angular",
@@ -16,6 +16,7 @@
   "main": "index.js",
   "typings": "index.d.ts",
   "dependencies": {
+    "@angular/cdk": "^5.2.4",
     "date-fns": "^1.27.2"
   },
   "engines": {

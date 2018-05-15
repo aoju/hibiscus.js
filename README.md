@@ -119,3 +119,9 @@ example:
     })
     export class AppModule {
     }
+    
+### Contributors
+    
+[<img alt="Kemosabe" src="https://avatars0.githubusercontent.com/u/5940699?s=460&v=4" width="117">](https://github.com/immrj) | [<img alt="Chenalan" src="https://avatars2.githubusercontent.com/u/7518753?s=460&v=4" width="117">](https://github.com/chenalan)| [<img alt="RumbleC" src="hhttps://avatars3.githubusercontent.com/u/22806436?s=460&v=4" width="117">](https://github.com/RumbleC)
+:---: |:---: |:---: |
+[Kemosabe](https://github.com/immrj) |[Chenalan](https://github.com/chenalan) |[RumbleC](https://github.com/RumbleC)

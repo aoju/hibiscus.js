@@ -144,7 +144,7 @@ export class DatePickerPopupComponent implements OnInit, ControlValueAccessor {
       this.currentHour, this.currentMinute, this.currentSecond);
     this.onTouched();
     this.writeValue(selectedDate);
-    this.onChange(selectedDate);
+    this.onChange(selectedDate.getTime());
     this.selectedDateChange.emit({reason: SelectDateChangeReason.date, date: this.selectedDate});
     if (this.currentMonth !== this.selectedDate.getMonth() || this.currentYear !== this.selectedDate.getFullYear()) {
       this.currentYear = this.selectedDate.getFullYear();
@@ -160,7 +160,7 @@ export class DatePickerPopupComponent implements OnInit, ControlValueAccessor {
 
     this.onTouched();
     this.writeValue(this.selectedDate);
-    this.onChange(this.selectedDate);
+    this.onChange(this.selectedDate.getTime());
     this.selectedDateChange.emit({reason: SelectDateChangeReason.time, date: this.selectedDate});
   }
 

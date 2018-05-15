@@ -78,8 +78,8 @@ export class TagsComponent implements ControlValueAccessor {
     return !this.maxSize || this.mutipleItems.length < this.maxSize;
   }
 
-  boxBlur() {
-    this.isTyping = false;
+  boxBlur(label) {
+    this.addLabel(label);
   }
 
 }
