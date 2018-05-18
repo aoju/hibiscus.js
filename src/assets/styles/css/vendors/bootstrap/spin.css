@@ -1,0 +1,237 @@
+.hi-spin {
+  font-family: "Monospaced Number","Chinese Quote",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: #1890ff;
+  vertical-align: middle;
+  text-align: center;
+  opacity: 0;
+  position: absolute;
+  -webkit-transition: -webkit-transform .3s cubic-bezier(.78,.14,.15,.86);
+  transition: -webkit-transform .3s cubic-bezier(.78,.14,.15,.86);
+  transition: transform .3s cubic-bezier(.78,.14,.15,.86);
+  transition: transform .3s cubic-bezier(.78,.14,.15,.86),-webkit-transform .3s cubic-bezier(.78,.14,.15,.86);
+  display: none
+}
+
+.hi-spin-spinning {
+  opacity: 1;
+  position: static;
+  display: inline-block
+}
+
+.hi-spin-nested-loading {
+  position: relative
+}
+
+.hi-spin-nested-loading>div>.hi-spin {
+  position: absolute;
+  height: 100%;
+  max-height: 320px;
+  width: 100%;
+  z-index: 4
+}
+
+.hi-spin-nested-loading>div>.hi-spin .hi-spin-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -10px
+}
+
+.hi-spin-nested-loading>div>.hi-spin .hi-spin-text {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  padding-top: 5px;
+  text-shadow: 0 1px 2px #fff
+}
+
+.hi-spin-nested-loading>div>.hi-spin.hi-spin-show-text .hi-spin-dot {
+  margin-top: -20px
+}
+
+.hi-spin-nested-loading>div>.hi-spin-sm .hi-spin-dot {
+  margin: -7px
+}
+
+.hi-spin-nested-loading>div>.hi-spin-sm .hi-spin-text {
+  padding-top: 2px
+}
+
+.hi-spin-nested-loading>div>.hi-spin-sm.hi-spin-show-text .hi-spin-dot {
+  margin-top: -17px
+}
+
+.hi-spin-nested-loading>div>.hi-spin-lg .hi-spin-dot {
+  margin: -16px
+}
+
+.hi-spin-nested-loading>div>.hi-spin-lg .hi-spin-text {
+  padding-top: 11px
+}
+
+.hi-spin-nested-loading>div>.hi-spin-lg.hi-spin-show-text .hi-spin-dot {
+  margin-top: -26px
+}
+
+.hi-spin-container {
+  position: relative;
+  zoom:1}
+
+.hi-spin-container:after,.hi-spin-container:before {
+  content: " ";
+  display: table
+}
+
+.hi-spin-container:after {
+  clear: both;
+  visibility: hidden;
+  font-size: 0;
+  height: 0
+}
+
+.hi-spin-blur {
+  overflow: hidden;
+  opacity: .7;
+  -webkit-filter: blur(.5px);
+  filter: blur(.5px);
+  filter: progid\:DXImageTransform\.Microsoft\.Blur(PixelRadius\=1, MakeShadow\=false);
+  -webkit-transform: translateZ(0)
+}
+
+.hi-spin-blur:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: #fff;
+  opacity: .3;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+  z-index: 10
+}
+
+.hi-spin-tip {
+  color: rgba(0,0,0,.45)
+}
+
+.hi-spin-dot {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 20px
+}
+
+.hi-spin-dot i {
+  width: 9px;
+  height: 9px;
+  border-radius: 100%;
+  background-color: #1890ff;
+  -webkit-transform: scale(.75);
+  transform: scale(.75);
+  display: block;
+  position: absolute;
+  opacity: .3;
+  -webkit-animation: 1s linear infinite alternate antSpinMove;
+  animation: 1s linear infinite alternate antSpinMove;
+  -webkit-transform-origin: 50% 50%;
+  transform-origin: 50% 50%
+}
+
+.hi-spin-dot i:nth-child(1) {
+  left: 0;
+  top: 0
+}
+
+.hi-spin-dot i:nth-child(2) {
+  right: 0;
+  top: 0;
+  -webkit-animation-delay: .4s;
+  animation-delay: .4s
+}
+
+.hi-spin-dot i:nth-child(3) {
+  right: 0;
+  bottom: 0;
+  -webkit-animation-delay: .8s;
+  animation-delay: .8s
+}
+
+.hi-spin-dot i:nth-child(4) {
+  left: 0;
+  bottom: 0;
+  -webkit-animation-delay: 1.2s;
+  animation-delay: 1.2s
+}
+
+.hi-spin-dot-spin {
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  -webkit-animation: 1.2s linear infinite antRotate;
+  animation: 1.2s linear infinite antRotate
+}
+
+.hi-spin-sm .hi-spin-dot {
+  width: 14px;
+  height: 14px
+}
+
+.hi-spin-sm .hi-spin-dot i {
+  width: 6px;
+  height: 6px
+}
+
+.hi-spin-lg .hi-spin-dot {
+  width: 32px;
+  height: 32px
+}
+
+.hi-spin-lg .hi-spin-dot i {
+  width: 14px;
+  height: 14px
+}
+
+.hi-spin.hi-spin-show-text .hi-spin-text {
+  display: block
+}
+
+@media all and (-ms-high-contrast:none),(-ms-high-contrast:active) {
+  .hi-spin-blur {
+      background: #fff;
+      opacity: .5
+  }
+}
+
+@-webkit-keyframes antSpinMove {
+  to {
+      opacity: 1
+  }
+}
+
+@keyframes antSpinMove {
+  to {
+      opacity: 1
+  }
+}
+
+@-webkit-keyframes antRotate {
+  to {
+      -webkit-transform: rotate(405deg);
+      transform: rotate(405deg)
+  }
+}
+
+@keyframes antRotate {
+  to {
+      -webkit-transform: rotate(405deg);
+      transform: rotate(405deg)
+  }
+}
