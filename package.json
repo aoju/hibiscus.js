@@ -47,7 +47,7 @@
     "protractor:delay": "sleep 3 && npm run protractor",
     "protractor:live": "protractor --elementExplorer",
     "server:dev:hmr": "npm run server:dev -- --hotOnly",
-    "server:dev": "npm run webpack-dev-server -- --config bin/webpack.dev.js --open --progress --profile --watch --content-base src/",
+    "server:dev": "npm run webpack-dev-server -- --config bin/webpack.dev.js --progress --profile --watch --content-base src/",
     "server:prod": "http-server dist -c-1 --cors",
     "server": "npm run server:dev",
     "mock": "node ./bin/mock.server.js",
