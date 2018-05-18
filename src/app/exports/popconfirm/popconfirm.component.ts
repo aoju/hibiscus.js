@@ -7,21 +7,21 @@ import {
 } from '@angular/core';
 
 import { fadeAnimation } from '../common/animation/fade-animations';
-import { toBoolean } from '../common/util/convert';
+import { toBoolean } from '../utils/convert';
 import { TooltipComponent } from '../tooltip/tooltip.component';
 
 @Component({
   selector           : 'hi-popconfirm',
   preserveWhitespaces: false,
   animations         : [ fadeAnimation ],
-  templateUrl        : './hi-popconfirm.component.html',
+  templateUrl        : './popconfirm.component.html',
   styles             : [ `
     .hi-popover {
       position: relative;
     }
   ` ]
 })
-export class HiPopconfirmComponent extends TooltipComponent {
+export class PopconfirmComponent extends TooltipComponent {
   private _condition = false;
   _prefix = 'hi-popover-placement';
   _trigger = 'click';

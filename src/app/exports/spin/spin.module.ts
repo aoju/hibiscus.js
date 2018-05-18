@@ -2,7 +2,7 @@ import { ObserversModule } from '@angular/cdk/observers';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { SpinComponent } from './hi-spin.component';
+import { SpinComponent } from './spin.component';
 
 @NgModule({
   exports     : [ SpinComponent ],

@@ -22,7 +22,7 @@ import {Observable} from 'rxjs/Observable';
 
 import {fadeAnimation} from '../common/animation/fade-animations';
 import {DEFAULT_4_POSITIONS, POSITION_MAP} from '../common/overlay/overlay-position-map';
-import {toBoolean} from '../common/util/convert';
+import {toBoolean} from '../utils/convert';
 
 @Component({
   selector: 'hi-tooltip',

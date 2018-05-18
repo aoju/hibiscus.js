@@ -8,18 +8,18 @@ import {
 
 import { TooltipDirective } from '../tooltip/tooltip.directive';
 
-import { HiPopconfirmComponent } from './hi-popconfirm.component';
+import { PopconfirmComponent } from './popconfirm.component';
 
 @Directive({
   selector: '[hi-popconfirm]'
 })
-export class HiPopconfirmDirective extends TooltipDirective {
+export class PopconfirmDirective extends TooltipDirective {
   constructor(
       elementRef: ElementRef,
       hostView: ViewContainerRef,
       resolver: ComponentFactoryResolver,
       renderer: Renderer2,
-      tooltip: HiPopconfirmComponent) {
+      tooltip: PopconfirmComponent) {
     super(elementRef, hostView, resolver, renderer, tooltip);
   }
 }

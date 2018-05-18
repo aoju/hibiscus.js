@@ -4,3 +4,5 @@ export * from './date-utils';
 export * from './default-date-converter';
 export * from './dom-utils';
 export * from './lange-utils';
+export * from './check';
+export * from './convert';
