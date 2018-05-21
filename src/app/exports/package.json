@@ -17,7 +17,7 @@
   "main": "index.js",
   "typings": "index.d.ts",
   "dependencies": {
-    "@angular/cdk": "^6.1.0",
+    "@angular/cdk": "^6.0.2",
     "date-fns": "^1.27.2"
   },
   "engines": {
