@@ -2,10 +2,10 @@ import {
   AnimationEvent
 } from '@angular/animations';
 import {
-  ConnectedOverlayDirective,
+  CdkConnectedOverlay,
   ConnectedOverlayPositionChange,
   ConnectionPositionPair,
-  OverlayOrigin
+  CdkOverlayOrigin
 } from '@angular/cdk/overlay';
 import {
   ChangeDetectorRef,
@@ -47,9 +47,9 @@ export class TooltipComponent {
   @Input() hiMouseLeaveDelay = 0.1; // Unit: second
   @Output() hiVisibleChange: EventEmitter<boolean> = new EventEmitter();
   @ContentChild('hiTemplate') hiTemplate: TemplateRef<void>;
-  @ViewChild('overlay') overlay: ConnectedOverlayDirective;
+  @ViewChild('overlay') overlay: CdkConnectedOverlay;
 
-  overlayOrigin: OverlayOrigin;
+  overlayOrigin: CdkOverlayOrigin;
 
   @Input()
   set hiVisible(value: boolean) {
@@ -140,7 +140,7 @@ export class TooltipComponent {
     };
   }
 
-  setOverlayOrigin(origin: OverlayOrigin): void {
+  setOverlayOrigin(origin: CdkOverlayOrigin): void {
     this.overlayOrigin = origin;
   }
 

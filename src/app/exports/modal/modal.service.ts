@@ -1,4 +1,4 @@
-import {Injectable, Injector, ComponentFactoryResolver, ComponentRef, ViewContainerRef} from '@angular/core';
+import {Injectable, Injector, ComponentFactoryResolver, ComponentRef} from '@angular/core';
 import {ModalComponent} from './modal.component';
 import {ModalOptions} from './modal-options.model';
 import {HiNGConfig} from '../hi.config';
@@ -17,7 +17,7 @@ export class ModalService {
               private injector: Injector) {
   }
 
-  open<T>(options: ModalOptions): Observable<T> {
+  open<T>(options: ModalOptions): Observable<any> {
     const rootContainer = options.rootContainer || this.hiNGConfig.rootContainer;
     if (!rootContainer) {
       throw new Error('Should setup ViewContainerRef on modal options or hi config service!');
