@@ -34,6 +34,8 @@ import {
   TagsDemoComponent,
   TooltipDemoComponent,
   PopconfirmDemoComponent,
+  SpinDemoComponent,
+  PopoverDemoComponent,
   TreeViewDemoComponent,
   TimePickerDemoComponent,
   RadioGroupDemoComponent,
@@ -306,6 +308,20 @@ export class DemoService {
       readme: '',
       html: require('!raw-loader!./popconfirm/popconfirm-demo.template.html'),
       typescript: require('!raw-loader!./popconfirm/popconfirm-demo.component.ts')
+    }, {
+        name: 'Spin',
+        directory: 'spin',
+        component: SpinDemoComponent,
+        readme: '',
+        html: require('!raw-loader!./spin/spin-demo.template.html'),
+        typescript: require('!raw-loader!./spin/spin-demo.component.ts')
+    }, {
+        name: 'Popover',
+        directory: 'popover',
+        component: PopoverDemoComponent,
+        readme: '',
+        html: require('!raw-loader!./popover/popover-demo.template.html'),
+        typescript: require('!raw-loader!./popover/popover-demo.component.ts')
     }, {
       name: 'TreeView',
       directory: 'tree-view',

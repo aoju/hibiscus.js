@@ -39,6 +39,8 @@ import {TagsModule} from './tags';
 import {TimePickerModule} from './time-picker';
 import {TooltipModule} from './tooltip';
 import {PopconfirmModule} from './popconfirm';
+import {SpinModule} from './spin';
+import {PopoverModule} from './popover';
 import {TreeViewModule, TreeViewService} from './tree-view';
 import {HiValidatorsModule} from './validators';
 import {COMMON_SERVICES} from './window-ref';
@@ -86,6 +88,8 @@ import {HiNGConfig} from './hi.config';
     TimePickerModule,
     TooltipModule,
     PopconfirmModule,
+    SpinModule,
+    PopoverModule,
     TreeViewModule,
     HiValidatorsModule
   ],
@@ -129,6 +133,8 @@ import {HiNGConfig} from './hi.config';
     TimePickerModule,
     TooltipModule,
     PopconfirmModule,
+    SpinModule,
+    PopoverModule,
     TreeViewModule,
     HiValidatorsModule
   ],

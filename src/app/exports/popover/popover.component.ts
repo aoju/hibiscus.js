@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 
 import { fadeAnimation } from '../common/animation/fade-animations';
-import { ToolTipComponent } from '../tooltip/tooltip.component';
+import { TooltipComponent } from '../tooltip/tooltip.component';
 
 @Component({
   selector: 'hi-popover',
@@ -15,6 +15,6 @@ import { ToolTipComponent } from '../tooltip/tooltip.component';
     .hi-popover { position: relative; }
   ` ]
 })
-export class PopoverComponent extends ToolTipComponent {
+export class PopoverComponent extends TooltipComponent {
   _prefix = 'hi-popover-placement';
 }

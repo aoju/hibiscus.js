@@ -2,14 +2,14 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { ToolTipComponent } from './tooltip.component';
+import { TooltipComponent } from './tooltip.component';
 import { TooltipDirective } from './tooltip.directive';
 
 @NgModule({
-  declarations   : [ ToolTipComponent, TooltipDirective ],
-  exports        : [ ToolTipComponent, TooltipDirective ],
+  declarations   : [ TooltipComponent, TooltipDirective ],
+  exports        : [ TooltipComponent, TooltipDirective ],
   imports        : [ CommonModule, OverlayModule ],
-  entryComponents: [ ToolTipComponent ]
+  entryComponents: [ TooltipComponent ]
 })
 export class TooltipModule {
 }
