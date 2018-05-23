@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-lg-6">
+    <h5 class="text-black"><strong>Default HiSelect</strong></h5>
+    <div class="mb-5">
+      <div>
+        <hi-select style="width: 120px;" [(ngModel)]="selectedValue" hiAllowClear hiPlaceHolder="Choose">
+          <hi-option hiValue="jack" hiLabel="Jack"></hi-option>
+          <hi-option hiValue="lucy" hiLabel="Lucy"></hi-option>
+          <hi-option hiValue="disabled" hiLabel="Disabled" hiDisabled></hi-option>
+        </hi-select>
+        <hi-select style="width: 120px;" [ngModel]="'lucy'" hiDisabled>
+          <hi-option hiValue="lucy" hiLabel="Lucy"></hi-option>
+        </hi-select>
+        <hi-select hiMode="tags" style="width: 100%;" hiPlaceHolder="多选" [(ngModel)]="listOfTagOptions">
+          <hi-option *ngFor="let option of listOfOption" [hiLabel]="option.label" [hiValue]="option.value">
+          </hi-option>
+        </hi-select>
+      </div>
+    </div>
+  </div>
+</div>

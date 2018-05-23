@@ -36,3 +36,4 @@ export * from './popconfirm';
 export * from './tree-view';
 export * from './validators';
 export * from './cascader';
+export * from './hiselect';

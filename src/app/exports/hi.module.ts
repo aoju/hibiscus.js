@@ -8,6 +8,7 @@ import {BreadcrumbsModule} from './breadcrumbs';
 import {CalendarModule} from './calendar';
 import {CarouselModule} from './carousel';
 import {CascaderModule} from './cascader';
+import {HiSelectModule} from './hiselect';
 import {CheckboxGroupModule} from './checkbox-group';
 import {HiCommonModule, AssetsLoader} from './common';
 import {DataTableModule} from './data-table';
@@ -56,6 +57,7 @@ import {HiNGConfig} from './hi.config';
     CalendarModule,
     CarouselModule,
     CascaderModule,
+    HiSelectModule,
     CheckboxGroupModule,
     HiCommonModule,
     DataTableModule,
@@ -99,6 +101,7 @@ import {HiNGConfig} from './hi.config';
     CalendarModule,
     CarouselModule,
     CascaderModule,
+    HiSelectModule,
     CheckboxGroupModule,
     HiCommonModule,
     DataTableModule,

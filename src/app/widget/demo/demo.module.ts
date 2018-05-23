@@ -40,6 +40,7 @@ import {
   TreeViewDemoModule,
   ValidatorsDemoModule,
   CascaderDemoModule,
+  HiSelectDemoModule
 } from './index';
 import {RoutesModule} from './demo.routes';
 import {DemoComponent} from './demo.component';
@@ -88,7 +89,8 @@ import {DemoService} from './demo.service';
     PopconfirmDemoModule,
     TreeViewDemoModule,
     ValidatorsDemoModule,
-    CascaderDemoModule
+    CascaderDemoModule,
+    HiSelectDemoModule
   ],
   providers: [
     DemoService

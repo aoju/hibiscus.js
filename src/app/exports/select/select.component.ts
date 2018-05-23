@@ -22,7 +22,7 @@ import {
 } from '@angular/animations';
 
 @Component({
-  selector: 'hi-select',
+  selector: 'hi-select-custom',
   templateUrl: './select.template.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   exportAs: 'select',

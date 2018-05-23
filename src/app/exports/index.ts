@@ -7,6 +7,7 @@ export * from './breadcrumbs';
 export * from './calendar';
 export * from './carousel';
 export * from './cascader';
+export * from './hiselect';
 export * from './checkbox-group';
 export * from './common';
 export * from './data-table';
