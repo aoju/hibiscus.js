@@ -1,0 +1,28 @@
+<ng-content></ng-content>
+<ng-template
+  #overlay="cdkConnectedOverlay"
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="overlayOrigin"
+  [cdkConnectedOverlayHasBackdrop]="_hasBackdrop"
+  (backdropClick)="hide()"
+  (detach)="hide()"
+  (positionChange)="onPositionChange($event)"
+  [cdkConnectedOverlayPositions]="_positions"
+  [cdkConnectedOverlayOpen]="visible$ | async">
+  <div class="hi-popover" [ngClass]="_classMap" [ngStyle]="hiOverlayStyle" [@fadeAnimation]="''+(visible$ | async)"
+    (@fadeAnimation.done)="_afterVisibilityAnimation($event)">
+    <div class="hi-popover-content">
+      <div class="hi-popover-arrow"></div>
+      <div class="hi-popover-inner">
+        <div class="hi-popover-title" *ngIf="hiTitle" [innerHTML]="hiTitle"></div>
+        <div class="hi-popover-inner-content">
+          <span *ngIf="!hiTemplate">{{ hiContent }}</span>
+          <ng-template
+            *ngIf="hiTemplate"
+            [ngTemplateOutlet]="hiTemplate">
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
