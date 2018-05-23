@@ -14,7 +14,6 @@ import {DataTableModule} from './data-table';
 import {DatePickerModule} from './date-picker';
 import {DialogService, DialogModule} from './dialog';
 import {DraggableModule} from './draggable';
-import {EllipsisModule} from './ellipsis';
 import {FileUploadModule} from './file-upload';
 import {FlowStepModule} from './flow-step';
 import {HttpModule} from './http';
@@ -26,7 +25,6 @@ import {OAauth2Module} from './oauth2';
 import {OverlayModule, OverlayService} from './overlay';
 import {PagerModule} from './pager';
 import {PaginationModule} from './pagination';
-import {PopoverModule} from './popover';
 import {PositionService} from './position';
 import {ProgressBarModule} from './progress-bar';
 import {RadioGroupModule} from './radio-group';
@@ -41,7 +39,6 @@ import {TagsModule} from './tags';
 import {TimePickerModule} from './time-picker';
 import {TooltipModule} from './tooltip';
 import {PopconfirmModule} from './popconfirm';
-import {SpinModule} from './spin';
 import {TreeViewModule, TreeViewService} from './tree-view';
 import {HiValidatorsModule} from './validators';
 import {COMMON_SERVICES} from './window-ref';
@@ -65,7 +62,6 @@ import {HiNGConfig} from './hi.config';
     DatePickerModule,
     DialogModule,
     DraggableModule,
-    EllipsisModule,
     FileUploadModule,
     FlowStepModule,
     HttpModule,
@@ -77,7 +73,6 @@ import {HiNGConfig} from './hi.config';
     OverlayModule,
     PagerModule,
     PaginationModule,
-    PopoverModule,
     ProgressBarModule,
     RadioGroupModule,
     RatingModule,
@@ -91,7 +86,6 @@ import {HiNGConfig} from './hi.config';
     TimePickerModule,
     TooltipModule,
     PopconfirmModule,
-    SpinModule,
     TreeViewModule,
     HiValidatorsModule
   ],
@@ -111,7 +105,6 @@ import {HiNGConfig} from './hi.config';
     DatePickerModule,
     DialogModule,
     DraggableModule,
-    EllipsisModule,
     FileUploadModule,
     FlowStepModule,
     HttpModule,
@@ -123,7 +116,6 @@ import {HiNGConfig} from './hi.config';
     OverlayModule,
     PagerModule,
     PaginationModule,
-    PopoverModule,
     ProgressBarModule,
     RadioGroupModule,
     RatingModule,
@@ -137,7 +129,6 @@ import {HiNGConfig} from './hi.config';
     TimePickerModule,
     TooltipModule,
     PopconfirmModule,
-    SpinModule,
     TreeViewModule,
     HiValidatorsModule
   ],

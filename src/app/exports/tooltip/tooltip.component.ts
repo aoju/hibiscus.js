@@ -2,10 +2,10 @@ import {
   AnimationEvent
 } from '@angular/animations';
 import {
-  ConnectedOverlayDirective,
+  CdkConnectedOverlay,
   ConnectedOverlayPositionChange,
   ConnectionPositionPair,
-  OverlayOrigin
+  CdkOverlayOrigin
 } from '@angular/cdk/overlay';
 import {
   ChangeDetectorRef,
@@ -17,23 +17,25 @@ import {
   TemplateRef,
   ViewChild
 } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Observable } from 'rxjs/Observable';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {Observable} from 'rxjs/Observable';
 
-import { fadeAnimation } from '../common/animation/fade-animations';
-import { DEFAULT_4_POSITIONS, POSITION_MAP } from '../common/overlay/overlay-position-map';
-import { toBoolean } from '../common/util/convert';
+import {fadeAnimation} from '../common/animation/fade-animations';
+import {DEFAULT_4_POSITIONS, POSITION_MAP} from '../common/overlay/overlay-position-map';
+import {toBoolean} from '../utils/convert';
 
 @Component({
   selector: 'hi-tooltip',
   preserveWhitespaces: false,
-  animations: [ fadeAnimation ],
+  animations: [fadeAnimation],
   templateUrl: './tooltip.component.html',
-  styles: [ `
-    .hi-tooltip { position: relative; }
-  ` ]
+  styles: [`
+    .hi-tooltip {
+      position: relative;
+    }
+  `]
 })
-export class ToolTipComponent {
+export class TooltipComponent {
   _hasBackdrop = false;
 
   @Input() hiTitle: string;
@@ -45,9 +47,9 @@ export class ToolTipComponent {
   @Input() hiMouseLeaveDelay = 0.1; // Unit: second
   @Output() hiVisibleChange: EventEmitter<boolean> = new EventEmitter();
   @ContentChild('hiTemplate') hiTemplate: TemplateRef<void>;
-  @ViewChild('overlay') overlay: ConnectedOverlayDirective;
+  @ViewChild('overlay') overlay: CdkConnectedOverlay;
 
-  overlayOrigin: OverlayOrigin;
+  overlayOrigin: CdkOverlayOrigin;
 
   @Input()
   set hiVisible(value: boolean) {
@@ -76,7 +78,7 @@ export class ToolTipComponent {
   }
 
   _prefix = 'hi-tooltip-placement';
-  _positions: ConnectionPositionPair[] = [ ...DEFAULT_4_POSITIONS ];
+  _positions: ConnectionPositionPair[] = [...DEFAULT_4_POSITIONS];
   _classMap = {};
   _placement = 'top';
   _trigger = 'hover';
@@ -85,7 +87,7 @@ export class ToolTipComponent {
   set hiPlacement(value: string) {
     if (value !== this._placement) {
       this._placement = value;
-      this._positions.unshift(POSITION_MAP[ this.hiPlacement ] as ConnectionPositionPair);
+      this._positions.unshift(POSITION_MAP[this.hiPlacement] as ConnectionPositionPair);
     }
   }
 
@@ -102,7 +104,7 @@ export class ToolTipComponent {
 
   onPositionChange($event: ConnectedOverlayPositionChange): void {
     for (const key in POSITION_MAP) {
-      if (JSON.stringify($event.connectionPair) === JSON.stringify(POSITION_MAP[ key ])) {
+      if (JSON.stringify($event.connectionPair) === JSON.stringify(POSITION_MAP[key])) {
         this.hiPlacement = key;
         break;
       }
@@ -133,12 +135,12 @@ export class ToolTipComponent {
 
   setClassMap(): void {
     this._classMap = {
-      [ this.hiOverlayClassName ]             : true,
-      [ `${this._prefix}-${this._placement}` ]: true
+      [this.hiOverlayClassName]: true,
+      [`${this._prefix}-${this._placement}`]: true
     };
   }
 
-  setOverlayOrigin(origin: OverlayOrigin): void {
+  setOverlayOrigin(origin: CdkOverlayOrigin): void {
     this.overlayOrigin = origin;
   }
 
@@ -146,7 +148,8 @@ export class ToolTipComponent {
   }
 
   private isContentEmpty(): boolean {
+    // Pity, can't detect whether hiTemplate is empty due to can't get it's content before shown up
     // return this.hiTemplate ? !(this.hiTemplate.elementRef.nativeElement as HTMLElement).hasChildNodes() : this.hiTitle === '';
-    return (this.hiTemplate || this.hiContent) ? false : (this.hiTitle === '' || this.hiTitle == null); // Pity, can't detect whether hiTemplate is empty due to can't get it's content before shown up
+    return (this.hiTemplate || this.hiContent) ? false : (this.hiTitle === '' || this.hiTitle == null);
   }
 }

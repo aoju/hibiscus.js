@@ -18,7 +18,6 @@
 @import url(utilities.css);
 @import url(tooltip.css);
 @import url(popconfirm.css);
-@import url(spin.css);
 
 input, button, select, optgroup, textarea button{
   box-shadow:none !important;

@@ -10,10 +10,8 @@ import {
   OnDestroy,
   OnInit,
   Output,
-  SimpleChanges,
   TemplateRef,
-  ViewChild,
-  ViewEncapsulation
+  ViewChild
 } from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 

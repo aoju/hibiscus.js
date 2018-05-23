@@ -14,8 +14,8 @@ import { Observable } from 'rxjs/Observable';
 import { debounceTime } from 'rxjs/operators/debounceTime';
 import { first } from 'rxjs/operators/first';
 
-import { isEmpty, isNotNil } from '../common/util/check';
-import { toBoolean } from '../common/util/convert';
+import { isEmpty, isNotNil } from '../utils/check';
+import { toBoolean } from '../utils/convert';
 
 @Component({
   selector           : 'hi-spin',

@@ -9,7 +9,7 @@
 
 *Notice*: `OnPush` @Input is recommended in `@hibiscus.js`, so use `Immutable.js` will be easy.
 
-* Angular 4: version <= 0.0.23; Angular 5: version >= 0.1.0 
+* Angular 4: version <= 0.0.23; Angular 5: version >= 0.1.0  Angular 6: version >= 0.1.0 
 
 ## Components
 
