@@ -16,8 +16,8 @@ import {Component} from '@angular/core';
       padding: 30px 50px;
       margin: 20px 0;
     }
-  `,
+  `]
 })
+
 export class SpinDemoComponent {
-  
 }

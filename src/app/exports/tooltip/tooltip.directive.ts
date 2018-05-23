@@ -10,7 +10,7 @@ import {
   ViewContainerRef
 } from '@angular/core';
 
-import { ToolTipComponent } from './hi-tooltip.component';
+import { ToolTipComponent } from './tooltip.component';
 
 @Directive({
   selector: '[hi-tooltip]'

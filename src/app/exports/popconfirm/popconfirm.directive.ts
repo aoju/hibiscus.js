@@ -6,9 +6,9 @@ import {
   ViewContainerRef
 } from '@angular/core';
 
-import { TooltipDirective } from '../tooltip/hi-tooltip.directive';
+import { TooltipDirective } from '../tooltip/tooltip.directive';
 
-import { PopconfirmComponent } from './hi-popconfirm.component';
+import { PopconfirmComponent } from './popconfirm.component';
 
 @Directive({
   selector: '[hi-popconfirm]'

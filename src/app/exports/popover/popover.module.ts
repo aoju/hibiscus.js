@@ -1,23 +1,16 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import { OverlayModule } from '@angular/cdk/overlay';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
-import {PopoverDirective} from './popover.directive';
-import {PopoverPopupComponent} from './popover-popup.component';
+import { PopoverComponent } from './popover.component';
+import { PopoverDirective } from './popover.directive';
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
-  exports: [
-    PopoverDirective
-  ],
-  declarations: [
-    PopoverDirective,
-    PopoverPopupComponent
-  ],
-  entryComponents: [
-    PopoverPopupComponent
-  ]
+  entryComponents: [ PopoverComponent ],
+  exports        : [ PopoverDirective, PopoverComponent ],
+  declarations   : [ PopoverDirective, PopoverComponent ],
+  imports        : [ CommonModule, OverlayModule ]
 })
+
 export class PopoverModule {
 }

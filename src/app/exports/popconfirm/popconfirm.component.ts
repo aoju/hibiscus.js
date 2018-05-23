@@ -8,13 +8,13 @@ import {
 
 import { fadeAnimation } from '../common/animation/fade-animations';
 import { toBoolean } from '../common/util/convert';
-import { ToolTipComponent } from '../tooltip/hi-tooltip.component';
+import { ToolTipComponent } from '../tooltip/tooltip.component';
 
 @Component({
   selector           : 'hi-popconfirm',
   preserveWhitespaces: false,
   animations         : [ fadeAnimation ],
-  templateUrl        : './hi-popconfirm.component.html',
+  templateUrl        : './popconfirm.component.html',
   styles             : [ `
     .hi-popover {
       position: relative;

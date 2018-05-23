@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 
-import { PopconfirmComponent } from './hi-popconfirm.component';
-import { PopconfirmDirective } from './hi-popconfirm.directive';
+import { PopconfirmComponent } from './popconfirm.component';
+import { PopconfirmDirective } from './popconfirm.directive';
 
 @NgModule({
   declarations: [ PopconfirmComponent, PopconfirmDirective ],

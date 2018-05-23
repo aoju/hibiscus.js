@@ -28,7 +28,7 @@ import { toBoolean } from '../common/util/convert';
   selector: 'hi-tooltip',
   preserveWhitespaces: false,
   animations: [ fadeAnimation ],
-  templateUrl: './hi-tooltip.component.html',
+  templateUrl: './tooltip.component.html',
   styles: [ `
     .hi-tooltip { position: relative; }
   ` ]

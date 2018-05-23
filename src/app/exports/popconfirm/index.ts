@@ -1,3 +1,3 @@
-export * from './hi-popconfirm.component';
-export * from './hi-popconfirm.directive';
-export * from './hi-popconfirm.module';
+export * from './popconfirm.component';
+export * from './popconfirm.directive';
+export * from './popconfirm.module';

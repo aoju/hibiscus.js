@@ -1,2 +1,2 @@
-export * from './hi-spin.component';
-export * from './hi-spin.module';
+export * from './spin.component';
+export * from './spin.module';
