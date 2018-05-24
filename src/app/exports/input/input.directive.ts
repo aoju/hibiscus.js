@@ -23,7 +23,7 @@ export interface AutoSizeType {
 @Directive({
   selector: '[hi-input]',
   host: {
-    '[class.ant-input]': 'true'
+    '[class.hi-input]': 'true'
   }
 })
 export class InputDirective implements DoCheck, AfterViewInit {
@@ -46,7 +46,7 @@ export class InputDirective implements DoCheck, AfterViewInit {
   }
 
   @Input()
-  @HostBinding(`class.ant-input-disabled`)
+  @HostBinding(`class.hi-input-disabled`)
   set disabled(value: boolean) {
     this._disabled = coerceBooleanProperty(value);
   }
@@ -71,12 +71,12 @@ export class InputDirective implements DoCheck, AfterViewInit {
     return this._autosize;
   }
 
-  @HostBinding(`class.ant-input-lg`)
+  @HostBinding(`class.hi-input-lg`)
   get setLgClass(): boolean {
     return this.hiSize === 'large';
   }
 
-  @HostBinding(`class.ant-input-sm`)
+  @HostBinding(`class.hi-input-sm`)
   get setSmClass(): boolean {
     return this.hiSize === 'small';
   }

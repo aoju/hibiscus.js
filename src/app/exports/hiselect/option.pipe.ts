@@ -1,14 +1,14 @@
 /* tslint:disable:no-any */
 import { Pipe, PipeTransform } from '@angular/core';
-import { HiOptionGroupComponent } from './hi-option-group.component';
-import { HiOptionComponent } from './hi-option.component';
+import { OptionGroupComponent } from './option-group.component';
+import { OptionComponent } from './option.component';
 
-export type TFilterOption = (input?: string, option?: HiOptionComponent) => boolean;
+export type TFilterOption = (input?: string, option?: OptionComponent) => boolean;
 
 // TODO: can not dynamic change pipe pure yet
 @Pipe({ name: 'hiFilterOptionPipe' })
-export class HiOptionPipe implements PipeTransform {
-  transform(options: HiOptionComponent[], input: string, filterOption: TFilterOption, serverSearch: boolean): HiOptionComponent[] {
+export class OptionPipe implements PipeTransform {
+  transform(options: OptionComponent[], input: string, filterOption: TFilterOption, serverSearch: boolean): OptionComponent[] {
     if (serverSearch || !input) {
       return options;
     } else {
@@ -18,8 +18,8 @@ export class HiOptionPipe implements PipeTransform {
 }
 
 @Pipe({ name: 'hiSubFilterOptionPipe' })
-export class HiSubOptionPipe implements PipeTransform {
-  transform(groups: HiOptionGroupComponent[], input: string, filterOption: TFilterOption, serverSearch: boolean): HiOptionGroupComponent[] {
+export class SubOptionPipe implements PipeTransform {
+  transform(groups: OptionGroupComponent[], input: string, filterOption: TFilterOption, serverSearch: boolean): OptionGroupComponent[] {
     if (serverSearch || !input) {
       return groups;
     } else {
@@ -30,7 +30,7 @@ export class HiSubOptionPipe implements PipeTransform {
   }
 }
 
-export function defaultFilterOption(input: string, option: HiOptionComponent): boolean {
+export function defaultFilterOption(input: string, option: OptionComponent): boolean {
   if (option && option.hiLabel) {
     return option.hiLabel.toLowerCase().indexOf(input.toLowerCase()) > -1;
   } else {

@@ -5,7 +5,7 @@
 import {Pipe, PipeTransform} from '@angular/core';
 
 @Pipe({name: 'hiI18n'})
-export class HiContainerPipe implements PipeTransform{
+export class ContainerPipe implements PipeTransform {
 
   private _locale;
 

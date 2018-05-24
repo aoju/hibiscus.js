@@ -11,9 +11,7 @@ import { TooltipComponent } from '../tooltip/tooltip.component';
   preserveWhitespaces: false,
   animations: [ fadeAnimation ],
   templateUrl: './popover.component.html',
-  styles: [ `
-    .hi-popover { position: relative; }
-  ` ]
+  styleUrls: ['./popover.component.scss']
 })
 export class PopoverComponent extends TooltipComponent {
   _prefix = 'hi-popover-placement';

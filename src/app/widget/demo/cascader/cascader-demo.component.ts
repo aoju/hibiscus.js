@@ -66,7 +66,7 @@ const otherOptions = [{
   templateUrl: './cascader-demo.template.html',
   styles: [
       `
-      .ant-cascader-picker {
+      .hi-cascader-picker {
         width: 300px;
       }
 

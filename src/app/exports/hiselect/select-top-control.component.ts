@@ -6,7 +6,7 @@ import {
   trigger
 } from '@angular/animations';
 import { Component, ElementRef, EventEmitter, Input, Output, Renderer2, ViewChild } from '@angular/core';
-import { HiOptionComponent } from './hi-option.component';
+import { OptionComponent } from './option.component';
 
 @Component({
   selector           : '[hi-select-top-control]',
@@ -30,7 +30,7 @@ import { HiOptionComponent } from './hi-option.component';
       <input
         #inputElement
         autocomplete="off"
-        class="ant-select-search__field"
+        class="hi-select-search__field"
         (compositionstart)="isComposing = true"
         (compositionend)="isComposing = false"
         (input)="updateWidth()"
@@ -44,7 +44,7 @@ import { HiOptionComponent } from './hi-option.component';
       hi-select-unselectable
       [style.display]="placeHolderDisplay"
       (click)="focusOnInput()"
-      class="ant-select-selection__placeholder">
+      class="hi-select-selection__placeholder">
       {{ hiPlaceHolder }}
     </div>
     <!--single mode-->
@@ -52,7 +52,7 @@ import { HiOptionComponent } from './hi-option.component';
       <!--selected label-->
       <div
         *ngIf="hiListOfSelectedValue.length"
-        class="ant-select-selection-selected-value"
+        class="hi-select-selection-selected-value"
         [attr.title]="hiListOfSelectedValue[0].hiLabel"
         [ngStyle]="selectedValueDisplay">
         {{ singleValueLabel }}
@@ -61,10 +61,10 @@ import { HiOptionComponent } from './hi-option.component';
       <div
         *ngIf="hiShowSearch"
         [style.display]="searchDisplay"
-        class="ant-select-search ant-select-search--inline">
-        <div class="ant-select-search__field__wrap">
+        class="hi-select-search hi-select-search--inline">
+        <div class="hi-select-search__field__wrap">
           <ng-template [ngTemplateOutlet]="inputTemplate"></ng-template>
-          <span class="ant-select-search__field__mirror">{{inputValue}}&nbsp;</span>
+          <span class="hi-select-search__field__mirror">{{inputValue}}&nbsp;</span>
         </div>
       </div>
     </ng-container>
@@ -75,27 +75,27 @@ import { HiOptionComponent } from './hi-option.component';
           *ngIf="isOptionDisplay(value)"
           [@tagAnimation]
           [attr.title]="getPropertyFromValue(value,'hiLabel')"
-          [class.ant-select-selection__choice__disabled]="getPropertyFromValue(value,'hiDisabled')"
-          class="ant-select-selection__choice">
-          <div class="ant-select-selection__choice__content">{{ getPropertyFromValue(value, 'hiLabel') || value }}</div>
-          <span *ngIf="!getPropertyFromValue(value,'hiDisabled')" class="ant-select-selection__choice__remove" (click)="removeValueFormSelected(value)"></span>
+          [class.hi-select-selection__choice__disabled]="getPropertyFromValue(value,'hiDisabled')"
+          class="hi-select-selection__choice">
+          <div class="hi-select-selection__choice__content">{{ getPropertyFromValue(value, 'hiLabel') || value }}</div>
+          <span *ngIf="!getPropertyFromValue(value,'hiDisabled')" class="hi-select-selection__choice__remove" (click)="removeValueFormSelected(value)"></span>
         </li>
       </ng-container>
 
-      <li class="ant-select-search ant-select-search--inline">
+      <li class="hi-select-search hi-select-search--inline">
         <ng-template [ngTemplateOutlet]="inputTemplate"></ng-template>
       </li>
     </ul>
   `,
   host               : {
-    '[class.ant-select-selection__rendered]': 'true'
+    '[class.hi-select-selection__rendered]': 'true'
   }
 })
-export class HiSelectTopControlComponent {
+export class SelectTopControlComponent {
   // tslint:disable-next-line:no-any
   private _listOfSelectedValue: any[];
-  private _listTemplateOfOption: HiOptionComponent[] = [];
-  listOfCachedSelectedOption: HiOptionComponent[] = [];
+  private _listTemplateOfOption: OptionComponent[] = [];
+  listOfCachedSelectedOption: OptionComponent[] = [];
   inputValue: string;
   isComposing = false;
   @ViewChild('inputElement') inputElement: ElementRef;
@@ -124,12 +124,12 @@ export class HiSelectTopControlComponent {
   }
 
   @Input()
-  set hiListTemplateOfOption(value: HiOptionComponent[]) {
+  set hiListTemplateOfOption(value: OptionComponent[]) {
     this._listTemplateOfOption = value;
     this.updateListOfCachedOption();
   }
 
-  get hiListTemplateOfOption(): HiOptionComponent[] {
+  get hiListTemplateOfOption(): OptionComponent[] {
     return this._listTemplateOfOption;
   }
 

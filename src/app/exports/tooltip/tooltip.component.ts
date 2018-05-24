@@ -29,11 +29,7 @@ import {toBoolean} from '../utils/convert';
   preserveWhitespaces: false,
   animations: [fadeAnimation],
   templateUrl: './tooltip.component.html',
-  styles: [`
-    .hi-tooltip {
-      position: relative;
-    }
-  `]
+  styleUrls: ['./tooltip.component.scss']
 })
 export class TooltipComponent {
   _hasBackdrop = false;

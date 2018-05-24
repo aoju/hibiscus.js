@@ -30,13 +30,13 @@
 - [x] http
 - [x] Image Upload
 - [x] Infinite Scroll
-- [x] Cascader
 - [x] Modal
 - [x] Notify
 - [x] OAuth2
 - [x] Overlay
 - [x] Pager
 - [x] Pagination
+- [x] Popconfirm
 - [x] Popover
 - [x] Progress Bar
 - [x] Radio Group
@@ -44,6 +44,7 @@
 - [x] Select Button
 - [x] Storage
 - [x] Switch
+- [x] spin
 - [x] Tabs
 - [x] Tags
 - [x] TimePicker

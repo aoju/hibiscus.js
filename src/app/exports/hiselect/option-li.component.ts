@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input } from '@angular/core';
-import { HiOptionComponent } from './hi-option.component';
+import { OptionComponent } from './option.component';
 
 @Component({
   selector: '[hi-option-li]',
@@ -12,25 +12,25 @@ import { HiOptionComponent } from './hi-option.component';
     </ng-container>
   `,
   host    : {
-    '[class.ant-select-dropdown-menu-item]'         : 'true',
-    '[class.ant-select-dropdown-menu-item-selected]': 'selected && !hiOption.hiDisabled',
-    '[class.ant-select-dropdown-menu-item-disabled]': 'hiOption.hiDisabled',
-    '[class.ant-select-dropdown-menu-item-active]'  : 'active && !hiOption.hiDisabled && hiShowActive && !selected',
+    '[class.hi-select-dropdown-menu-item]'         : 'true',
+    '[class.hi-select-dropdown-menu-item-selected]': 'selected && !hiOption.hiDisabled',
+    '[class.hi-select-dropdown-menu-item-disabled]': 'hiOption.hiDisabled',
+    '[class.hi-select-dropdown-menu-item-active]'  : 'active && !hiOption.hiDisabled && hiShowActive && !selected',
     '[attr.unselectable]'                           : '"unselectable"',
     '[style.user-select]'                           : '"none"'
   }
 })
-export class HiOptionLiComponent {
+export class OptionLiComponent {
   el: Element;
   selected = false;
   active = false;
-  @Input() hiOption: HiOptionComponent;
+  @Input() hiOption: OptionComponent;
   @Input() hiShowActive = true;
   // tslint:disable-next-line:no-any
   @Input() compareWith: (o1: any, o2: any) => boolean;
 
   @Input()
-  set hiActiveOption(value: HiOptionComponent) {
+  set hiActiveOption(value: OptionComponent) {
     if (value) {
       this.active = this.compareWith(value.hiValue, this.hiOption.hiValue);
     } else {

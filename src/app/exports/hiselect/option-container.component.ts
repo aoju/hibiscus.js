@@ -8,14 +8,14 @@ import {
   QueryList,
   ViewChildren
 } from '@angular/core';
-import {HiOptionGroupComponent} from './hi-option-group.component';
-import {HiOptionComponent} from './hi-option.component';
+import {OptionGroupComponent} from './option-group.component';
+import {OptionComponent} from './option.component';
 
 import {Subject} from 'rxjs/Subject';
 import {Subscription} from 'rxjs/Subscription';
 import {merge} from 'rxjs/operators/merge';
-import {HiOptionLiComponent} from './hi-option-li.component';
-import {defaultFilterOption, HiOptionPipe, TFilterOption} from './hi-option.pipe';
+import {OptionLiComponent} from './option-li.component';
+import {defaultFilterOption, OptionPipe, TFilterOption} from './option.pipe';
 
 @Component({
   selector: '[hi-option-container]',
@@ -23,7 +23,7 @@ import {defaultFilterOption, HiOptionPipe, TFilterOption} from './hi-option.pipe
   template: `
     <ul
       #dropdownUl
-      class="ant-select-dropdown-menu ant-select-dropdown-menu-root ant-select-dropdown-menu-vertical"
+      class="hi-select-dropdown-menu hi-select-dropdown-menu-root hi-select-dropdown-menu-vertical"
       role="menu"
       (keydown)="onKeyDownUl($event)"
       (scroll)="dropDownScroll($event,dropdownUl)"
@@ -31,14 +31,14 @@ import {defaultFilterOption, HiOptionPipe, TFilterOption} from './hi-option.pipe
       <li
         *ngIf="isNotFoundDisplay"
         hi-select-unselectable
-        class="ant-select-dropdown-menu-item ant-select-dropdown-menu-item-disabled">
+        class="hi-select-dropdown-menu-item hi-select-dropdown-menu-item-disabled">
         {{ hiNotFoundContent ? hiNotFoundContent : ('Select.notFoundContent' | hiI18n) }}
       </li>
       <li
         *ngIf="isAddTagOptionDisplay"
         hi-select-unselectable
         (click)="addTagOption()"
-        class="ant-select-dropdown-menu-item ant-select-dropdown-menu-item-active">
+        class="hi-select-dropdown-menu-item hi-select-dropdown-menu-item-active">
         {{ hiSearchValue }}
       </li>
       <li
@@ -52,16 +52,16 @@ import {defaultFilterOption, HiOptionPipe, TFilterOption} from './hi-option.pipe
       </li>
       <li
         *ngFor="let group of listOfHiOptionGroupComponent | hiSubFilterOptionPipe : hiSearchValue : hiFilterOption : hiServerSearch"
-        class="ant-select-dropdown-menu-item-group">
+        class="hi-select-dropdown-menu-item-group">
         <div
-          class="ant-select-dropdown-menu-item-group-title"
+          class="hi-select-dropdown-menu-item-group-title"
           [attr.title]="group.isLabelString ? group.hiLabel : ''">
           <ng-container *ngIf="group.isLabelString; else labelTemplate">{{ group.hiLabel }}</ng-container>
           <ng-template #labelTemplate>
             <ng-template [ngTemplateOutlet]="group.hiLabel"></ng-template>
           </ng-template>
         </div>
-        <ul class="ant-select-dropdown-menu-item-group-list">
+        <ul class="hi-select-dropdown-menu-item-group-list">
           <li
             hi-option-li
             [compareWith]="compareWith"
@@ -86,25 +86,25 @@ import {defaultFilterOption, HiOptionPipe, TFilterOption} from './hi-option.pipe
       </li>
     </ul>`
 })
-export class HiOptionContainerComponent implements AfterContentInit, OnDestroy {
+export class OptionContainerComponent implements AfterContentInit, OnDestroy {
   // tslint:disable-next-line:no-any
   private _listOfSelectedValue: any[];
   private _searchValue: string;
   isInit = false;
   isAddTagOptionDisplay = false;
-  listOfAllTemplateOption: HiOptionComponent[] = [];
+  listOfAllTemplateOption: OptionComponent[] = [];
   optionSubscription: Subscription;
   groupSubscription: Subscription;
-  listOfTagOption: HiOptionComponent[] = [];
-  listOfFilterOption: HiOptionComponent[] = [];
-  activatedOption: HiOptionComponent;
+  listOfTagOption: OptionComponent[] = [];
+  listOfFilterOption: OptionComponent[] = [];
+  activatedOption: OptionComponent;
   /** can not use ViewChild since it will match sub options in option group **/
-  @ViewChildren(HiOptionLiComponent) listOfHiOptionLiComponent: QueryList<HiOptionLiComponent>;
-  @Input() listOfHiOptionComponent: QueryList<HiOptionComponent>;
-  @Input() listOfHiOptionGroupComponent: QueryList<HiOptionGroupComponent>;
+  @ViewChildren(OptionLiComponent) listOfHiOptionLiComponent: QueryList<OptionLiComponent>;
+  @Input() listOfHiOptionComponent: QueryList<OptionComponent>;
+  @Input() listOfHiOptionGroupComponent: QueryList<OptionGroupComponent>;
   // tslint:disable-next-line:no-any
   @Output() hiListOfSelectedValueChange = new EventEmitter<any[]>();
-  @Output() hiListOfTemplateOptionChange = new EventEmitter<HiOptionComponent[]>();
+  @Output() hiListOfTemplateOptionChange = new EventEmitter<OptionComponent[]>();
   @Output() hiClickOption = new EventEmitter<void>();
   @Output() hiScrollToBottom = new EventEmitter<void>();
   @Input() hiMode = 'default';
@@ -125,7 +125,6 @@ export class HiOptionContainerComponent implements AfterContentInit, OnDestroy {
   get hiSearchValue(): string {
     return this._searchValue;
   }
-
   @Input()
   // tslint:disable-next-line:no-any
   set hiListOfSelectedValue(value: any[]) {
@@ -149,7 +148,7 @@ export class HiOptionContainerComponent implements AfterContentInit, OnDestroy {
     }
   }
 
-  clickOption(option: HiOptionComponent, isPressEnter: boolean): void {
+  clickOption(option: OptionComponent, isPressEnter: boolean): void {
     this.updateSelectedOption(option, isPressEnter);
     this.hiClickOption.emit();
   }
@@ -191,7 +190,7 @@ export class HiOptionContainerComponent implements AfterContentInit, OnDestroy {
     this.setActiveOption(null);
   }
 
-  setActiveOption(option: HiOptionComponent, scroll: boolean = true): void {
+  setActiveOption(option: OptionComponent, scroll: boolean = true): void {
     this.activatedOption = option;
     if (scroll) {
       this.scrollIntoView();
@@ -207,7 +206,7 @@ export class HiOptionContainerComponent implements AfterContentInit, OnDestroy {
     }
   }
 
-  updateSelectedOption(option: HiOptionComponent, isPressEnter: boolean): void {
+  updateSelectedOption(option: OptionComponent, isPressEnter: boolean): void {
     /** update listOfSelectedOption -> update hiListOfSelectedValue -> emit hiListOfSelectedValueChange **/
     if (option && !option.hiDisabled) {
       let changed = false;
@@ -247,7 +246,7 @@ export class HiOptionContainerComponent implements AfterContentInit, OnDestroy {
       this.hiListOfSelectedValue.forEach(value => {
         const existedOption = this.listOfAllTemplateOption.find(o => this.compareWith(o.hiValue, value));
         if (!existedOption) {
-          const hiOptionComponent = new HiOptionComponent();
+          const hiOptionComponent = new OptionComponent();
           hiOptionComponent.hiValue = value;
           hiOptionComponent.hiLabel = value;
           listOfTagsOption.push(hiOptionComponent);
@@ -276,7 +275,7 @@ export class HiOptionContainerComponent implements AfterContentInit, OnDestroy {
   }
 
   updateListOfFilterOption(): void {
-    this.listOfFilterOption = new HiOptionPipe().transform(this.listOfAllTemplateOption.concat(this.listOfTagOption), this.hiSearchValue, this.hiFilterOption, this.hiServerSearch);
+    this.listOfFilterOption = new OptionPipe().transform(this.listOfAllTemplateOption.concat(this.listOfTagOption), this.hiSearchValue, this.hiFilterOption, this.hiServerSearch);
     if (this.hiSearchValue) {
       this.setActiveOption(this.listOfFilterOption[0]);
     }

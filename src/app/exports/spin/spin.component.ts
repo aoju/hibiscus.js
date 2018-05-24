@@ -49,9 +49,8 @@ import { toBoolean } from '../utils/convert';
         (cdkObserveContent)="checkNested()">
         <ng-content></ng-content>
       </div>
-    </div>
-
-  `
+    </div>`,
+    styleUrls: ['./spin.component.scss']
 })
 export class SpinComponent implements AfterViewInit {
   private _tip: string;

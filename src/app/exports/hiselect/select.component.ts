@@ -28,11 +28,11 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { isNotNil } from '../utils/check';
 import { toBoolean } from '../utils/convert';
-import { HiOptionContainerComponent } from './hi-option-container.component';
-import { HiOptionGroupComponent } from './hi-option-group.component';
-import { HiOptionComponent } from './hi-option.component';
-import { defaultFilterOption, TFilterOption } from './hi-option.pipe';
-import { HiSelectTopControlComponent } from './hi-select-top-control.component';
+import { OptionContainerComponent } from './option-container.component';
+import { OptionGroupComponent } from './option-group.component';
+import { OptionComponent } from './option.component';
+import { defaultFilterOption, TFilterOption } from './option.pipe';
+import { SelectTopControlComponent } from './select-top-control.component';
 
 @Component({
   selector           : 'hi-select',
@@ -95,9 +95,9 @@ import { HiSelectTopControlComponent } from './hi-select-top-control.component';
   template           : `
     <div
       cdkOverlayOrigin
-      class="ant-select-selection"
-      [class.ant-select-selection--single]="isSingleMode"
-      [class.ant-select-selection--multiple]="isMultipleOrTags"
+      class="hi-select-selection"
+      [class.hi-select-selection--single]="isSingleMode"
+      [class.hi-select-selection--multiple]="isMultipleOrTags"
       (keydown)="onKeyDownCdkOverlayOrigin($event)"
       tabindex="0">
       <div
@@ -113,8 +113,8 @@ import { HiSelectTopControlComponent } from './hi-select-top-control.component';
         (hiOnSearch)="onSearch($event.value,$event.emit)"
         (hiListOfSelectedValueChange)="updateListOfSelectedValueFromTopControl($event)">
       </div>
-      <span *ngIf="hiAllowClear" class="ant-select-selection__clear" hi-select-unselectable (click)="onClearSelection($event)"></span>
-      <span class="ant-select-arrow" hi-select-unselectable><b></b></span>
+      <span *ngIf="hiAllowClear" class="hi-select-selection__clear" hi-select-unselectable (click)="onClearSelection($event)"></span>
+      <span class="hi-select-arrow" hi-select-unselectable><b></b></span>
     </div>
     <ng-template
       cdkConnectedOverlay
@@ -153,24 +153,14 @@ import { HiSelectTopControlComponent } from './hi-select-top-control.component';
     </ng-template>
   `,
   host               : {
-    '[class.ant-select]'            : 'true',
-    '[class.ant-select-lg]'         : 'hiSize==="large"',
-    '[class.ant-select-sm]'         : 'hiSize==="small"',
-    '[class.ant-select-enabled]'    : '!hiDisabled',
-    '[class.ant-select-disabled]'   : 'hiDisabled',
-    '[class.ant-select-allow-clear]': 'hiAllowClear',
-    '[class.ant-select-open]'       : 'hiOpen'
-  },
-  styles             : [ `
-    .ant-select-dropdown {
-      top: 100%;
-      left: 0;
-      position: relative;
-      width: 100%;
-      margin-top: 4px;
-      margin-bottom: 4px;
-    }
-  ` ]
+    '[class.hi-select]'            : 'true',
+    '[class.hi-select-lg]'         : 'hiSize==="large"',
+    '[class.hi-select-sm]'         : 'hiSize==="small"',
+    '[class.hi-select-enabled]'    : '!hiDisabled',
+    '[class.hi-select-disabled]'   : 'hiDisabled',
+    '[class.hi-select-allow-clear]': 'hiAllowClear',
+    '[class.hi-select-open]'       : 'hiOpen'
+  }
 })
 export class HiSelectComponent implements ControlValueAccessor, OnInit, AfterViewInit, OnDestroy {
   private _disabled = false;
@@ -185,7 +175,7 @@ export class HiSelectComponent implements ControlValueAccessor, OnInit, AfterVie
   dropDownPosition: 'top' | 'center' | 'bottom' = 'bottom';
   // tslint:disable-next-line:no-any
   listOfSelectedValue: any[] = [];
-  listOfTemplateOption: HiOptionComponent[] = [];
+  listOfTemplateOption: OptionComponent[] = [];
   // tslint:disable-next-line:no-any
   value: any | any[];
   overlayWidth: number;
@@ -196,11 +186,11 @@ export class HiSelectComponent implements ControlValueAccessor, OnInit, AfterVie
   dropDownClassMap;
   @ViewChild(CdkOverlayOrigin) cdkOverlayOrigin: CdkOverlayOrigin;
   @ViewChild(CdkConnectedOverlay) cdkConnectedOverlay: CdkConnectedOverlay;
-  @ViewChild(HiSelectTopControlComponent) hiSelectTopControlComponent: HiSelectTopControlComponent;
-  @ViewChild(HiOptionContainerComponent) hiOptionContainerComponent: HiOptionContainerComponent;
+  @ViewChild(SelectTopControlComponent) hiSelectTopControlComponent: SelectTopControlComponent;
+  @ViewChild(OptionContainerComponent) hiOptionContainerComponent: OptionContainerComponent;
   /** should move to hi-option-container when https://github.com/angular/angular/issues/20810 resolved **/
-  @ContentChildren(HiOptionComponent) listOfHiOptionComponent: QueryList<HiOptionComponent>;
-  @ContentChildren(HiOptionGroupComponent) listOfHiOptionGroupComponent: QueryList<HiOptionGroupComponent>;
+  @ContentChildren(OptionComponent) listOfHiOptionComponent: QueryList<OptionComponent>;
+  @ContentChildren(OptionGroupComponent) listOfHiOptionGroupComponent: QueryList<OptionGroupComponent>;
   @Output() hiOnSearch = new EventEmitter<string>();
   @Output() hiScrollToBottom = new EventEmitter<void>();
   @Output() hiOpenChange = new EventEmitter<boolean>();
@@ -457,17 +447,17 @@ export class HiSelectComponent implements ControlValueAccessor, OnInit, AfterVie
     }
   }
 
-  listOfTemplateOptionChange(value: HiOptionComponent[]): void {
+  listOfTemplateOptionChange(value: OptionComponent[]): void {
     this.listOfTemplateOption = value;
   }
 
   updateDropDownClassMap(): void {
     this.dropDownClassMap = {
-      [ 'ant-select-dropdown' ]                     : true,
-      [ `ant-select-dropdown--single` ]             : this.isSingleMode,
-      [ `ant-select-dropdown--multiple` ]           : this.isMultipleOrTags,
-      [ `ant-select-dropdown-placement-bottomLeft` ]: this.dropDownPosition === 'bottom',
-      [ `ant-select-dropdown-placement-topLeft` ]   : this.dropDownPosition === 'top',
+      [ 'hi-select-dropdown' ]                     : true,
+      [ `hi-select-dropdown--single` ]             : this.isSingleMode,
+      [ `hi-select-dropdown--multiple` ]           : this.isMultipleOrTags,
+      [ `hi-select-dropdown-placement-bottomLeft` ]: this.dropDownPosition === 'bottom',
+      [ `hi-select-dropdown-placement-topLeft` ]   : this.dropDownPosition === 'top',
       [ `${this.hiDropdownClassName}` ]             : !!this.hiDropdownClassName
     };
   }

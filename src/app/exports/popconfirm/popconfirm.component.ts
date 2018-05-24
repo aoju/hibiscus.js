@@ -15,11 +15,7 @@ import { TooltipComponent } from '../tooltip/tooltip.component';
   preserveWhitespaces: false,
   animations         : [ fadeAnimation ],
   templateUrl        : './popconfirm.component.html',
-  styles             : [ `
-    .hi-popover {
-      position: relative;
-    }
-  ` ]
+  styleUrls: ['./popconfirm.component.scss']
 })
 export class PopconfirmComponent extends TooltipComponent {
   private _condition = false;

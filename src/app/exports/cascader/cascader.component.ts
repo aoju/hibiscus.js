@@ -152,12 +152,6 @@ export interface CascaderOption {
   host: {
     '[attr.tabIndex]': '"0"'
   },
-  styles: [
-      `.ant-cascader-menus {
-      margin-top: 4px;
-      margin-bottom: 4px;
-    }`
-  ]
 })
 export class CascaderComponent implements OnInit, OnDestroy, ControlValueAccessor {
   private allowClear = true;
@@ -167,8 +161,8 @@ export class CascaderComponent implements OnInit, OnDestroy, ControlValueAccesso
   private showArrow = true;
   private showInput = true;
   private size: CascaderSize = 'default';
-  private prefixCls = 'ant-cascader';
-  private inputPrefixCls = 'ant-input';
+  private prefixCls = 'hi-cascader';
+  private inputPrefixCls = 'hi-input';
   private menuClassName;
   private columnClassName;
   private changeOnSelect = false;

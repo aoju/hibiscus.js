@@ -9,7 +9,7 @@ import { toBoolean } from '../utils/convert';
       <ng-content></ng-content>
     </ng-template>`
 })
-export class HiOptionComponent {
+export class OptionComponent {
   private _disabled = false;
   private _customContent = false;
   @ViewChild(TemplateRef) template: TemplateRef<void>;

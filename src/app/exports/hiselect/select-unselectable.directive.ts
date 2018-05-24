@@ -7,6 +7,6 @@ import { Directive } from '@angular/core';
     '[style.user-select]': '"none"'
   }
 })
-export class HiSelectUnselectableDirective {
+export class SelectUnselectableDirective {
 
 }

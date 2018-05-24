@@ -1,15 +1,15 @@
 import { Component, ContentChildren, Input, QueryList, TemplateRef } from '@angular/core';
-import { HiOptionComponent } from './hi-option.component';
+import { OptionComponent } from './option.component';
 
 @Component({
   selector: 'hi-option-group',
   template: `
     <ng-content></ng-content>`
 })
-export class HiOptionGroupComponent {
+export class OptionGroupComponent {
   _label: string | TemplateRef<void>;
   isLabelString: boolean;
-  @ContentChildren(HiOptionComponent) listOfHiOptionComponent: QueryList<HiOptionComponent>;
+  @ContentChildren(OptionComponent) listOfHiOptionComponent: QueryList<OptionComponent>;
 
   @Input()
   set hiLabel(value: string | TemplateRef<void>) {
