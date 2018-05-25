@@ -160,7 +160,8 @@ import { SelectTopControlComponent } from './select-top-control.component';
     '[class.hi-select-disabled]'   : 'hiDisabled',
     '[class.hi-select-allow-clear]': 'hiAllowClear',
     '[class.hi-select-open]'       : 'hiOpen'
-  }
+  },
+//   styleUrls: ['./select.component.scss'],
 })
 export class HiSelectComponent implements ControlValueAccessor, OnInit, AfterViewInit, OnDestroy {
   private _disabled = false;

@@ -16,7 +16,8 @@ import {HiNGConfig} from './exports';
 @Component({
   selector: 'body',
   templateUrl: './app.template.html',
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  styleUrls: ['./exports/cascader/cascader.component.scss', './exports/hiselect/select.component.scss'],
 })
 export class AppComponent implements OnInit {
 
