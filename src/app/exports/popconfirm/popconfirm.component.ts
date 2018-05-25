@@ -3,7 +3,8 @@ import {
   Component,
   EventEmitter,
   Input,
-  Output
+  Output,
+  ViewEncapsulation
 } from '@angular/core';
 
 import { fadeAnimation } from '../common/animation/fade-animations';
@@ -15,7 +16,8 @@ import { TooltipComponent } from '../tooltip/tooltip.component';
   preserveWhitespaces: false,
   animations         : [ fadeAnimation ],
   templateUrl        : './popconfirm.component.html',
-  styleUrls: ['./popconfirm.component.scss']
+  styleUrls: ['./popconfirm.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class PopconfirmComponent extends TooltipComponent {
   private _condition = false;

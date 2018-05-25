@@ -41,10 +41,11 @@
 - [x] Progress Bar
 - [x] Radio Group
 - [x] Rating
+- [x] Select
 - [x] Select Button
 - [x] Storage
 - [x] Switch
-- [x] spin
+- [x] Spin
 - [x] Tabs
 - [x] Tags
 - [x] TimePicker

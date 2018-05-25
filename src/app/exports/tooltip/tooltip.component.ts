@@ -15,7 +15,8 @@ import {
   Input,
   Output,
   TemplateRef,
-  ViewChild
+  ViewChild,
+  ViewEncapsulation
 } from '@angular/core';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Observable} from 'rxjs/Observable';
@@ -29,7 +30,8 @@ import {toBoolean} from '../utils/convert';
   preserveWhitespaces: false,
   animations: [fadeAnimation],
   templateUrl: './tooltip.component.html',
-  styleUrls: ['./tooltip.component.scss']
+  styleUrls: ['./tooltip.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class TooltipComponent {
   _hasBackdrop = false;

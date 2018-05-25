@@ -41,8 +41,7 @@ import {
   SpinDemoModule,
   TreeViewDemoModule,
   ValidatorsDemoModule,
-  CascaderDemoModule,
-  HiSelectDemoModule
+  CascaderDemoModule
 } from './index';
 import {RoutesModule} from './demo.routes';
 import {DemoComponent} from './demo.component';
@@ -93,8 +92,7 @@ import {DemoService} from './demo.service';
     SpinDemoModule,
     TreeViewDemoModule,
     ValidatorsDemoModule,
-    CascaderDemoModule,
-    HiSelectDemoModule
+    CascaderDemoModule
   ],
   providers: [
     DemoService

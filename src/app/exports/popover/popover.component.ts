@@ -1,6 +1,7 @@
 import {
   Component,
-  Input
+  Input,
+  ViewEncapsulation
 } from '@angular/core';
 
 import { fadeAnimation } from '../common/animation/fade-animations';
@@ -11,7 +12,8 @@ import { TooltipComponent } from '../tooltip/tooltip.component';
   preserveWhitespaces: false,
   animations: [ fadeAnimation ],
   templateUrl: './popover.component.html',
-  styleUrls: ['./popover.component.scss']
+  styleUrls: ['./popover.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class PopoverComponent extends TooltipComponent {
   _prefix = 'hi-popover-placement';

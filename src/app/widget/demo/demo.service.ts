@@ -16,7 +16,6 @@ import {
   DraggableDemoComponent,
   FileUploadDemoComponent,
   FlowStepDemoComponent,
-  HiDemoSelectBasicComponent,
   IcomoonDemoComponent,
   ImageUploadDemoComponent,
   InfiniteScrollDemoComponent,
@@ -119,13 +118,6 @@ export class DemoService {
       readme: '',
       html: require('!raw-loader!./cascader/cascader-demo.template.html'),
       typescript: require('!raw-loader!./cascader/cascader-demo.component.ts')
-    }, {
-      name: 'HiSelect',
-      directory: 'hiselect',
-      component: HiDemoSelectBasicComponent,
-      readme: '',
-      html: require('!raw-loader!./hiselect/basic.template.html'),
-      typescript: require('!raw-loader!./hiselect/hiselect-basic.component.ts')
     }, {
       name: 'CheckboxGroup',
       directory: 'checkbox-group',

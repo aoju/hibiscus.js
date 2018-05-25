@@ -11,7 +11,8 @@ import {
   OnInit,
   Output,
   TemplateRef,
-  ViewChild
+  ViewChild,
+  ViewEncapsulation
 } from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
@@ -73,7 +74,7 @@ export interface CascaderOption {
     dropDownAnimation
   ],
   templateUrl : './cascader.component.html',
-//   styleUrls: ['./cascader.component.scss'],
+  styleUrls: ['./cascader.component.scss'],
   providers: [
     UpdateHostClassService,
     {
@@ -85,6 +86,7 @@ export interface CascaderOption {
   host: {
     '[attr.tabIndex]': '"0"',
   },
+  encapsulation: ViewEncapsulation.None,
 })
 export class CascaderComponent implements OnInit, OnDestroy, ControlValueAccessor {
   private allowClear = true;

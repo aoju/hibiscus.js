@@ -38,4 +38,3 @@ export * from './popover';
 export * from './tree-view';
 export * from './validators';
 export * from './cascader';
-export * from './hiselect';
