@@ -37,11 +37,11 @@ gulp.task('copy:exports', ['clean:dist'], function () {
       removeRedundantAttributes: true
     })))
     .pipe(rename(function (path) {
-      if (path.extname === '.css') {
-        path.extname = '.scss';
-      }
-    }))
-    .pipe(gulp.dest(config.dest));
+        if (path.extname === '.css') {
+          path.extname = '.scss';
+        }
+      }))
+      .pipe(gulp.dest(config.dest));
 });
 
 gulp.task('ng2:inline', ['copy:exports'], function () {
