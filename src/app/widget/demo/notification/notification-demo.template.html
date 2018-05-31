@@ -1,0 +1,35 @@
+<div class="notification-demo">
+  <section>
+    <h4>基本：最简单的用法，4.5 秒后自动关闭。</h4>
+    <div style="padding: 10px 100px;">
+        <button class="btn btn-primary" (click)="createBasicNotification()">Open the notification box</button>
+    </div>
+  </section>
+
+<section>
+    <h4>自动关闭的延时：自定义通知框自动关闭的延时，默认4.5s，取消自动关闭只要将该值设为 0 即可。</h4>
+    <div style="padding: 10px 100px;">
+        <button class="btn btn-primary" (click)="createNotification('success')">Success</button>
+        <button class="btn btn-primary" (click)="createNotification('info')">Info</button>
+        <button class="btn btn-primary" (click)="createNotification('warning')">Warning</button>
+        <button class="btn btn-primary" (click)="createNotification('error')">Error</button>
+    </div>
+  </section>
+
+  <section>
+ 
+    <ng-template #popTitle let-context>
+      From {{context.target}}!
+    </ng-template>
+
+    <ng-template #popContent let-context>
+      Hello {{name}}.
+    </ng-template>
+
+    <ng-template #popContent2 let-context>
+      <input type="text" [(ngModel)]="name"/>
+    </ng-template>
+
+  </section>
+
+</div>

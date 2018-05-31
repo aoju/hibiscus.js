@@ -1,0 +1,25 @@
+<div class="hi-notification-notice hi-notification-notice-closable"
+  [ngStyle]="hiMessage.options.hiStyle"
+  [ngClass]="hiMessage.options.hiClass"
+  [@enterLeave]="state"
+  (mouseenter)="onEnter()"
+  (mouseleave)="onLeave()">
+  <div *ngIf="!hiMessage.template" class="hi-notification-notice-content">
+    <div class="hi-notification-notice-content" [ngClass]="{ 'hi-notification-notice-with-icon': hiMessage.type !== 'blank' }">
+      <div [class.hi-notification-notice-with-icon]="hiMessage.type !== 'blank'">
+        <ng-container [ngSwitch]="hiMessage.type">
+          <i *ngSwitchCase="'success'" class="hi-notification-notice-icon hi-notification-notice-icon-success anticon anticon-check-circle-o"></i>
+          <i *ngSwitchCase="'info'" class="hi-notification-notice-icon hi-notification-notice-icon-info anticon anticon-info-circle-o"></i>
+          <i *ngSwitchCase="'warning'" class="hi-notification-notice-icon hi-notification-notice-icon-warning anticon anticon-exclamation-circle-o"></i>
+          <i *ngSwitchCase="'error'" class="hi-notification-notice-icon hi-notification-notice-icon-error anticon anticon-cross-circle-o"></i>
+        </ng-container>
+        <div class="hi-notification-notice-message" [innerHTML]="hiMessage.title"></div>
+        <div class="hi-notification-notice-description" [innerHTML]="hiMessage.content"></div>
+      </div>
+    </div>
+  </div>
+  <ng-template [ngIf]="hiMessage.template" [ngTemplateOutlet]="hiMessage.template" [ngTemplateOutletContext]="{ $implicit: this }"></ng-template>
+  <a tabindex="0" class="hi-notification-notice-close" (click)="close()">
+    <span class="hi-notification-notice-close-x"></span>
+  </a>
+</div>

@@ -41,6 +41,8 @@ import {TooltipModule} from './tooltip';
 import {PopconfirmModule} from './popconfirm';
 import {SpinModule} from './spin';
 import {PopoverModule} from './popover';
+import {NotificationModule} from './notification';
+import {MessageModule} from './message';
 import {TreeViewModule, TreeViewService} from './tree-view';
 import {HiValidatorsModule} from './validators';
 import {COMMON_SERVICES} from './window-ref';
@@ -90,6 +92,8 @@ import {HiNGConfig} from './hi.config';
     PopconfirmModule,
     SpinModule,
     PopoverModule,
+    NotificationModule,
+    MessageModule,
     TreeViewModule,
     HiValidatorsModule
   ],
@@ -135,6 +139,8 @@ import {HiNGConfig} from './hi.config';
     PopconfirmModule,
     SpinModule,
     PopoverModule,
+    NotificationModule,
+    MessageModule,
     TreeViewModule,
     HiValidatorsModule
   ],
