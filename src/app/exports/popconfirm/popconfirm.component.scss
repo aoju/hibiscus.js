@@ -1,3 +1,29 @@
+@font-face {
+    font-family:anticon;src:url(https://at.alicdn.com/t/font_zck90zmlh7hf47vi.eot);
+    src:url(https://at.alicdn.com/t/font_zck90zmlh7hf47vi.eot#iefix) format("embedded-opentype"),url(https://at.alicdn.com/t/font_zck90zmlh7hf47vi.woff) format("woff"),url(https://at.alicdn.com/t/font_zck90zmlh7hf47vi.ttf) format("truetype"),url(https://at.alicdn.com/t/font_zck90zmlh7hf47vi.svg#iconfont) format("svg")
+}
+.anticon {
+    display: inline-block;
+    font-style: normal;
+    vertical-align: baseline;
+    text-align: center;
+    text-transform: none;
+    line-height: 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+.anticon::before {
+    display: block;
+    font-family: anticon!important;
+}
+.anticon-exclamation-circle:before {
+    content: "\e62c"
+}
+
+.anticon-exclamation-circle-o:before {
+    content: "\e62d"
+}
 .cdk-overlay-container {
     pointer-events: none;
     top: 0;
