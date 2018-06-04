@@ -31,7 +31,9 @@
 - [x] Image Upload
 - [x] Infinite Scroll
 - [x] Modal
+- [x] Message
 - [x] Notify
+- [x] Notification
 - [x] OAuth2
 - [x] Overlay
 - [x] Pager

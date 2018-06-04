@@ -1,0 +1,41 @@
+<div class="message-demo">
+  <section>
+    <h4>普通提示：信息提醒反馈。自定义时长 10s，默认时长为 3s</h4>
+    <div style="padding: 10px 100px;">
+        <button class="btn btn-primary" (click)="createBasicMessage()">Display normal message</button>
+    </div>
+  </section>
+
+<section>
+    <h4>其他提示类型：包括成功、失败、警告。</h4>
+    <div style="padding: 10px 100px;">
+        <button class="btn btn-primary" (click)="createMessage('success')">Success</button>
+        <button class="btn btn-primary" (click)="createMessage('error')">Error</button>
+        <button class="btn btn-primary" (click)="createMessage('warning')">Warning</button>
+    </div>
+  </section>
+  
+  <section>
+        <h4>进行全局 loading，异步自行移除。</h4>
+        <div style="padding: 10px 100px;">
+            <button class="btn btn-primary" (click)="createBasicMessage()">Display a loading indicator</button>
+        </div>
+      </section>
+
+  <section>
+ 
+    <ng-template #popTitle let-context>
+      From {{context.target}}!
+    </ng-template>
+
+    <ng-template #popContent let-context>
+      Hello {{name}}.
+    </ng-template>
+
+    <ng-template #popContent2 let-context>
+      <input type="text" [(ngModel)]="name"/>
+    </ng-template>
+
+  </section>
+
+</div>

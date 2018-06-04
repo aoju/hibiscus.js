@@ -40,6 +40,8 @@ export * from './tooltip';
 export * from './popconfirm';
 export * from './spin';
 export * from './popover';
+export * from './message';
+export * from './notification';
 export * from './tree-view';
 export * from './utils';
 export * from './validators';

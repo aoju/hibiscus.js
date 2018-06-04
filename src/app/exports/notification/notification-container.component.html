@@ -1,0 +1,8 @@
+<div
+  class="hi-notification hi-notification-{{config.hiPlacement}}"
+  [style.top]="(config.hiPlacement==='topLeft'||config.hiPlacement=='topRight')? config.hiTop:null"
+  [style.bottom]="(config.hiPlacement==='bottomLeft'||config.hiPlacement=='bottomRight')? config.hiBottom:null"
+  [style.right]="(config.hiPlacement==='bottomRight'||config.hiPlacement=='topRight')?'0px':null"
+  [style.left]="(config.hiPlacement==='topLeft'||config.hiPlacement=='bottomLeft')?'0px':null">
+  <hi-notification *ngFor="let message of messages; let i = index" [hiMessage]="message" [hiIndex]="i"></hi-notification>
+</div>

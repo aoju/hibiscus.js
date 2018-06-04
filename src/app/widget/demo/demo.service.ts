@@ -36,6 +36,8 @@ import {
   PopconfirmDemoComponent,
   SpinDemoComponent,
   PopoverDemoComponent,
+  MessageDemoComponent,
+  NotificationDemoComponent,
   TreeViewDemoComponent,
   TimePickerDemoComponent,
   RadioGroupDemoComponent,
@@ -322,6 +324,20 @@ export class DemoService {
         readme: '',
         html: require('!raw-loader!./popover/popover-demo.template.html'),
         typescript: require('!raw-loader!./popover/popover-demo.component.ts')
+    }, {
+        name: 'Message',
+        directory: 'message',
+        component: MessageDemoComponent,
+        readme: '',
+        html: require('!raw-loader!./message/message-demo.template.html'),
+        typescript: require('!raw-loader!./message/message-demo.component.ts')
+    }, {
+        name: 'Notification',
+        directory: 'notification',
+        component: NotificationDemoComponent,
+        readme: '',
+        html: require('!raw-loader!./notification/notification-demo.template.html'),
+        typescript: require('!raw-loader!./notification/notification-demo.component.ts')
     }, {
       name: 'TreeView',
       directory: 'tree-view',
