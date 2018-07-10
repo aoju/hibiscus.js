@@ -190,7 +190,7 @@ export class OptionContainerComponent implements AfterContentInit, OnDestroy {
     this.setActiveOption(null);
   }
 
-  setActiveOption(option: OptionComponent, scroll: boolean = true): void {
+  setActiveOption(option: OptionComponent, scroll = true): void {
     this.activatedOption = option;
     if (scroll) {
       this.scrollIntoView();

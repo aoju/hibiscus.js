@@ -52,7 +52,7 @@
     "server:prod": "http-server dist -c-1 --cors",
     "server": "npm run server:dev",
     "mock": "node ./bin/mock.server.js",
-    "start": "npm run server:dev",
+    "start": "npm run tslint && npm run server:dev ",
     "start:hmr": "npm run server:dev:hmr",
     "start:mock": "npm-run-all -p -r mock server:dev",
     "start:aot": "npm run server:aot:dev",
@@ -65,7 +65,7 @@
     "node": "node",
     "rimraf": "rimraf",
     "test": "npm run lint && karma start",
-    "tslint": "tslint",
+    "tslint": "tslint -c tslint.json \"src/**/*.ts\" --fix",
     "typedoc": "typedoc",
     "version": "npm run build",
     "webpack": "node --max_old_space_size=4096 node_modules/webpack/bin/webpack.js",
@@ -168,7 +168,9 @@
     "webpack": "^3.11.0",
     "webpack-dev-middleware": "^1.12.1",
     "webpack-dev-server": "~2.9.4",
-    "webpack-merge": "^4.1.2"
+    "webpack-merge": "^4.1.2",
+    "ng2-tabs": "0.0.11",
+    "ngx-img-cropper": "^0.10.4"
   },
   "engines": {
     "node": ">= 6.0 < 9.0",

@@ -89,24 +89,24 @@ export class CascaderDemoComponent implements OnInit {
     let tmpMap = [];
     let tmpArea = [];
     let key = 'areacode', parentKey = 'parentcode', childKey = 'children';
-    //{areaname: "房山区", level: "3", parentcode: "110100", areaphone: "10", abbreviation: "房山"}
+    // {areaname: "房山区", level: "3", parentcode: "110100", areaphone: "10", abbreviation: "房山"}
     for (i = 0; i < snode.length; i++) {
       let obj = {
         value: snode[i].areacode,
         label: snode[i].areaname,
         level: snode[i].level,
         parentcode: snode[i].parentcode,
-        isLeaf: snode[i].level == 3 ? true : false
+        isLeaf: snode[i].level === 3 ? true : false
       };
-      tmpMap[snode[i][key]] = obj
+      tmpMap[snode[i][key]] = obj;
       tmpArea.push(obj);
     }
 
     for (j = 0; j < tmpArea.length; j++) {
-      if (tmpMap[tmpArea[j][parentKey]] && tmpArea[j][key] != tmpArea[j][parentKey]) {
-        if (!tmpMap[tmpArea[j][parentKey]][childKey])
+      if (tmpMap[tmpArea[j][parentKey]] && tmpArea[j][key] !== tmpArea[j][parentKey]) {
+        if (!tmpMap[tmpArea[j][parentKey]][childKey]) {
           tmpMap[tmpArea[j][parentKey]][childKey] = [];
-
+        }
         tmpMap[tmpArea[j][parentKey]][childKey].push(tmpArea[j]);
       } else {
         r.push(tmpArea[j]);

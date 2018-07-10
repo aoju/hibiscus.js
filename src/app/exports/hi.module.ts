@@ -17,6 +17,7 @@ import {DraggableModule} from './draggable';
 import {FileUploadModule} from './file-upload';
 import {FlowStepModule} from './flow-step';
 import {HttpModule} from './http';
+import {ImageCropperModule} from './image-cropper';
 import {ImageUploadModule} from './image-upload';
 import {InfiniteScrollModule} from './infinite-scroll';
 import {ModalService, ModalModule} from './modal';
@@ -69,6 +70,7 @@ import {HiNGConfig} from './hi.config';
     FileUploadModule,
     FlowStepModule,
     HttpModule,
+    ImageCropperModule,
     ImageUploadModule,
     InfiniteScrollModule,
     ModalModule,
@@ -116,6 +118,7 @@ import {HiNGConfig} from './hi.config';
     FileUploadModule,
     FlowStepModule,
     HttpModule,
+    ImageCropperModule,
     ImageUploadModule,
     InfiniteScrollModule,
     ModalModule,

@@ -27,7 +27,7 @@ export class PopconfirmComponent extends TooltipComponent {
   option = {
     okText: '确定',
     cancelText: '取消'
-  }
+  };
   @Input() hiContent;
   @Input() hiOkText: string;
   @Input() hiCancelText: string;

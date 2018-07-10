@@ -703,7 +703,7 @@ export class CascaderComponent implements OnInit, OnDestroy, ControlValueAccesso
    * @param visible true-显示，false-隐藏
    * @param delay 延迟时间
    */
-  public delaySetMenuVisible(visible: boolean, delay: number, setOpening: boolean = false): void {
+  public delaySetMenuVisible(visible: boolean, delay: number, setOpening = false): void {
     this.clearDelayTimer();
     if (delay) {
       if (visible && setOpening) {
@@ -781,7 +781,7 @@ export class CascaderComponent implements OnInit, OnDestroy, ControlValueAccesso
    * @param index  选项所在的列组的索引
    * @param select 是否触发选择结点
    */
-  private setActiveOption(option: CascaderOption, index: number, select: boolean = false, loadChildren: boolean = true): void {
+  private setActiveOption(option: CascaderOption, index: number, select = false, loadChildren = true): void {
     if (!option || option.disabled) {
       return;
     }

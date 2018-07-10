@@ -127,7 +127,7 @@ export class SliderComponent implements AfterViewInit, OnInit, OnDestroy, Contro
   }
 
   private calcValueWhenMove(event: MouseEvent): void {
-    const rect = this.windowRef.getBoundingClientRect(this.slider)// IE >= 9
+    const rect = this.windowRef.getBoundingClientRect(this.slider); // IE >= 9
     const mouseRelativeSliderOffsetX = event.clientX - rect.left;
     const fixedOffsetX = Math.max(Math.min(mouseRelativeSliderOffsetX, rect.width), 0);
 

@@ -14,7 +14,7 @@ import {ReplaySubject} from 'rxjs/Rx';
 
 export interface SortEvent {
   sortBy: string | string[];
-  sortOrder: string
+  sortOrder: string;
 }
 
 export interface PageEvent {

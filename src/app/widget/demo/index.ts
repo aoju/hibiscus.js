@@ -14,6 +14,7 @@ export * from './draggable';
 export * from './file-upload';
 export * from './flow-step';
 export * from './icon';
+export * from './image-cropper';
 export * from './image-upload';
 export * from './infinite-scroll';
 export * from './modal';

@@ -17,7 +17,7 @@ export class MessageBaseService<ContainerClass extends MessageContainerComponent
     private injector: Injector,
     private cfr: ComponentFactoryResolver,
     private appRef: ApplicationRef,
-    private _idPrefix: string = '') {
+    private _idPrefix = '') {
 
     // this._container = overlay.create().attach(new ComponentPortal(containerClass)).instance;
     this._container = this.createContainer();

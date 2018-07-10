@@ -13,7 +13,7 @@ export class NotificationDemoComponent {
   createBasicNotification(): void {
     this.notification.blank(
         'Notification Title',
-        'This is the content of the notification. This is the content of the notification. This is the content of the notification.', 
+        'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
         // { hiDuration: 0 } // 取消自动关闭只要将该值设为 0 即可。
     );
   }

@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {HiNGModule} from '../../../exports';
-import {SpinDemoComponent} from './spin-demo.component'
+import {SpinDemoComponent} from './spin-demo.component';
 
 @NgModule({
   imports: [CommonModule, HiNGModule],

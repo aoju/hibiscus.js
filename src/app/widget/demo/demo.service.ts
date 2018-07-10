@@ -17,6 +17,7 @@ import {
   FileUploadDemoComponent,
   FlowStepDemoComponent,
   IcomoonDemoComponent,
+  ImageCropperDemoComponent,
   ImageUploadDemoComponent,
   InfiniteScrollDemoComponent,
   ModalDemoComponent,
@@ -177,6 +178,13 @@ export class DemoService {
       html: require('!raw-loader!./icon/icomoon-demo.template.html'),
       typescript: require('!raw-loader!./icon/icomoon-demo.component.ts')
     }, {
+      name: 'ImageCropper',
+      directory: 'image-cropper',
+      component: ImageCropperDemoComponent,
+      readme: '',
+      html: require('!raw-loader!./image-cropper/image-cropper-demo.template.html'),
+      typescript: require('!raw-loader!./image-cropper/image-cropper-demo.component.ts')
+    }, {
       name: 'ImageUpload',
       directory: 'image-upload',
       component: ImageUploadDemoComponent,
@@ -311,33 +319,33 @@ export class DemoService {
       html: require('!raw-loader!./popconfirm/popconfirm-demo.template.html'),
       typescript: require('!raw-loader!./popconfirm/popconfirm-demo.component.ts')
     }, {
-        name: 'Spin',
-        directory: 'spin',
-        component: SpinDemoComponent,
-        readme: '',
-        html: require('!raw-loader!./spin/spin-demo.template.html'),
-        typescript: require('!raw-loader!./spin/spin-demo.component.ts')
+      name: 'Spin',
+      directory: 'spin',
+      component: SpinDemoComponent,
+      readme: '',
+      html: require('!raw-loader!./spin/spin-demo.template.html'),
+      typescript: require('!raw-loader!./spin/spin-demo.component.ts')
     }, {
-        name: 'Popover',
-        directory: 'popover',
-        component: PopoverDemoComponent,
-        readme: '',
-        html: require('!raw-loader!./popover/popover-demo.template.html'),
-        typescript: require('!raw-loader!./popover/popover-demo.component.ts')
+      name: 'Popover',
+      directory: 'popover',
+      component: PopoverDemoComponent,
+      readme: '',
+      html: require('!raw-loader!./popover/popover-demo.template.html'),
+      typescript: require('!raw-loader!./popover/popover-demo.component.ts')
     }, {
-        name: 'Message',
-        directory: 'message',
-        component: MessageDemoComponent,
-        readme: '',
-        html: require('!raw-loader!./message/message-demo.template.html'),
-        typescript: require('!raw-loader!./message/message-demo.component.ts')
+      name: 'Message',
+      directory: 'message',
+      component: MessageDemoComponent,
+      readme: '',
+      html: require('!raw-loader!./message/message-demo.template.html'),
+      typescript: require('!raw-loader!./message/message-demo.component.ts')
     }, {
-        name: 'Notification',
-        directory: 'notification',
-        component: NotificationDemoComponent,
-        readme: '',
-        html: require('!raw-loader!./notification/notification-demo.template.html'),
-        typescript: require('!raw-loader!./notification/notification-demo.component.ts')
+      name: 'Notification',
+      directory: 'notification',
+      component: NotificationDemoComponent,
+      readme: '',
+      html: require('!raw-loader!./notification/notification-demo.template.html'),
+      typescript: require('!raw-loader!./notification/notification-demo.component.ts')
     }, {
       name: 'TreeView',
       directory: 'tree-view',

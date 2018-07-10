@@ -21,7 +21,7 @@ export class AutoCompleteDemoComponent {
     'LiveScript', 'CoffeeScript'];
 
   onSearchLocal = (term) => of(this.languages
-    .filter(lang => lang.toLowerCase().indexOf(term.toLowerCase()) !== -1));
+    .filter(lang => lang.toLowerCase().indexOf(term.toLowerCase()) !== -1))
 
   onSearchObject = (term) => of(this.languages
     .map((lang, index) => ({label: lang, id: index}))
