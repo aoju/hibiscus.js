@@ -1,10 +1,11 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {HiNGModule} from '../../../exports';
+import {FormsModule} from '@angular/forms';
+import {HiNGModule} from '../../../exports/index';
 import {ImageCropperDemoComponent} from './image-cropper-demo.component';
 
 @NgModule({
-  imports: [CommonModule, HiNGModule],
+  imports: [CommonModule, FormsModule, HiNGModule],
   exports: [ImageCropperDemoComponent],
   declarations: [ImageCropperDemoComponent],
   providers: [],

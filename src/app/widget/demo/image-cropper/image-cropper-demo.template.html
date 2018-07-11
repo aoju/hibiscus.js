@@ -1,14 +1,88 @@
-<input type="file" (change)="fileChangeEvent($event)" />
+<button class="btn btn-primary" (click)="resetCroppers()">Reset</button>
+<div class="card-body">
+  <div class="row">
+    <hi-tabs type="tabs" cssClass="mb-4" (activeTab)="tab1">
+      <hi-tab id="tab1" title="Sample 1">
+        <ng-template hiTabContent>
+          <div class="row">
+            <div class="col-md-7">
+              <hi-image-cropper #cropper1 [image]="data1" [settings]="cropperSettings1"></hi-image-cropper>
+            </div>
+            <div class="col-md-3">
+            <span *ngIf="data1.image">
+                <img [src]="data1.image"
+                     [width]="cropperSettings1.croppedWidth"
+                     [height]="cropperSettings1.croppedHeight">
+            </span>
+            </div>
+          </div>
+        </ng-template>
+      </hi-tab>
+      <hi-tab id="tab2" title="Sample 2">
+        <ng-template hiTabContent>
+          <div class="row">
+            <div class="col-md-7">
+              <hi-image-cropper #cropper2 [image]="data2" [settings]="cropperSettings2"></hi-image-cropper>
+              <div>
+                <label class="btn btn-primary">
+                  Upload
+                  <input id="file_input_file" class="none" type="file" style="display: none;"
+                         (change)="onChange($event)"/>
+                </label>
+              </div>
+            </div>
+            <div class="col-md-3">
+            <span *ngIf="data2.image">
+              <img [src]="data2.image" [width]="cropperSettings2.croppedWidth" [height]="cropperSettings2.croppedHeight"
+                   style="border-radius: 100px">
+            </span>
+            </div>
+          </div>
+        </ng-template>
+      </hi-tab>
 
-<image-cropper
-  [imageChangedEvent]="imageChangedEvent"
-  [maintainAspectRatio]="true"
-  [aspectRatio]="4 / 3"
-  [resizeToWidth]="128"
-  format="png"
-  (imageCropped)="imageCropped($event)"
-  (imageLoaded)="imageLoaded()"
-  (loadImageFailed)="loadImageFailed()"
-></image-cropper>
+      <hi-tab id="tab3" title="Crop position">
+        <ng-template hiTabContent>
+          <div class="row">
+            <div class="col-md-7">
+              <hi-image-cropper #cropper3 [image]="data3" [settings]="cropperSettings3"
+                           [(cropPosition)]="cropPosition"></hi-image-cropper>
+              <br/>
+              Crop position:
+              <br/>
+              X <input type="text" [(ngModel)]="cropPosition.x">
+              Y <input type="text" [(ngModel)]="cropPosition.y">
+              W <input type="text" [(ngModel)]="cropPosition.w">
+              H <input type="text" [(ngModel)]="cropPosition.h">
+              <label class="btn btn-primary" (click)="updateCropPosition()">
+                update
+              </label>
+            </div>
+            <div class="col-md-3">
+            <span *ngIf="data3.image">
+              <img [src]="data3.image" style="max-width: 300px; max-height:200px;">
+            </span>
+            </div>
+          </div>
+        </ng-template>
+      </hi-tab>
 
-<img [src]="croppedImage" />
+      <hi-tab id="tab4" title="No Crop on Resize">
+        <ng-template hiTabContent>
+          <div class="row">
+            <div class="col-md-7">
+              <hi-image-cropper #cropper4 [image]="data4" [settings]="cropperSettings4"></hi-image-cropper>
+              <br/>
+              <button class="btn btn-primary" (click)="getImage()">Crop Image</button>
+            </div>
+            <div class="col-md-3">
+            <span *ngIf="data4.image">
+                <img [src]="data4.image" [width]="200">
+            </span>
+            </div>
+          </div>
+        </ng-template>
+      </hi-tab>
+    </hi-tabs>
+  </div>
+</div>

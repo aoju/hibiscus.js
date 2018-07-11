@@ -1,147 +1,29 @@
-:host {
-  display: flex;
-  position: relative;
-  width: 100%;
-  max-width: 100%;
-  max-height: 100%;
-  overflow: hidden;
-  padding: 5px;
-  text-align: center;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+.ng2-imgcrop canvas {
+  margin-bottom: 10px;
+}
 
-  > div {
-    position: relative;
-    width: 100%;
+.ng2-imgcrop input {
+  display: block;
+  margin-bottom: 10px;
+}
 
-    .source-image {
-      max-width: 100%;
-      max-height: 100%;
-    }
-  }
+.custom-class {
+  border: 1px solid #C1C1C1;
+}
 
-  .cropper {
-    position: absolute;
-    display: flex;
-    color: #53535C !important;
-    background: transparent !important;
-    outline-color: rgba(0,0,0,0.55);
-    outline-width: 1000px;
-    outline-style: solid;
-    touch-action: none;
+.cropping {
 
-    &:after {
-      position: absolute;
-      content: '';
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      pointer-events: none;
-      border: dashed 1px;
-      opacity: .75;
-      color: inherit;
-      z-index: 1;
-    }
+  border: 1px solid #000000;
+}
 
-    .move {
-      width: 100%;
-      cursor: move;
-      border: 1px solid rgba(255,255,255,0.5);
-    }
+body{
 
-    .resize {
-      position: absolute;
-      display: inline-block;
-      line-height: 6px;
-      padding: 8px;
-      opacity: .85;
-      z-index: 1;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
 
-      .square {
-        display: inline-block;
-        background: #53535C !important;
-        width: 6px;
-        height: 6px;
-        border: 1px solid rgba(255, 255, 255, 0.5);
-      }
-
-      &.topleft {
-        top: -12px;
-        left: -12px;
-        cursor: nw-resize;
-      }
-      &.top {
-        top: -12px;
-        left: calc(50% - 12px);
-        cursor: n-resize;
-      }
-      &.topright {
-        top: -12px;
-        right: -12px;
-        cursor: ne-resize;
-      }
-      &.right {
-        top: calc(50% - 12px);
-        right: -12px;
-        cursor: e-resize;
-      }
-      &.bottomright {
-        bottom: -12px;
-        right: -12px;
-        cursor: se-resize;
-      }
-      &.bottom {
-        bottom: -12px;
-        left: calc(50% - 12px);
-        cursor: s-resize;
-      }
-      &.bottomleft {
-        bottom: -12px;
-        left: -12px;
-        cursor: sw-resize;
-      }
-      &.left {
-        top: calc(50% - 12px);
-        left: -12px;
-        cursor: w-resize;
-      }
-
-    }
-    .resize-bar {
-      position: absolute;
-      z-index: 1;
-
-      &.top {
-        top: -11px;
-        left: 11px;
-        width: calc(100% - 22px);
-        height: 22px;
-        cursor: n-resize;
-      }
-      &.right {
-        top: 11px;
-        right: -11px;
-        height: calc(100% - 22px);
-        width: 22px;
-        cursor: e-resize;
-      }
-      &.bottom {
-        bottom: -11px;
-        left: 11px;
-        width: calc(100% - 22px);
-        height: 22px;
-        cursor: s-resize;
-      }
-      &.left {
-        top: 11px;
-        left: -11px;
-        height: calc(100% - 22px);
-        width: 22px;
-        cursor: w-resize;
-      }
-    }
-  }
 }

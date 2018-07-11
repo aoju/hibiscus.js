@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ImageCropperComponent } from './image-cropper.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {ImageCropperComponent} from './image-cropper.component';
 
 @NgModule({
   imports: [
@@ -13,4 +13,5 @@ import { ImageCropperComponent } from './image-cropper.component';
     ImageCropperComponent
   ]
 })
-export class ImageCropperModule {}
+export class ImageCropperModule {
+}
