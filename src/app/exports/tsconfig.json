@@ -1,29 +1,29 @@
 {
   "compilerOptions": {
     "target": "es5",
+    "module": "es2015",
     "lib": [
       "es2015",
       "dom"
     ],
-    "module": "es2015",
     "moduleResolution": "node",
     "declaration": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "baseUrl": ".",
     "stripInternal": true,
-    "outDir": "../lib",
-    "rootDir": "",
     "sourceMap": false,
     "inlineSources": false,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "removeComments": true,
+    "baseUrl": ".",
+    "rootDir": "",
+    "outDir": "../lib"
   },
   "files": [
     "index.ts"
   ],
   "angularCompilerOptions": {
-    "strictMetadataEmit": true,
-    "debug": false,
-    "genDir": "../aot"
+    "genDir": "./aot",
+    "skipMetadataEmit": true
   }
 }
