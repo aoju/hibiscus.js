@@ -28,6 +28,7 @@
 - [x] File Upload
 - [x] Flow Steps
 - [x] http
+- [x] Image Cropper
 - [x] Image Upload
 - [x] Infinite Scroll
 - [x] Modal
