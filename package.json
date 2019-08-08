@@ -1,5 +1,6 @@
 {
   "name": "hibiscus.js",
+  "version": "2.0.0",
   "description": "Native Angular directives for Bootstrap4",
   "keywords": [
     "angular",
