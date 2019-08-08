@@ -5,7 +5,6 @@ const webpackMerge = require('webpack-merge');
 const DefinePlugin = require('webpack/lib/DefinePlugin');
 const NamedModulesPlugin = require('webpack/lib/NamedModulesPlugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
-const HotModuleReplacementPlugin = require('webpack/lib/HotModuleReplacementPlugin');
 
 const baseConfig = require('./webpack.core.js');
 const buildUtils = require('./build.utils');
@@ -148,9 +147,7 @@ module.exports = function (options) {
       new LoaderOptionsPlugin({
         debug: true,
         options: {}
-      }),
-
-      new HotModuleReplacementPlugin()
+      })
 
     ],
 
