@@ -107,7 +107,7 @@
     "@angular/platform-server": "~8.2.0",
     "@angular/platform-browser": "~8.2.0",
     "@angular/platform-browser-dynamic": "~8.2.0",
-    "@angular/cdk": "^8.1.2",
+    "@angular/cdk": "~8.1.2",
     "@types/hammerjs": "^2.0.36",
     "@types/jasmine": "2.8.16",
     "@types/node": "^8.10.51",
@@ -178,7 +178,7 @@
     "url-loader": "^0.5.8",
     "webpack": "^3.11.0",
     "webpack-dev-middleware": "^1.12.1",
-    "webpack-dev-server": "~2.9.4",
+    "webpack-dev-server": "~3.2.0",
     "webpack-merge": "^4.1.2"
   }
 }
