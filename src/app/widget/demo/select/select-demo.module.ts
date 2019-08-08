@@ -1,9 +1,8 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {SelectDemoComponent} from './select-demo.component';
-import {HiNGModule} from '../../../exports';
 import {FormsModule} from '@angular/forms';
-
+import {HiNGModule} from '../../../exports';
+import {SelectDemoComponent} from './select-demo.component';
 
 @NgModule({
   imports: [
@@ -11,12 +10,14 @@ import {FormsModule} from '@angular/forms';
     FormsModule,
     HiNGModule
   ],
+  declarations: [
+    SelectDemoComponent
+  ],
   exports: [
     SelectDemoComponent
   ],
-  declarations: [SelectDemoComponent],
-  providers: [],
   entryComponents: [SelectDemoComponent]
 })
 export class SelectDemoModule {
 }
+

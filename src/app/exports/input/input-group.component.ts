@@ -20,8 +20,8 @@ export type InputGroupSizeType = 'large' | 'default' | 'small';
   selector: 'hi-input-group',
   preserveWhitespaces: false,
   template: `
-    <span class="ant-input-wrapper ant-input-group" *ngIf="isAddOn">
-      <span class="ant-input-group-addon" *ngIf="hiAddOnBefore || hiAddOnBeforeIcon">
+    <span class="hi-input-wrapper hi-input-group" *ngIf="isAddOn">
+      <span class="hi-input-group-addon" *ngIf="hiAddOnBefore || hiAddOnBeforeIcon">
         <i [ngClass]="hiAddOnBeforeIcon" *ngIf="hiAddOnBeforeIcon"></i>
         <ng-container *ngIf="isAddOnBeforeString; else addOnBeforeTemplate">{{ hiAddOnBefore }}</ng-container>
         <ng-template #addOnBeforeTemplate>
@@ -29,7 +29,7 @@ export type InputGroupSizeType = 'large' | 'default' | 'small';
         </ng-template>
       </span>
       <ng-template *ngTemplateOutlet="contentTemplate"></ng-template>
-      <span class="ant-input-group-addon" *ngIf="hiAddOnAfter || hiAddOnAfterIcon">
+      <span class="hi-input-group-addon" *ngIf="hiAddOnAfter || hiAddOnAfterIcon">
         <i [ngClass]="hiAddOnAfterIcon" *ngIf="hiAddOnAfterIcon"></i>
         <ng-container *ngIf="isAddOnAfterString; else addOnAfterTemplate">{{ hiAddOnAfter }}</ng-container>
         <ng-template #addOnAfterTemplate>
@@ -38,7 +38,7 @@ export type InputGroupSizeType = 'large' | 'default' | 'small';
       </span>
     </span>
     <ng-template [ngIf]="isAffix">
-      <span class="ant-input-prefix" *ngIf="hiPrefix || hiPrefixIcon">
+      <span class="hi-input-prefix" *ngIf="hiPrefix || hiPrefixIcon">
         <i [ngClass]="hiPrefixIcon" *ngIf="hiPrefixIcon"></i>
         <ng-container *ngIf="isPrefixString; else prefixTemplate">{{ hiPrefix }}</ng-container>
         <ng-template #prefixTemplate>
@@ -46,7 +46,7 @@ export type InputGroupSizeType = 'large' | 'default' | 'small';
         </ng-template>
       </span>
       <ng-template *ngTemplateOutlet="contentTemplate"></ng-template>
-      <span class="ant-input-suffix" *ngIf="hiSuffix || hiSuffixIcon">
+      <span class="hi-input-suffix" *ngIf="hiSuffix || hiSuffixIcon">
         <i [ngClass]="hiSuffixIcon" *ngIf="hiSuffixIcon"></i>
         <ng-container *ngIf="isSuffixString; else suffixTemplate">{{ hiSuffix }}</ng-container>
         <ng-template #suffixTemplate>
@@ -58,7 +58,7 @@ export type InputGroupSizeType = 'large' | 'default' | 'small';
     <ng-template #contentTemplate>
       <ng-content></ng-content>
     </ng-template>
-  `
+  `,
 })
 
 export class InputGroupComponent implements AfterViewInit, AfterContentInit {
@@ -89,7 +89,7 @@ export class InputGroupComponent implements AfterViewInit, AfterContentInit {
   }
 
   @Input()
-  @HostBinding(`class.ant-input-group-compact`)
+  @HostBinding(`class.hi-input-group-compact`)
   set hiCompact(value: boolean) {
     this._compact = coerceBooleanProperty(value);
   }
@@ -139,8 +139,8 @@ export class InputGroupComponent implements AfterViewInit, AfterContentInit {
   }
 
   @Input()
-  @HostBinding(`class.ant-input-search-enter-button`)
-  @HostBinding(`class.ant-input-search`)
+  @HostBinding(`class.hi-input-search-enter-button`)
+  @HostBinding(`class.hi-input-search`)
   set hiSearch(value: boolean) {
     this._search = coerceBooleanProperty(value);
   }
@@ -157,57 +157,57 @@ export class InputGroupComponent implements AfterViewInit, AfterContentInit {
     return this.hiSize === 'small';
   }
 
-  @HostBinding('class.ant-input-affix-wrapper')
+  @HostBinding('class.hi-input-affix-wrapper')
   get isAffix(): boolean {
     return !!(this.hiSuffix || this.hiPrefix || this.hiPrefixIcon || this.hiSuffixIcon);
   }
 
-  @HostBinding('class.ant-input-group-wrapper')
+  @HostBinding('class.hi-input-group-wrapper')
   get isAddOn(): boolean {
     return !!(this.hiAddOnAfter || this.hiAddOnBefore || this.hiAddOnAfterIcon || this.hiAddOnBeforeIcon);
   }
 
-  @HostBinding('class.ant-input-group')
+  @HostBinding('class.hi-input-group')
   get isGroup(): boolean {
     return (!this.isAffix) && (!this.isAddOn);
   }
 
-  @HostBinding(`class.ant-input-group-lg`)
+  @HostBinding(`class.hi-input-group-lg`)
   get isLargeGroup(): boolean {
     return this.isGroup && this.isLarge;
   }
 
-  @HostBinding(`class.ant-input-group-wrapper-lg`)
+  @HostBinding(`class.hi-input-group-wrapper-lg`)
   get isLargeGroupWrapper(): boolean {
     return this.isAddOn && this.isLarge;
   }
 
-  @HostBinding(`class.ant-input-affix-wrapper-lg`)
+  @HostBinding(`class.hi-input-affix-wrapper-lg`)
   get isLargeAffix(): boolean {
     return this.isAffix && this.isLarge;
   }
 
-  @HostBinding(`class.ant-input-search-lg`)
+  @HostBinding(`class.hi-input-search-lg`)
   get isLargeSearch(): boolean {
     return this.hiSearch && this.isLarge;
   }
 
-  @HostBinding(`class.ant-input-group-sm`)
+  @HostBinding(`class.hi-input-group-sm`)
   get isSmallGroup(): boolean {
     return this.isGroup && this.isSmall;
   }
 
-  @HostBinding(`class.ant-input-affix-wrapper-sm`)
+  @HostBinding(`class.hi-input-affix-wrapper-sm`)
   get isSmallAffix(): boolean {
     return this.isAffix && this.isSmall;
   }
 
-  @HostBinding(`class.ant-input-group-wrapper-sm`)
+  @HostBinding(`class.hi-input-group-wrapper-sm`)
   get isSmallGroupWrapper(): boolean {
     return this.isAddOn && this.isSmall;
   }
 
-  @HostBinding(`class.ant-input-search-sm`)
+  @HostBinding(`class.hi-input-search-sm`)
   get isSmallSearch(): boolean {
     return this.hiSearch && this.isSmall;
   }

@@ -10,7 +10,6 @@ import {
   OnDestroy,
   OnInit,
   Output,
-  SimpleChanges,
   TemplateRef,
   ViewChild,
   ViewEncapsulation
@@ -74,75 +73,8 @@ export interface CascaderOption {
   animations: [
     dropDownAnimation
   ],
-  template: `
-    <div
-      cdkOverlayOrigin
-      #origin="cdkOverlayOrigin"
-      #trigger
-    >
-      <div *ngIf="hiShowInput">
-        <input #input
-               hi-input
-               [attr.autoComplete]="'off'"
-               [attr.placeholder]="showPlaceholder ? hiPlaceHolder : null"
-               [attr.autofocus]="hiAutoFocus ? 'autofocus' : null"
-               [readonly]="!hiShowSearch"
-               [disabled]="hiDisabled"
-               [hiSize]="hiSize"
-               [ngClass]="inputCls"
-               [(ngModel)]="inputValue"
-               (blur)="handleInputBlur($event)"
-               (focus)="handleInputFocus($event)"
-               (change)="handlerInputChange($event)"
-        >
-        <i *ngIf="showClearIcon"
-           [class]="'anticon anticon-cross-circle'"
-           [ngClass]="clearCls"
-           [attr.title]="hiClearText"
-           (click)="clearSelection($event)"></i>
-        <i *ngIf="hiShowArrow && !isLoading"
-           class="anticon anticon-down"
-           [ngClass]="arrowCls"></i>
-        <i *ngIf="isLoading"
-           class="anticon anticon-loading anticon-spin"
-           [ngClass]="loadingCls"></i>
-        <span [ngClass]="labelCls">
-          <ng-container *ngIf="!isLabelRenderTemplate; else labelTemplate">{{ labelRenderText }}</ng-container>
-          <ng-template #labelTemplate>
-            <ng-template [ngTemplateOutlet]="hiLabelRender" [ngTemplateOutletContext]="labelRenderContext"></ng-template>
-          </ng-template>
-        </span>
-      </div>
-      <ng-content></ng-content>
-    </div>
-    <ng-template
-      cdkConnectedOverlay
-      cdkConnectedOverlayHasBackdrop
-      [cdkConnectedOverlayOrigin]="origin"
-      (backdropClick)="closeMenu()"
-      (detach)="closeMenu()"
-      (positionChange)="onPositionChange($event)"
-      [cdkConnectedOverlayOpen]="menuVisible"
-    >
-      <div #menu
-           [ngClass]="menuCls" [ngStyle]="hiMenuStyle"
-           [@dropDownAnimation]="dropDownPosition"
-           (mouseleave)="onTriggerMouseLeave($event)"
-      >
-        <ul *ngFor="let options of hiColumns; let i = index;" [ngClass]="menuColumnCls">
-          <li *ngFor="let option of options"
-              [attr.title]="option.title || getOptionLabel(option)"
-              [ngClass]="getOptionCls(option, i)"
-              (mouseenter)="onOptionMouseEnter(option, i, $event)"
-              (mouseleave)="onOptionMouseLeave(option, i, $event)"
-              (click)="onOptionClick(option, i, $event)"
-          >
-            {{ getOptionLabel(option) }}
-          </li>
-        </ul>
-      </div>
-    </ng-template>
-  `,
+  templateUrl : './cascader.component.html',
+  styleUrls: ['./cascader.component.scss'],
   providers: [
     UpdateHostClassService,
     {
@@ -152,14 +84,9 @@ export interface CascaderOption {
     }
   ],
   host: {
-    '[attr.tabIndex]': '"0"'
+    '[attr.tabIndex]': '"0"',
   },
-  styles: [
-      `.ant-cascader-menus {
-      margin-top: 4px;
-      margin-bottom: 4px;
-    }`
-  ]
+  encapsulation: ViewEncapsulation.None,
 })
 export class CascaderComponent implements OnInit, OnDestroy, ControlValueAccessor {
   private allowClear = true;
@@ -169,8 +96,8 @@ export class CascaderComponent implements OnInit, OnDestroy, ControlValueAccesso
   private showArrow = true;
   private showInput = true;
   private size: CascaderSize = 'default';
-  private prefixCls = 'ant-cascader';
-  private inputPrefixCls = 'ant-input';
+  private prefixCls = 'hi-cascader';
+  private inputPrefixCls = 'hi-input';
   private menuClassName;
   private columnClassName;
   private changeOnSelect = false;
@@ -434,7 +361,7 @@ export class CascaderComponent implements OnInit, OnDestroy, ControlValueAccesso
   @Output() hiClear = new EventEmitter<any>();
 
   /** 浮层菜单 */
-  @ViewChild('menu') menu: ElementRef;
+  @ViewChild('menu', {static: false}) menu: ElementRef;
 
   public onPositionChange(position: ConnectedOverlayPositionChange): void {
     const newValue = position.connectionPair.originY === 'bottom' ? 'bottom' : 'top';
@@ -776,7 +703,7 @@ export class CascaderComponent implements OnInit, OnDestroy, ControlValueAccesso
    * @param visible true-显示，false-隐藏
    * @param delay 延迟时间
    */
-  public delaySetMenuVisible(visible: boolean, delay: number, setOpening: boolean = false): void {
+  public delaySetMenuVisible(visible: boolean, delay: number, setOpening = false): void {
     this.clearDelayTimer();
     if (delay) {
       if (visible && setOpening) {
@@ -854,7 +781,7 @@ export class CascaderComponent implements OnInit, OnDestroy, ControlValueAccesso
    * @param index  选项所在的列组的索引
    * @param select 是否触发选择结点
    */
-  private setActiveOption(option: CascaderOption, index: number, select: boolean = false, loadChildren: boolean = true): void {
+  private setActiveOption(option: CascaderOption, index: number, select = false, loadChildren = true): void {
     if (!option || option.disabled) {
       return;
     }

@@ -51,7 +51,7 @@ export interface NodeProperty {
 const computedStyleCache: { [key: string]: NodeType } = {};
 let hiddenTextarea: HTMLTextAreaElement;
 
-function calculateNodeStyling(node: HTMLElement, useCache: boolean = false): NodeType {
+function calculateNodeStyling(node: HTMLElement, useCache = false): NodeType {
   const nodeRef = (
     node.getAttribute('id') ||
     node.getAttribute('data-reactid') ||
@@ -99,7 +99,7 @@ function calculateNodeStyling(node: HTMLElement, useCache: boolean = false): Nod
 }
 
 export default function calculateNodeHeight(uiTextNode: HTMLTextAreaElement,
-                                            useCache: boolean      = false,
+                                            useCache      = false,
                                             minRows: number | null = null,
                                             maxRows: number | null = null): NodeProperty {
   if (!hiddenTextarea) {

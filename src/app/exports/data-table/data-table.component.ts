@@ -57,7 +57,7 @@ export class BootstrapPaginator implements OnChanges {
 
   ngOnChanges(changes: any): any {
     if (changes.rowsOnPageSet) {
-      this.minRowsOnPage = _.min(this.rowsOnPageSet)
+      this.minRowsOnPage = _.min(this.rowsOnPageSet);
     }
   }
 
@@ -115,16 +115,16 @@ export class Paginator implements OnChanges {
 export class DataSort implements OnInit {
 
   @Input('by') sortBy: string;
-  isSortedByMeAsc: boolean = false;
-  isSortedByMeDesc: boolean = false;
+  isSortedByMeAsc = false;
+  isSortedByMeDesc = false;
 
   public constructor(private table: DataTable) {
   }
 
   public ngOnInit(): void {
     this.table.onSortChange.subscribe((event: SortEvent) => {
-      this.isSortedByMeAsc = (event.sortBy == this.sortBy && event.sortOrder == 'asc');
-      this.isSortedByMeDesc = (event.sortBy == this.sortBy && event.sortOrder == 'desc');
+      this.isSortedByMeAsc = (event.sortBy === this.sortBy && event.sortOrder === 'asc');
+      this.isSortedByMeDesc = (event.sortBy === this.sortBy && event.sortOrder === 'desc');
     });
   }
 

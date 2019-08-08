@@ -29,7 +29,7 @@ export class TreeNodeComponent {
   @Input() leafIcon;
   @Input() expendIcon;
   @Input() collapseIcon;
-  @ViewChild('nodeItemContent') nodeItemContent: ElementRef;
+  @ViewChild('nodeItemContent', {static: false}) nodeItemContent: ElementRef;
   isLoading: boolean;
   isAcceptDrop = ($event) => {
     const dropData = JSON.parse($event.dataTransfer.getData(DraggableDirective.DRAGGABLE_DATA_KEY));

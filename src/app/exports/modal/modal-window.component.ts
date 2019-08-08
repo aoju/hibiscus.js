@@ -5,7 +5,7 @@ import {
   HostListener,
   EventEmitter,
   ElementRef,
-  Output
+  Output, TemplateRef
 } from '@angular/core';
 import {ModalContentComponent} from './modal-content.component';
 import {ModalOptions} from './modal-options.model';
@@ -32,7 +32,7 @@ export class ModalWindowComponent {
   @Input() isOpen = false;
   @Input() instanceCount = 0;
   @Output() animationDone = new EventEmitter<any>();
-  @ViewChild(ModalContentComponent) modalContent: ModalContentComponent;
+  @ViewChild(ModalContentComponent, {static: false}) modalContent: ModalContentComponent;
   dismiss: EventEmitter<any>;
   modalOptions: ModalOptions;
   animateState: string;

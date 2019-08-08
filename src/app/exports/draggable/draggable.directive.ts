@@ -27,7 +27,7 @@ export class DraggableDirective {
   @Output() onDragEnd: EventEmitter<any> = new EventEmitter();
   @Output() onDragging: EventEmitter<any> = new EventEmitter();
   handle: any;
-  @ContentChild(DraggableHandleDirective) draggableHandle: DraggableHandleDirective;
+  @ContentChild(DraggableHandleDirective, {static: false}) draggableHandle: DraggableHandleDirective;
 
   @HostListener('dragstart', ['$event'])
   dragStart($event) {

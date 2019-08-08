@@ -37,7 +37,7 @@ declare var $: any;
  * in the files such as main.ts or any file within app/
  *
 
-import * as _ from 'lodash'
+
 
  * You can include your type definitions in this file until you create one for the @types
  *
@@ -45,7 +45,6 @@ import * as _ from 'lodash'
 
 // support NodeJS modules without type definitions
 declare module '*';
-
 /*
 // for legacy tslint etc to understand rename 'modern-lru' with your package
 // then comment out `declare module '*';`. For each new module copy/paste

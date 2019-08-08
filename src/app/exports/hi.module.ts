@@ -14,10 +14,10 @@ import {DataTableModule} from './data-table';
 import {DatePickerModule} from './date-picker';
 import {DialogService, DialogModule} from './dialog';
 import {DraggableModule} from './draggable';
-import {EllipsisModule} from './ellipsis';
 import {FileUploadModule} from './file-upload';
 import {FlowStepModule} from './flow-step';
 import {HttpModule} from './http';
+import {ImageCropperModule} from './image-cropper';
 import {ImageUploadModule} from './image-upload';
 import {InfiniteScrollModule} from './infinite-scroll';
 import {ModalService, ModalModule} from './modal';
@@ -26,7 +26,6 @@ import {OAauth2Module} from './oauth2';
 import {OverlayModule, OverlayService} from './overlay';
 import {PagerModule} from './pager';
 import {PaginationModule} from './pagination';
-import {PopoverModule} from './popover';
 import {PositionService} from './position';
 import {ProgressBarModule} from './progress-bar';
 import {RadioGroupModule} from './radio-group';
@@ -40,6 +39,11 @@ import {TabsModule} from './tabs';
 import {TagsModule} from './tags';
 import {TimePickerModule} from './time-picker';
 import {TooltipModule} from './tooltip';
+import {PopconfirmModule} from './popconfirm';
+import {SpinModule} from './spin';
+import {PopoverModule} from './popover';
+import {NotificationModule} from './notification';
+import {MessageModule} from './message';
 import {TreeViewModule, TreeViewService} from './tree-view';
 import {HiValidatorsModule} from './validators';
 import {COMMON_SERVICES} from './window-ref';
@@ -63,10 +67,10 @@ import {HiNGConfig} from './hi.config';
     DatePickerModule,
     DialogModule,
     DraggableModule,
-    EllipsisModule,
     FileUploadModule,
     FlowStepModule,
     HttpModule,
+    ImageCropperModule,
     ImageUploadModule,
     InfiniteScrollModule,
     ModalModule,
@@ -75,7 +79,6 @@ import {HiNGConfig} from './hi.config';
     OverlayModule,
     PagerModule,
     PaginationModule,
-    PopoverModule,
     ProgressBarModule,
     RadioGroupModule,
     RatingModule,
@@ -88,6 +91,11 @@ import {HiNGConfig} from './hi.config';
     TagsModule,
     TimePickerModule,
     TooltipModule,
+    PopconfirmModule,
+    SpinModule,
+    PopoverModule,
+    NotificationModule,
+    MessageModule,
     TreeViewModule,
     HiValidatorsModule
   ],
@@ -107,10 +115,10 @@ import {HiNGConfig} from './hi.config';
     DatePickerModule,
     DialogModule,
     DraggableModule,
-    EllipsisModule,
     FileUploadModule,
     FlowStepModule,
     HttpModule,
+    ImageCropperModule,
     ImageUploadModule,
     InfiniteScrollModule,
     ModalModule,
@@ -119,7 +127,6 @@ import {HiNGConfig} from './hi.config';
     OverlayModule,
     PagerModule,
     PaginationModule,
-    PopoverModule,
     ProgressBarModule,
     RadioGroupModule,
     RatingModule,
@@ -132,6 +139,11 @@ import {HiNGConfig} from './hi.config';
     TagsModule,
     TimePickerModule,
     TooltipModule,
+    PopconfirmModule,
+    SpinModule,
+    PopoverModule,
+    NotificationModule,
+    MessageModule,
     TreeViewModule,
     HiValidatorsModule
   ],

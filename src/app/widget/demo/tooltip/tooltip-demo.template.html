@@ -2,72 +2,78 @@
   <section>
     <h4>Hover tooltip:</h4>
     <div style="padding: 10px 100px;">
-      <button class="btn btn-primary" reTooltip="I am a hi tooltip!" placement="left">Tooltip on left</button>
-      <button class="btn btn-success" reTooltip="I am a hi tooltip!">Tooltip on top</button>
-      <button class="btn btn-warning" reTooltip="I am a hi tooltip!" placement="bottom">Tooltip on bottom</button>
-      <button class="btn btn-danger" reTooltip="I am a hi tooltip!" placement="right">Tooltip on right</button>
+      <hi-tooltip [hiTitle]="'prompt text'">
+        <span hi-tooltip>Tooltip will show when mouse enter.</span>
+      </hi-tooltip>
+      <br />
+      <br />
+      <a hi-tooltip="Most simple prompt text" href="#">Most simple way to trigger a tooltip!</a>
     </div>
   </section>
-
   <section>
     <h4>Click tooltip:</h4>
     <div style="padding: 10px 100px;">
-      <button class="btn btn-primary" [trigger]="'click'" reTooltip="I am a hi tooltip!" placement="left">Tooltip
-        on left
-      </button>
-      <button class="btn btn-success" [trigger]="'click'" reTooltip="I am a hi tooltip!">Tooltip on top</button>
-      <button class="btn btn-warning" [trigger]="'click'" reTooltip="I am a hi tooltip!" placement="bottom">Tooltip
-        on bottom
-      </button>
-      <button class="btn btn-danger" [trigger]="'click'" reTooltip="I am a hi tooltip!" placement="right">Tooltip
-        on right
-      </button>
+      <hi-tooltip [hiTrigger]="'click'" [hiTitle]="'prompt text'">
+        <span hi-tooltip>Tooltip will show when mouse click.</span>
+      </hi-tooltip>
     </div>
   </section>
-
   <section>
-    <h4>Append to body tooltip:</h4>
+    <h4>带图标的Tooltip</h4>
     <div style="padding: 10px 100px;">
-      <button class="btn btn-danger" [appendBody]="true" [trigger]="'click'" reTooltip="I am a hi tooltip!"
-              placement="right">Tooltip
-        on right
-      </button>
+      <hi-tooltip>
+        <button type="button" class="btn btn-primary" hi-tooltip>Icon</button>
+        <ng-template #hiTemplate>
+          <i class="icon icmn-home"></i> <span>带图标的Tooltip</span>
+        </ng-template>
+      </hi-tooltip>
     </div>
   </section>
-
   <section>
-    <h4>Manual tooltip:</h4>
-    <div style="padding: 10px 100px;">
-      <button class="btn btn-primary" #tooltip="tooltip" [trigger]="'manual'"
-              [reTooltip]="'I am a hi tooltip! '">
-        Tooltip on top
-      </button>
-      <button class="btn btn-success" (click)="tooltip.show()">Show tooltip</button>
-      <button class="btn btn-warning" (click)="tooltip.hide()">Hide tooltip</button>
-    </div>
-  </section>
-
-  <section>
-    <h4>Customise tooltip:</h4>
-    <div style="padding: 10px 100px;">
-      <button class="btn btn-primary" [reTooltip]="tipContent" [context]="'button1'">
-        Tooltip on top
-      </button>
-
-      <button class="btn btn-success" [reTooltip]="tipContent" [context]="'button2'">
-        Tooltip on top
-      </button>
-
-      <ng-template #tipContent let-context>
-        <h4>Setting</h4>
-        <div>
-          <p><strong>name</strong>: {{setting.name}}</p>
-          <p><strong>trigger</strong>: {{setting.trigger}}</p>
-          <p><strong>placement</strong>: {{setting.placement}}</p>
-          <p><strong>target</strong>: {{context}}</p>
-        </div>
-      </ng-template>
-    </div>
-  </section>
-
+<h4>12 个方向。</h4>
+<div style="margin-left:60px;">
+<hi-tooltip [hiTitle]="'prompt text'" [hiPlacement]="'topLeft'">
+  <button type="button" class="btn btn-primary" hi-tooltip>TL</button>
+</hi-tooltip>
+<hi-tooltip [hiTitle]="'prompt text'" [hiPlacement]="'top'">
+  <button type="button" class="btn btn-primary" hi-tooltip>Top</button>
+</hi-tooltip>
+<hi-tooltip [hiTitle]="'prompt text'" [hiPlacement]="'topRight'">
+  <button type="button" class="btn btn-primary" hi-tooltip>TR</button>
+</hi-tooltip>
+</div>
+<div style="float:left;width: 60px;">
+<hi-tooltip [hiTitle]="'prompt text'" [hiPlacement]="'leftTop'">
+  <button type="button" class="btn btn-primary" hi-tooltip>LT</button>
+</hi-tooltip>
+<hi-tooltip [hiTitle]="'prompt text'" [hiPlacement]="'left'">
+  <button type="button" class="btn btn-primary" hi-tooltip>Left</button>
+</hi-tooltip>
+<hi-tooltip [hiTitle]="'prompt text'" [hiPlacement]="'leftBottom'">
+  <button type="button" class="btn btn-primary" hi-tooltip>LB</button>
+</hi-tooltip>
+</div>
+<div style="margin-left:270px;width: 60px;">
+<hi-tooltip [hiTitle]="'prompt text'" [hiPlacement]="'rightTop'">
+  <button type="button" class="btn btn-primary" hi-tooltip>RT</button>
+</hi-tooltip>
+<hi-tooltip [hiTitle]="'prompt text'" [hiPlacement]="'right'">
+  <button type="button" class="btn btn-primary" hi-tooltip>Right</button>
+</hi-tooltip>
+<hi-tooltip [hiTitle]="'prompt text'" [hiPlacement]="'rightBottom'">
+  <button type="button" class="btn btn-primary" hi-tooltip>RB</button>
+</hi-tooltip>
+</div>
+<div style="margin-left:60px;clear: both;">
+<hi-tooltip [hiTitle]="'prompt text'" [hiPlacement]="'bottomLeft'">
+  <button type="button" class="btn btn-primary" hi-tooltip>BL</button>
+</hi-tooltip>
+<hi-tooltip [hiTitle]="'prompt text'" [hiPlacement]="'bottom'">
+  <button type="button" class="btn btn-primary" hi-tooltip>Bottom</button>
+</hi-tooltip>
+<hi-tooltip [hiTitle]="'prompt text'" [hiPlacement]="'bottomRight'">
+  <button type="button" class="btn btn-primary" hi-tooltip>BR</button>
+</hi-tooltip>
+</div>
+</section>
 </div>

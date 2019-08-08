@@ -55,7 +55,7 @@ export class FileUpload implements AfterViewInit {
   @Output() removeFiles = new EventEmitter<SelectFileModel[]>();
   @Output() uploadFilesChange = new EventEmitter<SelectFileModel[]>();
   @Input() uploadFiles: SelectFileModel[] = [];
-  @ViewChild('file') fileInput: ElementRef;
+  @ViewChild('file', {static: false}) fileInput: ElementRef;
   selectFiles: SelectFileModel[] = [];
   isUploading: boolean;
   errors: string[] = [];
@@ -150,7 +150,7 @@ export class FileUpload implements AfterViewInit {
     this.httpUploadAllFile(this.selectFiles);
   }
 
-  private httpUploadAllFile(files) {
+  httpUploadAllFile(files) {
     this.isUploading = true;
     this.fileUploadStart.emit(files);
     const subscriptions = files.map(fileItem => this.httpUploadFile(fileItem));
@@ -161,7 +161,7 @@ export class FileUpload implements AfterViewInit {
       });
   }
 
-  private httpUploadFile(fileItem) {
+  httpUploadFile(fileItem) {
     const formData = new FormData();
     formData.append(this.uploadParamName, fileItem.file);
     return this.http.post(this.uploadUrl, formData, this.uploadRequestOptions)

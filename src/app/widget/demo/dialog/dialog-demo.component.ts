@@ -10,7 +10,7 @@ import {Validators} from '@angular/forms';
 })
 export class DialogDemoComponent {
 
-  @ViewChild('selectPromptTemplate') selectPromptTemplate: TemplateRef<any>;
+  @ViewChild('selectPromptTemplate', {static: false}) selectPromptTemplate: TemplateRef<any>;
 
   constructor(private hiNGConfig: HiNGConfig,
               private viewContainerRef: ViewContainerRef,

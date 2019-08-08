@@ -14,7 +14,7 @@ export class ModalComponent {
   @Input() isOpen = false;
   @Output() dismiss = new EventEmitter<any>();
   @Input() modalOptions: ModalOptions;
-  @ViewChild(ModalWindowComponent) modalWindowComponent: ModalWindowComponent;
+  @ViewChild(ModalWindowComponent, {static: false}) modalWindowComponent: ModalWindowComponent;
   instanceCount = 0;
 
   constructor(private renderer: Renderer2, private documentRef: DocumentRef) {

@@ -1,7 +1,7 @@
-import {Component, Input, TemplateRef, forwardRef, ViewChild, AfterViewInit, ChangeDetectorRef} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, forwardRef, Input, TemplateRef, ViewChild} from '@angular/core';
 import {AutoCompleteDirective} from './auto-complete.directive';
 import {Observable} from 'rxjs/Observable';
-import {NG_VALUE_ACCESSOR, ControlValueAccessor} from '@angular/forms';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {HiNGConfig} from '../hi.config';
 
 @Component({
@@ -32,7 +32,7 @@ export class MutipleAutoCompleteComponent implements AfterViewInit, ControlValue
 
   selectValue: any;
   mutipleItems: any[];
-  @ViewChild(AutoCompleteDirective) autoCompleteDirective: AutoCompleteDirective;
+  @ViewChild(AutoCompleteDirective, {static: false}) autoCompleteDirective: AutoCompleteDirective;
   private onChange = (_: any) => null;
 
   constructor(private hiNGConfig: HiNGConfig, private changeDetectorRef: ChangeDetectorRef) {

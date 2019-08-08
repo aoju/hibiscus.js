@@ -1,46 +1,25 @@
 import {
-  Directive,
-  Input,
-  TemplateRef,
-  ViewContainerRef,
-  ElementRef,
   ComponentFactoryResolver,
-  Injector,
-  Renderer2
+  Directive,
+  ElementRef,
+  Renderer2,
+  ViewContainerRef
 } from '@angular/core';
-import {PopoverPopupComponent} from './popover-popup.component';
-import {PositionService} from '../position/positioning.service';
-import {Tooltip} from '../tooltip/tooltip';
-import {HiNGConfig} from '../hi.config';
+
+import { TooltipDirective } from '../tooltip/tooltip.directive';
+
+import { PopoverComponent } from './popover.component';
 
 @Directive({
-  selector: '[rePopover]',
-  exportAs: 'popover'
+  selector: '[hi-popover]'
 })
-export class PopoverDirective extends Tooltip<PopoverPopupComponent> {
-  @Input('reTitle') title: string | TemplateRef<any>;
-  @Input('rePopover') content: string | TemplateRef<any>;
-
-  constructor(viewContainerRef: ViewContainerRef,
-              elementRef: ElementRef,
-              componentFactoryResolver: ComponentFactoryResolver,
-              injector: Injector,
-              positionService: PositionService,
-              renderer: Renderer2,
-              hiNGConfig: HiNGConfig) {
-    super(viewContainerRef, elementRef, componentFactoryResolver, injector, positionService, renderer, hiNGConfig);
-    this.tooltipPopupType = PopoverPopupComponent;
-    this.trigger = 'click';
+export class PopoverDirective extends TooltipDirective {
+  constructor(
+      elementRef: ElementRef,
+      hostView: ViewContainerRef,
+      resolver: ComponentFactoryResolver,
+      renderer: Renderer2,
+      tooltip: PopoverComponent) {
+    super(elementRef, hostView, resolver, renderer, tooltip);
   }
-
-  protected fillPopup(): PopoverPopupComponent {
-    const popupComponent = super.fillPopup();
-    popupComponent.title = this.title;
-    return popupComponent;
-  }
-
-  getContent(): string | TemplateRef<any> {
-    return this.content;
-  }
-
 }

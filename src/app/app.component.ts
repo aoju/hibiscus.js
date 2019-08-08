@@ -16,7 +16,7 @@ import {HiNGConfig} from './exports';
 @Component({
   selector: 'body',
   templateUrl: './app.template.html',
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class AppComponent implements OnInit {
 

@@ -6,6 +6,8 @@ import {Component, ChangeDetectionStrategy} from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PopoverDemoComponent {
-  name = 'hi';
-
+  visible: boolean;
+  clickMe() {
+    this.visible = false;
+  }
 }

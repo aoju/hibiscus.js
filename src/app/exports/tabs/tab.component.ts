@@ -1,4 +1,4 @@
-import {Component, Input, ContentChild} from '@angular/core';
+import {Component, ContentChild, Input} from '@angular/core';
 import {TabContentDirective} from './tab-content.directive';
 import {TabTitleDirective} from './tab-title.directive';
 
@@ -12,6 +12,6 @@ export class TabComponent {
   @Input() title: string;
   @Input() content: string;
   @Input() disabled = false;
-  @ContentChild(TabTitleDirective) titleTpl: TabTitleDirective;
-  @ContentChild(TabContentDirective) contentTpl: TabContentDirective;
+  @ContentChild(TabTitleDirective, {static: false}) titleTpl: TabTitleDirective;
+  @ContentChild(TabContentDirective, {static: false}) contentTpl: TabContentDirective;
 }

@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var os = require('os');
 var path = require('path');
 var sass = require('gulp-sass');
+var rename = require("gulp-rename");
 var inlineNg2Template = require('gulp-inline-ng2-template');
 var runSequence = require('run-sequence').use(gulp);
 var exec = require('child_process').exec;
@@ -35,7 +36,12 @@ gulp.task('copy:exports', ['clean:dist'], function () {
       removeComments: true,
       removeRedundantAttributes: true
     })))
-    .pipe(gulp.dest(config.dest));
+    .pipe(rename(function (path) {
+        if (path.extname === '.css') {
+          path.extname = '.scss';
+        }
+      }))
+      .pipe(gulp.dest(config.dest));
 });
 
 gulp.task('ng2:inline', ['copy:exports'], function () {

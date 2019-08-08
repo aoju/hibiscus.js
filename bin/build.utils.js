@@ -36,7 +36,7 @@ const _options = {
     output: _root('dist'),
     src: _root('src'),
     node_modules: _root('node_modules'),
-    tsconfig: 'tsconfig.w.json'
+    tsconfig: 'tsconfig.json'
   }
 };
 

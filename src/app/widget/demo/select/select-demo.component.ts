@@ -1,27 +1,23 @@
-import { Component } from '@angular/core';
-import { GroupOption } from '../../../exports/select/select.component';
+/**
+ * Created by chenlei on 2018/3/28.
+ */
+// tslint:disable:no-any
+import {Component, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'hi-select-demo',
-  templateUrl: './select-demo.template.html'
+  selector: 'nz-demo-select-basic',
+  templateUrl: './select-demo.template.html',
 })
-export class SelectDemoComponent {
-  options = ['Tyler', 'Lucy', 'Jack'];
-  selectValue = 'Jack';
-  objOptions = this.options.map((label, id) => ({
-    id, label
-  }));
-  selectObjValue = this.objOptions[2];
-  selectGroupValue: any;
-  groupOptions: GroupOption[] = [
-    {
-      group: 'Manager',
-      options: ['Tyler']
-    },
-    {
-      group: 'Engineer',
-      options: ['Lucy', 'Jack']
+export class SelectDemoComponent implements OnInit {
+  selectedValue = 'lucy';
+  listOfOption = [];
+  listOfTagOptions = [];
+
+  ngOnInit(): void {
+    const children = [];
+    for (let i = 10; i < 36; i++) {
+      children.push({label: i.toString(36) + i, value: i.toString(36) + i});
     }
-  ]
-  ;
+    this.listOfOption = children;
+  }
 }
