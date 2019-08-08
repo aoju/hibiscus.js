@@ -55,7 +55,7 @@ export class FileUpload implements AfterViewInit {
   @Output() removeFiles = new EventEmitter<SelectFileModel[]>();
   @Output() uploadFilesChange = new EventEmitter<SelectFileModel[]>();
   @Input() uploadFiles: SelectFileModel[] = [];
-  @ViewChild('file') fileInput: ElementRef;
+  @ViewChild('file', {static: false}) fileInput: ElementRef;
   selectFiles: SelectFileModel[] = [];
   isUploading: boolean;
   errors: string[] = [];

@@ -44,8 +44,8 @@ export class TooltipComponent {
   @Input() hiMouseEnterDelay = 0.15; // Unit: second
   @Input() hiMouseLeaveDelay = 0.1; // Unit: second
   @Output() hiVisibleChange: EventEmitter<boolean> = new EventEmitter();
-  @ContentChild('hiTemplate') hiTemplate: TemplateRef<void>;
-  @ViewChild('overlay') overlay: CdkConnectedOverlay;
+  @ContentChild('hiTemplate', {static: false}) hiTemplate: TemplateRef<void>;
+  @ViewChild('overlay', {static: false}) overlay: CdkConnectedOverlay;
 
   overlayOrigin: CdkOverlayOrigin;
 

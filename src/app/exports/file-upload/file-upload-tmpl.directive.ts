@@ -1,4 +1,5 @@
 import {Component, ChangeDetectionStrategy, ContentChild, TemplateRef} from '@angular/core';
+import {TabTitleDirective} from '../tabs';
 
 @Component({
   selector: 'hi-upload-toolbar',
@@ -7,7 +8,7 @@ import {Component, ChangeDetectionStrategy, ContentChild, TemplateRef} from '@an
 })
 export class UploadToolbarTmplComponent {
 
-  @ContentChild(TemplateRef) template: TemplateRef<any>;
+  @ContentChild(TemplateRef, {static: false}) template: TemplateRef<any>;
 
 }
 
@@ -18,7 +19,7 @@ export class UploadToolbarTmplComponent {
 })
 export class UploadPreviewTmplComponent {
 
-  @ContentChild(TemplateRef) template: TemplateRef<any>;
+  @ContentChild(TemplateRef, {static: false}) template: TemplateRef<any>;
 
 }
 
@@ -29,6 +30,6 @@ export class UploadPreviewTmplComponent {
 })
 export class UploadFileTmplComponent {
 
-  @ContentChild(TemplateRef) template: TemplateRef<any>;
+  @ContentChild(TemplateRef, {static: false}) template: TemplateRef<any>;
 
 }

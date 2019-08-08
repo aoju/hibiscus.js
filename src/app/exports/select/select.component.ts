@@ -10,22 +10,22 @@ import {
   } from '@angular/animations';
   import { CdkConnectedOverlay, CdkOverlayOrigin, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
   import {
-    forwardRef,
-    AfterViewInit,
-    Component,
-    ContentChildren,
-    EventEmitter,
-    HostListener,
-    Input,
-    OnDestroy,
-    OnInit,
-    Output,
-    QueryList,
-    Renderer2,
-    SimpleChange,
-    ViewChild,
-    ViewEncapsulation
-  } from '@angular/core';
+  forwardRef,
+  AfterViewInit,
+  Component,
+  ContentChildren,
+  EventEmitter,
+  HostListener,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  QueryList,
+  Renderer2,
+  SimpleChange,
+  ViewChild,
+  ViewEncapsulation, TemplateRef
+} from '@angular/core';
   import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   import { isNotNil } from '../utils/check';
   import { toBoolean } from '../utils/convert';
@@ -187,10 +187,10 @@ import {
     isDestroy = true;
     isInit = false;
     dropDownClassMap;
-    @ViewChild(CdkOverlayOrigin) cdkOverlayOrigin: CdkOverlayOrigin;
-    @ViewChild(CdkConnectedOverlay) cdkConnectedOverlay: CdkConnectedOverlay;
-    @ViewChild(SelectTopControlComponent) hiSelectTopControlComponent: SelectTopControlComponent;
-    @ViewChild(OptionContainerComponent) hiOptionContainerComponent: OptionContainerComponent;
+    @ViewChild(CdkOverlayOrigin, {static: false}) cdkOverlayOrigin: CdkOverlayOrigin;
+    @ViewChild(CdkConnectedOverlay, {static: false}) cdkConnectedOverlay: CdkConnectedOverlay;
+    @ViewChild(SelectTopControlComponent, {static: false}) hiSelectTopControlComponent: SelectTopControlComponent;
+    @ViewChild(OptionContainerComponent, {static: false}) hiOptionContainerComponent: OptionContainerComponent;
     /** should move to hi-option-container when https://github.com/angular/angular/issues/20810 resolved **/
     @ContentChildren(OptionComponent) listOfHiOptionComponent: QueryList<OptionComponent>;
     @ContentChildren(OptionGroupComponent) listOfHiOptionGroupComponent: QueryList<OptionGroupComponent>;

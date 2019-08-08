@@ -1,6 +1,6 @@
-import { Component, Input, TemplateRef, ViewChild } from '@angular/core';
+import {Component, Input, TemplateRef, ViewChild} from '@angular/core';
 
-import { toBoolean } from '../utils/convert';
+import {toBoolean} from '../utils/convert';
 
 @Component({
   selector: 'hi-option',
@@ -12,7 +12,7 @@ import { toBoolean } from '../utils/convert';
 export class OptionComponent {
   private _disabled = false;
   private _customContent = false;
-  @ViewChild(TemplateRef) template: TemplateRef<void>;
+  @ViewChild(TemplateRef, {static: false}) template: TemplateRef<void>;
   @Input() hiLabel: string;
   // tslint:disable-next-line:no-any
   @Input() hiValue: any;

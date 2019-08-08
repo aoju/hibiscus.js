@@ -59,7 +59,7 @@ export class SpinComponent implements AfterViewInit {
   isNested = false;
   baseSpinning$ = new BehaviorSubject(true);
   resultSpinning$: Observable<boolean> = this.baseSpinning$.asObservable().pipe(debounceTime(this.hiDelay));
-  @ViewChild('containerElement') containerElement: ElementRef;
+  @ViewChild('containerElement', {static: false}) containerElement: ElementRef;
   @Input() hiIndicator: TemplateRef<void>;
   @Input() hiSize = 'default';
 

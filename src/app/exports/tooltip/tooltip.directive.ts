@@ -80,7 +80,7 @@ export class TooltipDirective implements AfterViewInit {
     this.isTooltipOpen = false;
   }
 
-  private delayEnterLeave(isOrigin: boolean, isEnter: boolean, delay: number = -1): void {
+  private delayEnterLeave(isOrigin: boolean, isEnter: boolean, delay = -1): void {
     if (this.delayTimer) { // Clear timer during the delay time
       window.clearTimeout(this.delayTimer);
       this.delayTimer = null;

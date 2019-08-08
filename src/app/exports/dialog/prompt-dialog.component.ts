@@ -20,7 +20,7 @@ export class PromptDialogComponent implements Modal, OnInit {
   btnNoType: string;
   form: FormGroup;
   validators: { [key: string]: { validator: ValidatorFn, message: string } };
-  @ViewChild('defaultTemplate') defaultTemplate: TemplateRef<any>;
+  @ViewChild('defaultTemplate', {static: false}) defaultTemplate: TemplateRef<any>;
 
   constructor(private hiNGConfig: HiNGConfig,
               private formBuilder: FormBuilder,

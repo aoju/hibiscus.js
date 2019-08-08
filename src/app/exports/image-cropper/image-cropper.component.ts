@@ -9,7 +9,7 @@ import {
   AfterViewInit,
   OnChanges,
   OnDestroy,
-  SimpleChanges
+  SimpleChanges, TemplateRef
 } from '@angular/core';
 
 import {Bounds} from './model/bounds';
@@ -25,7 +25,7 @@ import {ImageCropperUtils} from './image-cropper.utils';
 })
 export class ImageCropperComponent implements AfterViewInit, OnChanges, OnDestroy {
 
-  @ViewChild('cropcanvas', undefined) cropcanvas: ElementRef;
+  @ViewChild('cropcanvas', {static: false}) cropcanvas: ElementRef;
 
   @Input('settings') public settings: ImageCropperSettings;
   @Input('image') public image: any;

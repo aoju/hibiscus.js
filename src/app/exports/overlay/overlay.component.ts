@@ -17,8 +17,8 @@ import {centerWindowPosition} from '../utils/dom-utils';
 })
 export class OverlayComponent {
   @Input() overlayOptions: OverlayOptions;
-  @ViewChild('overlayBody') overlayBody: ElementRef;
-  @ViewChild(OverlayContentComponent) overlayContent: OverlayContentComponent;
+  @ViewChild('overlayBody', {static: false}) overlayBody: ElementRef;
+  @ViewChild(OverlayContentComponent, {static: false}) overlayContent: OverlayContentComponent;
 
   constructor(private windowRef: WindowRef, private renderer: Renderer2) {
 

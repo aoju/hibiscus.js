@@ -207,7 +207,7 @@ function paramBuilder(paramName: string, optional = false) {
     if (!optional && !key) {
       throw new Error(`${paramName} Key is required!`);
     }
-    return function (target: Httpd, propertyKey: string | symbol, parameterIndex: number) {
+    return function (target: Httpd, propertyKey: string, parameterIndex: number) {
       const metadataKey = `${propertyKey}_${paramName}_parameters`;
       const paramObj: any = {
         key: key,

@@ -11,7 +11,7 @@ import {
   Input,
   Output,
   EventEmitter,
-  HostListener
+  HostListener, TemplateRef
 } from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
@@ -36,8 +36,8 @@ import {DocumentRef, WindowRef} from '../window-ref';
   ]
 })
 export class SliderComponent implements AfterViewInit, OnInit, OnDestroy, ControlValueAccessor {
-  @ViewChild('sliderDot') dot: ElementRef;
-  @ViewChild('slider') slider: ElementRef;
+  @ViewChild('sliderDot', {static: false}) dot: ElementRef;
+  @ViewChild('slider', {static: false}) slider: ElementRef;
   @Output() onChange: EventEmitter<number> = new EventEmitter<number>();
 
   handleOffset = 0;

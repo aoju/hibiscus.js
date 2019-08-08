@@ -361,7 +361,7 @@ export class CascaderComponent implements OnInit, OnDestroy, ControlValueAccesso
   @Output() hiClear = new EventEmitter<any>();
 
   /** 浮层菜单 */
-  @ViewChild('menu') menu: ElementRef;
+  @ViewChild('menu', {static: false}) menu: ElementRef;
 
   public onPositionChange(position: ConnectedOverlayPositionChange): void {
     const newValue = position.connectionPair.originY === 'bottom' ? 'bottom' : 'top';

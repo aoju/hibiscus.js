@@ -150,7 +150,7 @@ export class DataTable implements OnChanges, DoCheck {
     if (typeof sortBy === 'string' || sortBy instanceof String) {
       data = _.orderBy(data, this.caseInsensitiveIteratee(<string>sortBy), [this.sortOrder]);
     } else {
-      data = _.orderBy(data, sortBy, [this.sortOrder]);
+      data = _.orderBy(data, sortBy, this.sortOrder);
     }
     data = _.slice(data, offset, offset + this.rowsOnPage);
     this.data = data;

@@ -7,7 +7,7 @@ import {NotifyModel, NotifyService} from '../../../exports';
 })
 export class NotifyDemoComponent implements OnInit {
 
-  @ViewChild('notifyTemplate') notifyTemplate: TemplateRef<any>;
+  @ViewChild('notifyTemplate', {static: false}) notifyTemplate: TemplateRef<any>;
   notifyIndex = 0;
   notifies: NotifyModel[] = [
     {

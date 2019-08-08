@@ -5,7 +5,7 @@ import {
   transition,
   trigger
 } from '@angular/animations';
-import { Component, ElementRef, EventEmitter, Input, Output, Renderer2, ViewChild } from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, Output, Renderer2, TemplateRef, ViewChild} from '@angular/core';
 import { OptionComponent } from './option.component';
 
 @Component({
@@ -98,7 +98,7 @@ export class SelectTopControlComponent {
   listOfCachedSelectedOption: OptionComponent[] = [];
   inputValue: string;
   isComposing = false;
-  @ViewChild('inputElement') inputElement: ElementRef;
+  @ViewChild('inputElement', {static: false}) inputElement: ElementRef;
   // tslint:disable-next-line:no-any
   @Output() hiListOfSelectedValueChange = new EventEmitter<any[]>();
   @Output() hiOnSearch = new EventEmitter<{ value: string, emit: boolean }>();

@@ -3,7 +3,7 @@
  */
 // tslint:disable:no-any
 import {Component, OnInit} from '@angular/core';
-import {Http} from '@angular/http';
+import {HttpClient} from '@angular/common/http';
 
 const options = [{
   value: 'zhejiang',
@@ -80,7 +80,7 @@ const otherOptions = [{
 })
 export class CascaderDemoComponent implements OnInit {
 
-  constructor(private http: Http) {
+  constructor(private http: HttpClient) {
 
   }
 
@@ -128,10 +128,10 @@ export class CascaderDemoComponent implements OnInit {
       this.options = options;
     }, 100);
 
-    this.http.request(
-      'http://test.gm.api.hidoctor.cc/router/rest?method=hidoctor.area.all&v=1.0&format=json&pageSize=10&pageNum=1'
+    this.http.request('GET',
+      'http://www.baidu.com'
     ).subscribe((res) => {
-      this.options = this._formatData(res.json().data);
+      this.options = this._formatData(res.toString());
     });
   }
 
