@@ -352,8 +352,7 @@ export class DemoService {
       component: TreeViewDemoComponent,
       readme: '',
       html: require('!raw-loader!./tree-view/tree-view-demo.template.html'),
-      typescript: require('!raw-loader!./tree-view/tree-view-demo.component.ts'),
-      data: require('!raw-loader!./tree-view/data.json'),
+      typescript: require('!raw-loader!./tree-view/tree-view-demo.component.ts')
     }, {
       name: 'Validators',
       directory: 'validators',
