@@ -72,7 +72,7 @@
     "lint": "npm run tslint \"src/**/*.ts\"",
     "node": "node",
     "rimraf": "rimraf",
-    "test": "npm run lint && karma start",
+    "test": "npm run lint",
     "tslint": "tslint -c tslint.json \"src/**/*.ts\" --fix",
     "typedoc": "typedoc",
     "version": "npm run build",
