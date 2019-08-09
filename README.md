@@ -1,3 +1,28 @@
+<p align="center">
+	<a target="_blank" href="https://www.mit-license.org">
+		<img src="https://img.shields.io/badge/license-MIT-green.svg">
+	</a>
+	<a target="_blank" href="https://nodejs.org">
+		<img src="https://img.shields.io/badge/node-%3E=8.0.0-brightgreen.svg">
+	</a>
+	<a target="_blank" href="https://www.npmjs.com">
+		<img src="https://img.shields.io/badge/npm-%3E=7.0.0-green.svg">
+	</a>
+		<a target="_blank" href="https://eslint.org">
+		<img src="https://img.shields.io/badge/eslint-%5E3.0.0-blue.svg">
+	</a>
+	<a target="_blank" href="https://travis-ci.org/aoju/hibiscus.js">
+		<img src="https://travis-ci.org/aoju/hibiscus.js.svg?branch=master">
+	</a>
+</p>
+
+<p align="center">
+	-- QQ群①：<a href="https://shang.qq.com/wpa/qunwpa?idkey=17fadd02891457034c6536c984f0d7db29b73ea14c9b86bba39ce18ed7a90e18">839128</a> --
+	-- QQ群②：<a href="https://shang.qq.com/wpa/qunwpa?idkey=c207666cbc107d03d368bde8fc15605bb883ebc482e28d440de149e3e2217460">839120</a> --
+</p>
+
+---
+
 # Getting started 
 
 > Native Angular directives for Bootstrap4
