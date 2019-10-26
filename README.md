@@ -84,72 +84,65 @@
 ## Installation
 
 After installing the above dependencies, install `@hibiscus.js` via: 
-  
+```  
     npm install --save hibiscus.js
-  
+ ``` 
 Once installed you need to import our main module.
-
+```
     import { HiNGModule } from 'hibiscus.js';
-  
+ ``` 
 Then use `HiNGModule` to declare on your root module:
 
-    
-    @NgModule({
-      declarations: [
-        AppComponent,
-      ],
-      imports: [
-        BrowserModule,
-        HiNGModule,
-      ],
-      providers: [
-      ],
-      bootstrap: [
-      ]
-      AppComponent[
-      
-      ]
-    })
-    export class AppModule {
-    }
-
+```typescript
+@NgModule({
+  declarations: [
+    AppComponent,
+  ],
+  imports: [
+    BrowserModule,
+    HiNGModule,
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule {}
+```
 
 And use `HiNGModule` to declare on your feature module:
 
-    @NgModule({
-      imports: [CommonModule, FormsModule, HiNGModule],
-      exports: [DatePickerDemoComponent],
-      declarations: [DatePickerDemoComponent],
-      providers: [],
-    })
-    export class DatePickerDemoModule {
-    }
-
+```typescript
+@NgModule({
+  imports: [CommonModule, FormsModule, HiNGModule],
+  exports: [DatePickerDemoComponent],
+  declarations: [DatePickerDemoComponent],
+  providers: [],
+})
+export class DatePickerDemoModule {}
+```
 
 ## Animations
 
 `@hibiscus.js` have got animations done. So You should include `BrowserAnimationsModule` or `NoopAnimationsModule` to your `AppModule`.
 
 example:
+```typescript
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-    import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
-    
-    @NgModule({
-      declarations: [
-        AppComponent,
-      ],
-      imports: [
-        BrowserModule,
-        SharedModule,
-        HiNGModule,
-        BrowserAnimationsModule
-      ],
-      providers: [],
-      bootstrap: [AppComponent]
-    })
-    export class AppModule {
-    }
-    
+@NgModule({
+  declarations: [
+    AppComponent,
+  ],
+  imports: [
+    BrowserModule,
+    SharedModule,
+    HiNGModule,
+    BrowserAnimationsModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule {}
+```
 ### Contributors
     
 [<img alt="Kemosabe" src="https://avatars0.githubusercontent.com/u/5940699?s=460&v=4" width="117">](https://github.com/immrj) | [<img alt="Chenalan" src="https://avatars2.githubusercontent.com/u/7518753?s=460&v=4" width="117">](https://github.com/chenalan)
