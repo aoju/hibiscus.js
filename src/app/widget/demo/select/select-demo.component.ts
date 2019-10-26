@@ -1,23 +1,67 @@
-/**
- * Created by chenlei on 2018/3/28.
- */
-// tslint:disable:no-any
 import {Component, OnInit} from '@angular/core';
+import {DataService} from './data.service';
+
+interface Event {
+  name: string;
+  value: any;
+}
 
 @Component({
-  selector: 'nz-demo-select-basic',
-  templateUrl: './select-demo.template.html',
+  selector: 'multi-select-hidden-example',
+  templateUrl: './select-demo.template.html'
 })
 export class SelectDemoComponent implements OnInit {
-  selectedValue = 'lucy';
-  listOfOption = [];
-  listOfTagOptions = [];
 
-  ngOnInit(): void {
-    const children = [];
-    for (let i = 10; i < 36; i++) {
-      children.push({label: i.toString(36) + i, value: i.toString(36) + i});
-    }
-    this.listOfOption = children;
+  selectedItems: any;
+  items = [];
+  events: Event[] = [];
+
+  constructor(private dataService: DataService) {
+    this.dataService.getPeople().subscribe(items => {
+      this.items = items;
+    });
+  }
+
+  ngOnInit() {
+  }
+
+  onChange($event) {
+    this.events.push({name: '(change)', value: $event});
+  }
+
+  onFocus($event: Event) {
+    this.events.push({name: '(focus)', value: $event});
+  }
+
+  onBlur($event: Event) {
+    this.events.push({name: '(blur)', value: $event});
+  }
+
+  onOpen() {
+    this.events.push({name: '(open)', value: null});
+  }
+
+  onClose() {
+    this.events.push({name: '(close)', value: null});
+  }
+
+  onAdd($event) {
+    this.events.push({name: '(add)', value: $event});
+  }
+
+  onRemove($event) {
+    this.events.push({name: '(remove)', value: $event});
+  }
+
+  onClear() {
+    this.events.push({name: '(clear)', value: null});
+  }
+
+  onScrollToEnd($event) {
+    this.events.push({name: '(scrollToEnd)', value: $event});
+  }
+
+  onSearch($event) {
+    this.events.push({name: '(search)', value: $event});
   }
 }

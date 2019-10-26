@@ -1,21 +1,35 @@
-<div class="row">
-  <div class="col-lg-6">
-    <h5 class="text-black"><strong>Default HiSelect</strong></h5>
-    <div class="mb-5">
-      <div>
-        <hi-select style="width: 120px;" [(ngModel)]="selectedValue" hiAllowClear hiPlaceHolder="Choose">
-          <hi-option hiValue="jack" hiLabel="Jack"></hi-option>
-          <hi-option hiValue="lucy" hiLabel="Lucy"></hi-option>
-          <hi-option hiValue="disabled" hiLabel="Disabled" hiDisabled></hi-option>
-        </hi-select>
-        <hi-select style="width: 120px;" [ngModel]="'lucy'" hiDisabled>
-          <hi-option hiValue="lucy" hiLabel="Lucy"></hi-option>
-        </hi-select>
-        <hi-select hiMode="tags" style="width: 100%;" hiPlaceHolder="多选" [(ngModel)]="listOfTagOptions">
-          <hi-option *ngFor="let option of listOfOption" [hiLabel]="option.label" [hiValue]="option.value">
-          </hi-option>
-        </hi-select>
-      </div>
-    </div>
-  </div>
+<p>Selected items won't appear among dropdown options</p>
+
+<hi-select
+  [closeOnSelect]="false"
+  [hideSelected]="true"
+  placeholder="Select people"
+  [items]="items"
+  [(ngModel)]="selectedItems"
+  bindLabel="name"
+  bindValue="id"
+  [multiple]="true"
+  (open)="onOpen()"
+  (close)="onClose()"
+  (focus)="onFocus($event)"
+  (search)="onSearch($event)"
+  (blur)="onBlur($event)"
+  (clear)="onClear()"
+  (add)="onAdd($event)"
+  (scrollToEnd)="onScrollToEnd($event)"
+  (remove)="onRemove($event)"
+  (change)="onChange($event)">
+</hi-select>
+
+
+<div *ngIf="events.length > 0">
+  <br>
+  <button (click)="events = []" class="btn btn-secondary btn-sm">Clear events</button>
+  <br>
+  <br>
+</div>
+
+<div *ngFor="let event of events">
+  <small>{{event.name}} - {{event.value | json}}</small>
+  <hr>
 </div>

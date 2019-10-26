@@ -1,526 +1,884 @@
-/**
- * Created by chenlei on 2018/5/22.
- */
-import {
-    animate,
-    state,
-    style,
-    transition,
-    trigger
-  } from '@angular/animations';
-  import { CdkConnectedOverlay, CdkOverlayOrigin, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
-  import {
-  forwardRef,
-  AfterViewInit,
-  Component,
-  ContentChildren,
-  EventEmitter,
-  HostListener,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output,
-  QueryList,
-  Renderer2,
-  SimpleChange,
-  ViewChild,
-  ViewEncapsulation, TemplateRef
-} from '@angular/core';
-  import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-  import { isNotNil } from '../utils/check';
-  import { toBoolean } from '../utils/convert';
-  import { OptionContainerComponent } from './option-container.component';
-  import { OptionGroupComponent } from './option-group.component';
-  import { OptionComponent } from './option.component';
-  import { defaultFilterOption, TFilterOption } from './option.pipe';
-  import { SelectTopControlComponent } from './select-top-control.component';
+import {AfterViewInit, Attribute, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChild, ContentChildren, ElementRef, EventEmitter, forwardRef, HostBinding, HostListener, Inject, InjectionToken, Input, OnChanges, OnDestroy, Output, QueryList, SimpleChanges, TemplateRef, ViewChild, ViewEncapsulation} from '@angular/core';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {debounceTime, filter, map, startWith, takeUntil, tap} from 'rxjs/operators';
+import {merge, Subject} from 'rxjs';
 
-  @Component({
-    selector           : 'hi-select',
-    preserveWhitespaces: false,
-    providers          : [
-      {
-        provide    : NG_VALUE_ACCESSOR,
-        useExisting: forwardRef(() => SelectComponent),
-        multi      : true
-      }
-    ],
-    animations         : [
-      trigger('dropDownAnimation', [
-        state('hidden', style({
-          opacity: 0,
-          display: 'none'
-        })),
-        state('bottom', style({
-          opacity        : 1,
-          transform      : 'scaleY(1)',
-          transformOrigin: '0% 0%'
-        })),
-        state('top', style({
-          opacity        : 1,
-          transform      : 'scaleY(1)',
-          transformOrigin: '0% 100%'
-        })),
-        transition('hidden => bottom', [
-          style({
-            opacity        : 0,
-            transform      : 'scaleY(0.8)',
-            transformOrigin: '0% 0%'
-          }),
-          animate('100ms cubic-bezier(0.755, 0.05, 0.855, 0.06)')
-        ]),
-        transition('bottom => hidden', [
-          animate('100ms cubic-bezier(0.755, 0.05, 0.855, 0.06)', style({
-            opacity        : 0,
-            transform      : 'scaleY(0.8)',
-            transformOrigin: '0% 0%'
-          }))
-        ]),
-        transition('hidden => top', [
-          style({
-            opacity        : 0,
-            transform      : 'scaleY(0.8)',
-            transformOrigin: '0% 100%'
-          }),
-          animate('100ms cubic-bezier(0.755, 0.05, 0.855, 0.06)')
-        ]),
-        transition('top => hidden', [
-          animate('100ms cubic-bezier(0.755, 0.05, 0.855, 0.06)', style({
-            opacity        : 0,
-            transform      : 'scaleY(0.8)',
-            transformOrigin: '0% 100%'
-          }))
-        ])
-      ])
-    ],
-    template           : `
-      <div
-        cdkOverlayOrigin
-        class="hi-select-selection"
-        [class.hi-select-selection--single]="isSingleMode"
-        [class.hi-select-selection--multiple]="isMultipleOrTags"
-        (keydown)="onKeyDownCdkOverlayOrigin($event)"
-        tabindex="0">
-        <div
-          hi-select-top-control
-          [hiOpen]="hiOpen"
-          [compareWith]="compareWith"
-          [hiPlaceHolder]="hiPlaceHolder"
-          [hiShowSearch]="hiShowSearch"
-          [hiDisabled]="hiDisabled"
-          [hiMode]="hiMode"
-          [hiListTemplateOfOption]="listOfTemplateOption"
-          [hiListOfSelectedValue]="listOfSelectedValue"
-          (hiOnSearch)="onSearch($event.value,$event.emit)"
-          (hiListOfSelectedValueChange)="updateListOfSelectedValueFromTopControl($event)">
-        </div>
-        <span *ngIf="hiAllowClear" class="hi-select-selection__clear" hi-select-unselectable (click)="onClearSelection($event)"></span>
-        <span class="hi-select-arrow" hi-select-unselectable><b></b></span>
-      </div>
-      <ng-template
-        cdkConnectedOverlay
-        [cdkConnectedOverlayHasBackdrop]="true"
-        [cdkConnectedOverlayOrigin]="cdkOverlayOrigin"
-        (backdropClick)="closeDropDown()"
-        (detach)="closeDropDown();"
-        (positionChange)="onPositionChange($event)"
-        [cdkConnectedOverlayWidth]="overlayWidth"
-        [cdkConnectedOverlayMinWidth]="overlayMinWidth"
-        [cdkConnectedOverlayOpen]="!isDestroy">
-        <div [ngClass]="dropDownClassMap" [@dropDownAnimation]="hiOpen ? dropDownPosition : 'hidden' " [ngStyle]="hiDropdownStyle">
-          <div
-            style="overflow: auto"
-            hi-option-container
-            [listOfHiOptionComponent]="listOfHiOptionComponent"
-            [listOfHiOptionGroupComponent]="listOfHiOptionGroupComponent"
-            [hiSearchValue]="searchValue"
-            [hiFilterOption]="hiFilterOption"
-            [hiServerSearch]="hiServerSearch"
-            [compareWith]="compareWith"
-            [hiNotFoundContent]="hiNotFoundContent"
-            [hiMaxMultipleCount]="hiMaxMultipleCount"
-            [hiMode]="hiMode"
-            (hiScrollToBottom)="hiScrollToBottom.emit()"
-            (hiClickOption)="onClickOptionFromOptionContainer()"
-            (hiListOfTemplateOptionChange)="listOfTemplateOptionChange($event)"
-            (hiListOfSelectedValueChange)="updateListOfSelectedValueFromOptionContainer($event)"
-            [hiListOfSelectedValue]="listOfSelectedValue">
-          </div>
-        </div>
-      </ng-template>
-      <!--can not use ViewChild since it will match sub options in option group -->
-      <ng-template>
-        <ng-content></ng-content>
-      </ng-template>
-    `,
-    host               : {
-      '[class.hi-select]'            : 'true',
-      '[class.hi-select-lg]'         : 'hiSize==="large"',
-      '[class.hi-select-sm]'         : 'hiSize==="small"',
-      '[class.hi-select-enabled]'    : '!hiDisabled',
-      '[class.hi-select-disabled]'   : 'hiDisabled',
-      '[class.hi-select-allow-clear]': 'hiAllowClear',
-      '[class.hi-select-open]'       : 'hiOpen'
-    },
-    styleUrls: ['./select.component.scss'],
-    encapsulation: ViewEncapsulation.None,
-  })
-  export class SelectComponent implements ControlValueAccessor, OnInit, AfterViewInit, OnDestroy {
-    private _disabled = false;
-    private _allowClear = false;
-    private _showSearch = false;
-    private _open = false;
-    private _placeholder: string;
-    private _autoFocus = false;
-    private _dropdownClassName: string;
-    onChange: (value: string | string[]) => void = () => null;
-    onTouched: () => void = () => null;
-    dropDownPosition: 'top' | 'center' | 'bottom' = 'bottom';
-    // tslint:disable-next-line:no-any
-    listOfSelectedValue: any[] = [];
-    listOfTemplateOption: OptionComponent[] = [];
-    // tslint:disable-next-line:no-any
-    value: any | any[];
-    overlayWidth: number;
-    overlayMinWidth: number;
-    searchValue = '';
-    isDestroy = true;
-    isInit = false;
-    dropDownClassMap;
-    @ViewChild(CdkOverlayOrigin, {static: false}) cdkOverlayOrigin: CdkOverlayOrigin;
-    @ViewChild(CdkConnectedOverlay, {static: false}) cdkConnectedOverlay: CdkConnectedOverlay;
-    @ViewChild(SelectTopControlComponent, {static: false}) hiSelectTopControlComponent: SelectTopControlComponent;
-    @ViewChild(OptionContainerComponent, {static: false}) hiOptionContainerComponent: OptionContainerComponent;
-    /** should move to hi-option-container when https://github.com/angular/angular/issues/20810 resolved **/
-    @ContentChildren(OptionComponent) listOfHiOptionComponent: QueryList<OptionComponent>;
-    @ContentChildren(OptionGroupComponent) listOfHiOptionGroupComponent: QueryList<OptionGroupComponent>;
-    @Output() hiOnSearch = new EventEmitter<string>();
-    @Output() hiScrollToBottom = new EventEmitter<void>();
-    @Output() hiOpenChange = new EventEmitter<boolean>();
-    @Input() hiSize = 'default';
-    @Input() hiServerSearch = false;
-    @Input() hiMode: 'default' | 'multiple' | 'tags' = 'default';
-    @Input() hiDropdownMatchSelectWidth = true;
-    @Input() hiFilterOption: TFilterOption = defaultFilterOption;
-    @Input() hiMaxMultipleCount = Infinity;
-    @Input() hiDropdownStyle: { [key: string]: string; };
-    @Input() hiNotFoundContent: string;
-    /** https://github.com/angular/angular/pull/13349/files **/
-      // tslint:disable-next-line:no-any
-    @Input() compareWith = (o1: any, o2: any) => o1 === o2;
+import {NgFooterTemplateDirective, NgHeaderTemplateDirective, NgLabelTemplateDirective, NgLoadingSpinnerTemplateDirective, NgLoadingTextTemplateDirective, NgMultiLabelTemplateDirective, NgNotFoundTemplateDirective, NgOptgroupTemplateDirective, NgOptionTemplateDirective, NgTagTemplateDirective, NgTypeToSearchTemplateDirective} from './select.directive';
+import {isDefined, isFunction, isObject, isPromise, newId} from './select.utils';
+import {SelectItems} from './select.items';
+import {SelectDropdown} from './select.dropdown';
+import {SelectOption} from './select.option';
+import {SelectionModelFactory} from './select.model';
+import {NgSelectConfig} from './select.config';
+import {KeyCode, NgOption, SelectService} from './select.service';
 
-    @Input()
-    set hiDropdownClassName(value: string) {
-      this._dropdownClassName = value;
-      this.updateDropDownClassMap();
+export const SELECTION_MODEL_FACTORY = new InjectionToken<SelectionModelFactory>('hi-select-selection-model');
+export type DropdownPosition = 'bottom' | 'top' | 'auto';
+export type AddTagFn = ((term: string) => any | Promise<any>);
+export type CompareWithFn = (a: any, b: any) => boolean;
+export type GroupValueFn = (key: string | object, children: any[]) => string | object;
+
+@Component({
+  selector: 'hi-select',
+  templateUrl: './select.template.html',
+  styleUrls: ['./select.component.scss'],
+  providers: [{
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => SelectComponent),
+    multi: true
+  }, SelectService],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    'role': 'listbox',
+    'class': 'hi-select',
+    '[class.hi-select-single]': '!multiple',
+  }
+})
+export class SelectComponent implements OnDestroy, OnChanges, AfterViewInit, ControlValueAccessor {
+
+  @Input() bindLabel: string;
+  @Input() bindValue: string;
+  @Input() markFirst = true;
+  @Input() placeholder: string;
+  @Input() notFoundText: string;
+  @Input() typeToSearchText: string;
+  @Input() addTagText: string;
+  @Input() loadingText: string;
+  @Input() clearAllText: string;
+  @Input() dropdownPosition: DropdownPosition = 'auto';
+  @Input() appendTo: string;
+  @Input() loading = false;
+  @Input() closeOnSelect = true;
+  @Input() hideSelected = false;
+  @Input() selectOnTab = false;
+  @Input() openOnEnter: boolean;
+  @Input() maxSelectedItems: number;
+  @Input() groupBy: string | Function;
+  @Input() groupValue: GroupValueFn;
+  @Input() bufferAmount = 4;
+  @Input() virtualScroll: boolean;
+  @Input() selectableGroup = false;
+  @Input() selectableGroupAsModel = true;
+  @Input() searchFn = null;
+  @Input() trackByFn = null;
+  @Input() clearOnBackspace = true;
+  @Input() labelForId = null;
+  @Input() inputAttrs: { [key: string]: string } = {};
+  @Input() tabIndex: number;
+  @Input() readonly = false;
+  @Input() @HostBinding('class.hi-select-typeahead') typeahead: Subject<string>;
+  @Input() @HostBinding('class.hi-select-multiple') multiple = false;
+  @Input() @HostBinding('class.hi-select-taggable') addTag: boolean | AddTagFn = false;
+  @Input() @HostBinding('class.hi-select-searchable') searchable = true;
+  @Input() @HostBinding('class.hi-select-clearable') clearable = true;
+  @Input() @HostBinding('class.hi-select-opened') isOpen = false;
+  // output events
+  @Output('blur') blurEvent = new EventEmitter();
+  @Output('focus') focusEvent = new EventEmitter();
+  @Output('change') changeEvent = new EventEmitter();
+  @Output('open') openEvent = new EventEmitter();
+  @Output('close') closeEvent = new EventEmitter();
+  @Output('search') searchEvent = new EventEmitter<{ term: string, items: any[] }>();
+  @Output('clear') clearEvent = new EventEmitter();
+  @Output('add') addEvent = new EventEmitter();
+  @Output('remove') removeEvent = new EventEmitter();
+  @Output('scroll') scroll = new EventEmitter<{ start: number; end: number }>();
+  @Output('scrollToEnd') scrollToEnd = new EventEmitter();
+  // custom templates
+  @ContentChild(NgOptionTemplateDirective, {read: TemplateRef, static: false}) optionTemplate: TemplateRef<any>;
+  @ContentChild(NgOptgroupTemplateDirective, {read: TemplateRef, static: false}) optgroupTemplate: TemplateRef<any>;
+  @ContentChild(NgLabelTemplateDirective, {read: TemplateRef, static: false}) labelTemplate: TemplateRef<any>;
+  @ContentChild(NgMultiLabelTemplateDirective, {read: TemplateRef, static: false}) multiLabelTemplate: TemplateRef<any>;
+  @ContentChild(NgHeaderTemplateDirective, {read: TemplateRef, static: false}) headerTemplate: TemplateRef<any>;
+  @ContentChild(NgFooterTemplateDirective, {read: TemplateRef, static: false}) footerTemplate: TemplateRef<any>;
+  @ContentChild(NgNotFoundTemplateDirective, {read: TemplateRef, static: false}) notFoundTemplate: TemplateRef<any>;
+  @ContentChild(NgTypeToSearchTemplateDirective, {read: TemplateRef, static: false}) typeToSearchTemplate: TemplateRef<any>;
+  @ContentChild(NgLoadingTextTemplateDirective, {read: TemplateRef, static: false}) loadingTextTemplate: TemplateRef<any>;
+  @ContentChild(NgTagTemplateDirective, {read: TemplateRef, static: false}) tagTemplate: TemplateRef<any>;
+  @ContentChild(NgLoadingSpinnerTemplateDirective, {read: TemplateRef, static: false}) loadingSpinnerTemplate: TemplateRef<any>;
+  @ViewChild(forwardRef(() => SelectDropdown), {static: false}) dropdownPanel: SelectDropdown;
+  @ViewChild('searchInput', {static: true}) searchInput: ElementRef<HTMLInputElement>;
+  @ContentChildren(SelectOption, {descendants: true}) ngOptions: QueryList<SelectOption>;
+  itemsList: SelectItems;
+  viewPortItems: NgOption[] = [];
+  searchTerm: string = null;
+  dropdownId = newId();
+  element: HTMLElement;
+  focused: boolean;
+  escapeHTML = true;
+  private _itemsAreUsed: boolean;
+  private _defaultLabel = 'label';
+  private _primitive;
+  private _manualOpen: boolean;
+  private _pressedKeys: string[] = [];
+  private readonly _destroy$ = new Subject<void>();
+  private readonly _keyPress$ = new Subject<string>();
+  private _isComposing = false;
+
+  constructor(
+    @Attribute('class') public classes: string,
+    @Attribute('autofocus') private autoFocus: any,
+    config: NgSelectConfig,
+    @Inject(SELECTION_MODEL_FACTORY) newSelectionModel: SelectionModelFactory,
+    _elementRef: ElementRef<HTMLElement>,
+    private _cd: ChangeDetectorRef
+  ) {
+    this._mergeGlobalConfig(config);
+    this.itemsList = new SelectItems(this, newSelectionModel());
+    this.element = _elementRef.nativeElement;
+  }
+
+  @HostBinding('class.hi-select-filtered') get filtered() {
+    return (!!this.searchTerm && this.searchable || this._isComposing);
+  }
+
+  private _items = [];
+
+  @Input()
+  get items() {
+    return this._items;
+  }
+
+  set items(value: any[]) {
+    this._itemsAreUsed = true;
+    this._items = value;
+  }
+
+  private _disabled: boolean;
+
+  @HostBinding('class.hi-select-disabled') get disabled() {
+    return this.readonly || this._disabled;
+  }
+
+  private _compareWith: CompareWithFn;
+
+  @Input()
+  get compareWith() {
+    return this._compareWith;
+  }
+
+  set compareWith(fn: CompareWithFn) {
+    if (!isFunction(fn)) {
+      throw Error('`compareWith` must be a function.');
+    }
+    this._compareWith = fn;
+  }
+
+  private _clearSearchOnAdd: boolean;
+
+  @Input()
+  get clearSearchOnAdd() {
+    return isDefined(this._clearSearchOnAdd) ? this._clearSearchOnAdd : this.closeOnSelect;
+  }
+
+  set clearSearchOnAdd(value) {
+    this._clearSearchOnAdd = value;
+  }
+
+  get selectedItems(): NgOption[] {
+    return this.itemsList.selectedItems;
+  }
+
+  get selectedValues() {
+    return this.selectedItems.map(x => x.value);
+  }
+
+  get hasValue() {
+    return this.selectedItems.length > 0;
+  }
+
+  get currentPanelPosition(): DropdownPosition {
+    if (this.dropdownPanel) {
+      return this.dropdownPanel.currentPosition;
+    }
+    return undefined;
+  }
+
+  get showAddTag() {
+    let term = this.searchTerm && this.searchTerm.trim();
+    if (!term) {
+      return false;
     }
 
-    get hiDropdownClassName(): string {
-      return this._dropdownClassName;
+    term = term.toLowerCase();
+    return this.addTag &&
+      (!this.itemsList.filteredItems.some(x => x.label.toLowerCase() === term) &&
+        (!this.hideSelected && this.isOpen || !this.selectedItems.some(x => x.label.toLowerCase() === term))) &&
+      !this.loading;
+  }
+
+  private get _isTypeahead() {
+    return this.typeahead && this.typeahead.observers.length > 0;
+  }
+
+  @Input() keyDownFn = (_: KeyboardEvent) => true;
+
+  clearItem = (item: any) => {
+    const option = this.selectedItems.find(x => x.value === item);
+    this.unselect(option);
+  }
+
+  ngOnInit() {
+    this._handleKeyPresses();
+    this._setInputAttributes();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.multiple) {
+      this.itemsList.clearSelected();
     }
-
-    @Input()
-    set hiAutoFocus(value: boolean) {
-      this._autoFocus = toBoolean(value);
-      this.updateAutoFocus();
+    if (changes.items) {
+      this._setItems(changes.items.currentValue || []);
     }
-
-    get hiAutoFocus(): boolean {
-      return this._autoFocus;
-    }
-
-    @Input()
-    set hiOpen(value: boolean) {
-      this._open = value;
-      this.handleEscBug();
-      this.updateCdkConnectedOverlayStatus();
-      this.updateDropDownClassMap();
-      if (this.hiOpen) {
-        if (this.hiSelectTopControlComponent) {
-          this.hiSelectTopControlComponent.focusOnInput();
-          this.hiSelectTopControlComponent.setInputValue('', true);
-        }
-        if (this.hiOptionContainerComponent) {
-          this.hiOptionContainerComponent.scrollIntoView();
-        }
-        if (this.cdkConnectedOverlay && this.cdkConnectedOverlay.overlayRef) {
-          this.cdkConnectedOverlay.overlayRef.updatePosition();
-        }
-      } else {
-        if (this.hiSelectTopControlComponent) {
-          this.hiSelectTopControlComponent.setInputValue('', false);
-        }
-        if (this.hiOptionContainerComponent) {
-          this.hiOptionContainerComponent.resetActiveOption();
-        }
-      }
-    }
-
-    get hiOpen(): boolean {
-      return this._open;
-    }
-
-    @Input()
-    set hiDisabled(value: boolean) {
-      this._disabled = toBoolean(value);
-      if (this.hiDisabled) {
-        this.closeDropDown();
-      }
-    }
-
-    get hiDisabled(): boolean {
-      return this._disabled;
-    }
-
-    @Input()
-    set hiAllowClear(value: boolean) {
-      this._allowClear = toBoolean(value);
-    }
-
-    get hiAllowClear(): boolean {
-      return this._allowClear;
-    }
-
-    @Input()
-    set hiShowSearch(value: boolean) {
-      this._showSearch = toBoolean(value);
-    }
-
-    get hiShowSearch(): boolean {
-      return this._showSearch;
-    }
-
-    @Input()
-    set hiPlaceHolder(value: string) {
-      this._placeholder = value;
-    }
-
-    get hiPlaceHolder(): string {
-      return this._placeholder;
-    }
-
-    @HostListener('click')
-    onClick(): void {
-      if (!this.hiDisabled) {
-        this.hiOpen = !this.hiOpen;
-        this.hiOpenChange.emit(this.hiOpen);
-      }
-    }
-
-    updateAutoFocus(): void {
-      if (this.isInit && this.hiSelectTopControlComponent.inputElement) {
-        if (this.hiAutoFocus) {
-          this.renderer.setAttribute(this.hiSelectTopControlComponent.inputElement.nativeElement, 'autofocus', 'autofocus');
-        } else {
-          this.renderer.removeAttribute(this.hiSelectTopControlComponent.inputElement.nativeElement, 'autofocus');
-        }
-      }
-    }
-
-    focus(): void {
-      if (this.hiSelectTopControlComponent.inputElement) {
-        this.hiSelectTopControlComponent.inputElement.nativeElement.focus();
-      }
-    }
-
-    blur(): void {
-      if (this.hiSelectTopControlComponent.inputElement) {
-        this.hiSelectTopControlComponent.inputElement.nativeElement.blur();
-      }
-    }
-
-    /** overlay can not be always open , reopen overlay after press esc **/
-    handleEscBug(): void {
-      if (this.hiOpen && this.cdkConnectedOverlay && this.cdkConnectedOverlay.overlayRef && !this.cdkConnectedOverlay.overlayRef.backdropElement) {
-        this.cdkConnectedOverlay.open = true;
-        this.cdkConnectedOverlay.ngOnChanges({ open: new SimpleChange(false, true, false) });
-      }
-    }
-
-    onKeyDownCdkOverlayOrigin(e: KeyboardEvent): void {
-      if (this.hiOptionContainerComponent) {
-        this.hiOptionContainerComponent.onKeyDownUl(e);
-      }
-    }
-
-    closeDropDown(): void {
-      if (this.hiOpen) {
-        this.onTouched();
-        this.hiOpen = false;
-        this.hiOpenChange.emit(this.hiOpen);
-      }
-    }
-
-    onPositionChange(position: ConnectedOverlayPositionChange): void {
-      this.dropDownPosition = position.connectionPair.originY;
-      this.updateDropDownClassMap();
-    }
-
-    onClickOptionFromOptionContainer(): void {
-      if (this.isSingleMode) {
-        this.closeDropDown();
-      } else if (this.hiMode === 'tags') {
-        this.onSearch('', true);
-      }
-    }
-
-    updateCdkConnectedOverlayStatus(): void {
-      if (this.isInit && this.hiOpen && this.cdkOverlayOrigin) {
-        if (this.hiDropdownMatchSelectWidth) {
-          this.overlayWidth = this.cdkOverlayOrigin.elementRef.nativeElement.getBoundingClientRect().width;
-          this.cdkConnectedOverlay.overlayRef.updateSize({ width: this.overlayWidth });
-        } else {
-          this.overlayMinWidth = this.cdkOverlayOrigin.elementRef.nativeElement.getBoundingClientRect().width;
-          this.cdkConnectedOverlay.overlayRef.updateSize({ minWidth: this.overlayMinWidth });
-        }
-
-      }
-      this.updateCdkConnectedOverlayPositions();
-      if (this.cdkConnectedOverlay && this.cdkConnectedOverlay.overlayRef && this.cdkConnectedOverlay.overlayRef.backdropElement) {
-        if (this.hiOpen) {
-          this.renderer.removeStyle(this.cdkConnectedOverlay.overlayRef.backdropElement, 'display');
-        } else {
-          this.renderer.setStyle(this.cdkConnectedOverlay.overlayRef.backdropElement, 'display', 'none');
-        }
-      }
-    }
-
-    updateCdkConnectedOverlayPositions(): void {
-      /** wait for input size change **/
-      setTimeout(() => this.cdkConnectedOverlay.overlayRef.updatePosition(), 160);
-    }
-
-    get isSingleMode(): boolean {
-      return this.hiMode === 'default';
-    }
-
-    get isMultipleOrTags(): boolean {
-      return this.hiMode === 'tags' || this.hiMode === 'multiple';
-    }
-
-    /** option container hiListOfSelectedValueChange -> update ngModel **/
-    // tslint:disable-next-line:no-any
-    updateListOfSelectedValueFromOptionContainer(value: any[]): void {
-      this.clearSearchValue();
-      this.updateFromSelectedList(value);
-    }
-
-    /** option container hiListOfSelectedValueChange -> update ngModel **/
-    // tslint:disable-next-line:no-any
-    updateListOfSelectedValueFromTopControl(value: any[]): void {
-      this.clearSearchValue();
-      this.updateFromSelectedList(value);
-    }
-
-    // tslint:disable-next-line:no-any
-    updateFromSelectedList(value: any[]): void {
-      let modelValue;
-      if (this.isSingleMode) {
-        if (value.length) {
-          modelValue = value[ 0 ];
-        }
-      } else {
-        modelValue = value;
-        this.updateCdkConnectedOverlayPositions();
-      }
-      this.updateNgModel(value, modelValue);
-    }
-
-    onSearch(value: string, emit: boolean): void {
-      if (emit && (this.searchValue !== value)) {
-        this.hiOnSearch.emit(value);
-        this.searchValue = value;
-      }
-    }
-
-    clearNgModel(): void {
-      if (this.isSingleMode) {
-        this.updateNgModel([], null);
-      } else {
-        this.updateNgModel([], []);
-      }
-    }
-
-    // tslint:disable-next-line:no-any
-    updateNgModel(list: any[], value: string | string[]): void {
-      this.listOfSelectedValue = list;
-      if (value !== this.value) {
-        this.value = value;
-        this.onChange(this.value);
-      }
-    }
-
-    listOfTemplateOptionChange(value: OptionComponent[]): void {
-      this.listOfTemplateOption = value;
-    }
-
-    updateDropDownClassMap(): void {
-      this.dropDownClassMap = {
-        [ 'hi-select-dropdown' ]                     : true,
-        [ `hi-select-dropdown--single` ]             : this.isSingleMode,
-        [ `hi-select-dropdown--multiple` ]           : this.isMultipleOrTags,
-        [ `hi-select-dropdown-placement-bottomLeft` ]: this.dropDownPosition === 'bottom',
-        [ `hi-select-dropdown-placement-topLeft` ]   : this.dropDownPosition === 'top',
-        [ `${this.hiDropdownClassName}` ]             : !!this.hiDropdownClassName
-      };
-    }
-
-    onClearSelection(e: MouseEvent): void {
-      // TODO: should not clear disabled option ?
-      e.stopPropagation();
-      this.clearNgModel();
-    }
-
-    clearSearchValue(): void {
-      if (this.isSingleMode) {
-        this.hiSelectTopControlComponent.setInputValue('', false);
-      } else {
-        this.hiSelectTopControlComponent.setInputValue('', false);
-      }
-    }
-
-    constructor(private renderer: Renderer2) {
-    }
-
-    /** update ngModel -> update listOfSelectedValue **/
-    // tslint:disable-next-line:no-any
-    writeValue(value: any | any[]): void {
-      this.value = value;
-      if (isNotNil(value)) {
-        if (Array.isArray(value)) {
-          this.listOfSelectedValue = value;
-        } else {
-          this.listOfSelectedValue = [ value ];
-        }
-      } else {
-        this.listOfSelectedValue = [];
-      }
-    }
-
-    registerOnChange(fn: (value: string | string[]) => void): void {
-      this.onChange = fn;
-    }
-
-    registerOnTouched(fn: () => void): void {
-      this.onTouched = fn;
-    }
-
-    setDisabledState(isDisabled: boolean): void {
-      this.hiDisabled = isDisabled;
-    }
-
-    ngOnInit(): void {
-      this.isDestroy = false;
-      this.updateDropDownClassMap();
-    }
-
-    ngAfterViewInit(): void {
-      this.isInit = true;
-      Promise.resolve().then(() => this.updateCdkConnectedOverlayStatus());
-    }
-
-    ngOnDestroy(): void {
-      this.isDestroy = true;
+    if (changes.isOpen) {
+      this._manualOpen = isDefined(changes.isOpen.currentValue);
     }
   }
 
+  ngAfterViewInit() {
+    if (!this._itemsAreUsed) {
+      this.escapeHTML = false;
+      this._setItemsFromNgOptions();
+    }
+
+    if (isDefined(this.autoFocus)) {
+      this.focus();
+    }
+  }
+
+  ngOnDestroy() {
+    this._destroy$.next();
+    this._destroy$.complete();
+  }
+
+  @HostListener('keydown', ['$event'])
+  handleKeyDown($event: KeyboardEvent) {
+    const keyCode = KeyCode[$event.which];
+    if (keyCode) {
+      if (this.keyDownFn($event) === false) {
+        return;
+      }
+      this.handleKeyCode($event);
+    } else if ($event.key && $event.key.length === 1) {
+      this._keyPress$.next($event.key.toLocaleLowerCase());
+    }
+  }
+
+  handleKeyCode($event: KeyboardEvent) {
+    switch ($event.which) {
+      case KeyCode.ArrowDown:
+        this._handleArrowDown($event);
+        break;
+      case KeyCode.ArrowUp:
+        this._handleArrowUp($event);
+        break;
+      case KeyCode.Space:
+        this._handleSpace($event);
+        break;
+      case KeyCode.Enter:
+        this._handleEnter($event);
+        break;
+      case KeyCode.Tab:
+        this._handleTab($event);
+        break;
+      case KeyCode.Esc:
+        this.close();
+        $event.preventDefault();
+        break;
+      case KeyCode.Backspace:
+        this._handleBackspace();
+        break;
+    }
+  }
+
+  handleMousedown($event: MouseEvent) {
+    const target = $event.target as HTMLElement;
+    if (target.tagName !== 'INPUT') {
+      $event.preventDefault();
+    }
+
+    if (target.classList.contains('ng-clear-wrapper')) {
+      this.handleClearClick();
+      return;
+    }
+
+    if (target.classList.contains('ng-arrow-wrapper')) {
+      this.handleArrowClick();
+      return;
+    }
+
+    if (target.classList.contains('ng-value-icon')) {
+      return;
+    }
+
+    if (!this.focused) {
+      this.focus();
+    }
+
+    if (this.searchable) {
+      this.open();
+    } else {
+      this.toggle();
+    }
+  }
+
+  handleArrowClick() {
+    if (this.isOpen) {
+      this.close();
+    } else {
+      this.open();
+    }
+  }
+
+  handleClearClick() {
+    if (this.hasValue) {
+      this.itemsList.clearSelected(true);
+      this._updateNgModel();
+    }
+    this._clearSearch();
+    this.focus();
+    this.clearEvent.emit();
+
+    this._onSelectionChanged();
+  }
+
+  clearModel() {
+    if (!this.clearable) {
+      return;
+    }
+    this.itemsList.clearSelected();
+    this._updateNgModel();
+  }
+
+  writeValue(value: any | any[]): void {
+    this.itemsList.clearSelected();
+    this._handleWriteValue(value);
+    this._cd.markForCheck();
+  }
+
+  registerOnChange(fn: any): void {
+    this._onChange = fn;
+  }
+
+  registerOnTouched(fn: any): void {
+    this._onTouched = fn;
+  }
+
+  setDisabledState(state: boolean): void {
+    this._disabled = state;
+    this._cd.markForCheck();
+  }
+
+  toggle() {
+    if (!this.isOpen) {
+      this.open();
+    } else {
+      this.close();
+    }
+  }
+
+  open() {
+    if (this.disabled || this.isOpen || this.itemsList.maxItemsSelected || this._manualOpen) {
+      return;
+    }
+
+    if (!this._isTypeahead && !this.addTag && this.itemsList.noItemsToSelect) {
+      return;
+    }
+    this.isOpen = true;
+    this.itemsList.markSelectedOrDefault(this.markFirst);
+    this.openEvent.emit();
+    if (!this.searchTerm) {
+      this.focus();
+    }
+    this.detectChanges();
+  }
+
+  close() {
+    if (!this.isOpen || this._manualOpen) {
+      return;
+    }
+    this.isOpen = false;
+    this._clearSearch();
+    this.itemsList.unmarkItem();
+    this._onTouched();
+    this.closeEvent.emit();
+    this._cd.markForCheck();
+  }
+
+  toggleItem(item: NgOption) {
+    if (!item || item.disabled || this.disabled) {
+      return;
+    }
+
+    if (this.multiple && item.selected) {
+      this.unselect(item);
+    } else {
+      this.select(item);
+    }
+
+    this._onSelectionChanged();
+  }
+
+  select(item: NgOption) {
+    if (!item.selected) {
+      this.itemsList.select(item);
+      if (this.clearSearchOnAdd) {
+        this._clearSearch();
+      }
+
+      this._updateNgModel();
+      if (this.multiple) {
+        this.addEvent.emit(item.value);
+      }
+    }
+
+    if (this.closeOnSelect || this.itemsList.noItemsToSelect) {
+      this.close();
+    }
+  }
+
+  focus() {
+    this.searchInput.nativeElement.focus();
+  }
+
+  blur() {
+    this.searchInput.nativeElement.blur();
+  }
+
+  unselect(item: NgOption) {
+    if (!item) {
+      return;
+    }
+
+    this.itemsList.unselect(item);
+    this.focus();
+    this._updateNgModel();
+    this.removeEvent.emit(item);
+  }
+
+  selectTag() {
+    let tag;
+    if (isFunction(this.addTag)) {
+      tag = (<AddTagFn>this.addTag)(this.searchTerm);
+    } else {
+      tag = this._primitive ? this.searchTerm : {[this.bindLabel]: this.searchTerm};
+    }
+
+    const handleTag = (item) => this._isTypeahead || !this.isOpen ? this.itemsList.mapItem(item, null) : this.itemsList.addItem(item);
+    if (isPromise(tag)) {
+      tag.then(item => this.select(handleTag(item))).catch(() => {
+      });
+    } else if (tag) {
+      this.select(handleTag(tag));
+    }
+  }
+
+  showClear() {
+    return this.clearable && (this.hasValue || this.searchTerm) && !this.disabled;
+  }
+
+  trackByOption = (_: number, item: NgOption) => {
+    if (this.trackByFn) {
+      return this.trackByFn(item.value);
+    }
+
+    return item;
+  }
+
+  showNoItemsFound() {
+    const empty = this.itemsList.filteredItems.length === 0;
+    return ((empty && !this._isTypeahead && !this.loading) ||
+      (empty && this._isTypeahead && this.searchTerm && !this.loading)) &&
+      !this.showAddTag;
+  }
+
+  showTypeToSearch() {
+    const empty = this.itemsList.filteredItems.length === 0;
+    return empty && this._isTypeahead && !this.searchTerm && !this.loading;
+  }
+
+  onCompositionStart() {
+    this._isComposing = true;
+  }
+
+  onCompositionEnd(term: string) {
+    this._isComposing = false;
+    this.filter(term);
+  }
+
+  filter(term: string) {
+    if (this._isComposing) {
+      return;
+    }
+    this._changeSearch(term);
+
+    if (!this._isTypeahead) {
+      this.itemsList.filter(this.searchTerm);
+      if (this.isOpen) {
+        this.itemsList.markSelectedOrDefault(this.markFirst);
+      }
+    }
+
+    this.searchEvent.emit({term, items: this.itemsList.filteredItems.map(x => x.value)});
+
+    this.open();
+  }
+
+  onInputFocus($event) {
+    if (this.focused) {
+      return;
+    }
+
+    this.element.classList.add('hi-select-focused');
+    this.focusEvent.emit($event);
+    this.focused = true;
+  }
+
+  onInputBlur($event) {
+    this.element.classList.remove('hi-select-focused');
+    this.blurEvent.emit($event);
+    if (!this.isOpen && !this.disabled) {
+      this._onTouched();
+    }
+    this.focused = false;
+  }
+
+  onItemHover(item: NgOption) {
+    if (item.disabled) {
+      return;
+    }
+    this.itemsList.markItem(item);
+  }
+
+  detectChanges() {
+    if (!(<any>this._cd).destroyed) {
+      this._cd.detectChanges();
+    }
+  }
+
+  private _onChange = (_: any) => {
+  }
+
+  private _onTouched = () => {
+  }
+
+  private _setItems(items: any[]) {
+    const firstItem = items[0];
+    this.bindLabel = this.bindLabel || this._defaultLabel;
+    this._primitive = isDefined(firstItem) ? !isObject(firstItem) : this._primitive || this.bindLabel === this._defaultLabel;
+    this.itemsList.setItems(items);
+    if (items.length > 0 && this.hasValue) {
+      this.itemsList.mapSelectedItems();
+    }
+    if (this.isOpen && isDefined(this.searchTerm) && !this._isTypeahead) {
+      this.itemsList.filter(this.searchTerm);
+    }
+    if (this._isTypeahead || this.isOpen) {
+      this.itemsList.markSelectedOrDefault(this.markFirst);
+    }
+  }
+
+  private _setItemsFromNgOptions() {
+    const mapNgOptions = (options: QueryList<SelectOption>) => {
+      this.items = options.map(option => ({
+        $ngOptionValue: option.value,
+        $ngOptionLabel: option.elementRef.nativeElement.innerHTML,
+        disabled: option.disabled
+      }));
+      this.itemsList.setItems(this.items);
+      if (this.hasValue) {
+        this.itemsList.mapSelectedItems();
+      }
+      this.detectChanges();
+    };
+
+    const handleOptionChange = () => {
+      const changedOrDestroyed = merge(this.ngOptions.changes, this._destroy$);
+      merge(...this.ngOptions.map(option => option.stateChange$))
+        .pipe(takeUntil(changedOrDestroyed))
+        .subscribe(option => {
+          const item = this.itemsList.findItem(option.value);
+          item.disabled = option.disabled;
+          item.label = option.label || item.label;
+          this._cd.detectChanges();
+        });
+    };
+
+    this.ngOptions.changes
+      .pipe(startWith(this.ngOptions), takeUntil(this._destroy$))
+      .subscribe(options => {
+        this.bindLabel = this._defaultLabel;
+        mapNgOptions(options);
+        handleOptionChange();
+      });
+  }
+
+  private _isValidWriteValue(value: any): boolean {
+    if (!isDefined(value) || (this.multiple && value === '') || Array.isArray(value) && value.length === 0) {
+      return false;
+    }
+
+    const validateBinding = (item: any): boolean => {
+      if (!isDefined(this.compareWith) && isObject(item) && this.bindValue) {
+        return false;
+      }
+      return true;
+    };
+
+    if (this.multiple) {
+      if (!Array.isArray(value)) {
+        return false;
+      }
+      return value.every(item => validateBinding(item));
+    } else {
+      return validateBinding(value);
+    }
+  }
+
+  private _handleWriteValue(ngModel: any | any[]) {
+    if (!this._isValidWriteValue(ngModel)) {
+      return;
+    }
+
+    const select = (val: any) => {
+      let item = this.itemsList.findItem(val);
+      if (item) {
+        this.itemsList.select(item);
+      } else {
+        const isValObject = isObject(val);
+        const isPrimitive = !isValObject && !this.bindValue;
+        if ((isValObject || isPrimitive)) {
+          this.itemsList.select(this.itemsList.mapItem(val, null));
+        } else if (this.bindValue) {
+          item = {
+            [this.bindLabel]: null,
+            [this.bindValue]: val
+          };
+          this.itemsList.select(this.itemsList.mapItem(item, null));
+        }
+      }
+    };
+
+    if (this.multiple) {
+      (<any[]>ngModel).forEach(item => select(item));
+    } else {
+      select(ngModel);
+    }
+  }
+
+  private _handleKeyPresses() {
+    if (this.searchable) {
+      return;
+    }
+
+    this._keyPress$
+      .pipe(takeUntil(this._destroy$),
+        tap(letter => this._pressedKeys.push(letter)),
+        debounceTime(200),
+        filter(() => this._pressedKeys.length > 0),
+        map(() => this._pressedKeys.join('')))
+      .subscribe(term => {
+        const item = this.itemsList.findByLabel(term);
+        if (item) {
+          if (this.isOpen) {
+            this.itemsList.markItem(item);
+            this._cd.markForCheck();
+          } else {
+            this.select(item);
+          }
+        }
+        this._pressedKeys = [];
+      });
+  }
+
+  private _setInputAttributes() {
+    const input = this.searchInput.nativeElement;
+    const attributes = {
+      type: 'text',
+      autocorrect: 'off',
+      autocapitalize: 'off',
+      autocomplete: this.labelForId ? 'off' : this.dropdownId,
+      ...this.inputAttrs
+    };
+
+    for (const key of Object.keys(attributes)) {
+      input.setAttribute(key, attributes[key]);
+    }
+  }
+
+  private _updateNgModel() {
+    const model = [];
+    for (const item of this.selectedItems) {
+      if (this.bindValue) {
+        let value = null;
+        if (item.children) {
+          const groupKey = this.groupValue ? this.bindValue : <string>this.groupBy;
+          value = item.value[groupKey || <string>this.groupBy];
+        } else {
+          value = this.itemsList.resolveNested(item.value, this.bindValue);
+        }
+        model.push(value);
+      } else {
+        model.push(item.value);
+      }
+    }
+
+    const selected = this.selectedItems.map(x => x.value);
+    if (this.multiple) {
+      this._onChange(model);
+      this.changeEvent.emit(selected);
+    } else {
+      this._onChange(isDefined(model[0]) ? model[0] : null);
+      this.changeEvent.emit(selected[0]);
+    }
+
+    this._cd.markForCheck();
+  }
+
+  private _clearSearch() {
+    if (!this.searchTerm) {
+      return;
+    }
+
+    this._changeSearch(null);
+
+    this.itemsList.resetFilteredItems();
+  }
+
+  private _changeSearch(searchTerm) {
+    this.searchTerm = searchTerm;
+
+    if (this._isTypeahead) {
+      this.typeahead.next(searchTerm);
+    }
+  }
+
+  private _scrollToMarked() {
+    if (!this.isOpen || !this.dropdownPanel) {
+      return;
+    }
+    this.dropdownPanel.scrollTo(this.itemsList.markedItem);
+  }
+
+  private _scrollToTag() {
+    if (!this.isOpen || !this.dropdownPanel) {
+      return;
+    }
+    this.dropdownPanel.scrollToTag();
+  }
+
+  private _onSelectionChanged() {
+    if (this.isOpen && this.multiple && this.appendTo) {
+      // Make sure items are rendered.
+      this._cd.detectChanges();
+      this.dropdownPanel.adjustPosition();
+    }
+  }
+
+  private _handleTab($event: KeyboardEvent) {
+    if (this.isOpen === false && !this.addTag) {
+      return;
+    }
+
+    if (this.selectOnTab) {
+      if (this.itemsList.markedItem) {
+        this.toggleItem(this.itemsList.markedItem);
+        $event.preventDefault();
+      } else if (this.showAddTag) {
+        this.selectTag();
+        $event.preventDefault();
+      } else {
+        this.close();
+      }
+    } else {
+      this.close();
+    }
+  }
+
+  private _handleEnter($event: KeyboardEvent) {
+    if (this.isOpen || this._manualOpen) {
+      if (this.itemsList.markedItem) {
+        this.toggleItem(this.itemsList.markedItem);
+      } else if (this.showAddTag) {
+        this.selectTag();
+      }
+    } else if (this.openOnEnter) {
+      this.open();
+    } else {
+      return;
+    }
+
+    $event.preventDefault();
+  }
+
+  private _handleSpace($event: KeyboardEvent) {
+    if (this.isOpen || this._manualOpen) {
+      return;
+    }
+    this.open();
+    $event.preventDefault();
+  }
+
+  private _handleArrowDown($event: KeyboardEvent) {
+    if (this._nextItemIsTag(+1)) {
+      this.itemsList.unmarkItem();
+      this._scrollToTag();
+    } else {
+      this.itemsList.markNextItem();
+      this._scrollToMarked();
+    }
+    this.open();
+    $event.preventDefault();
+  }
+
+  private _handleArrowUp($event: KeyboardEvent) {
+    if (!this.isOpen) {
+      return;
+    }
+
+    if (this._nextItemIsTag(-1)) {
+      this.itemsList.unmarkItem();
+      this._scrollToTag();
+    } else {
+      this.itemsList.markPreviousItem();
+      this._scrollToMarked();
+    }
+    $event.preventDefault();
+  }
+
+  private _nextItemIsTag(nextStep: number): boolean {
+    const nextIndex = this.itemsList.markedIndex + nextStep;
+    return this.addTag && this.searchTerm
+      && this.itemsList.markedItem
+      && (nextIndex < 0 || nextIndex === this.itemsList.filteredItems.length);
+  }
+
+  private _handleBackspace() {
+    if (this.searchTerm || !this.clearable || !this.clearOnBackspace || !this.hasValue) {
+      return;
+    }
+
+    if (this.multiple) {
+      this.unselect(this.itemsList.lastSelectedItem);
+    } else {
+      this.clearModel();
+    }
+  }
+
+  private _mergeGlobalConfig(config: NgSelectConfig) {
+    this.placeholder = this.placeholder || config.placeholder;
+    this.notFoundText = this.notFoundText || config.notFoundText;
+    this.typeToSearchText = this.typeToSearchText || config.typeToSearchText;
+    this.addTagText = this.addTagText || config.addTagText;
+    this.loadingText = this.loadingText || config.loadingText;
+    this.clearAllText = this.clearAllText || config.clearAllText;
+    this.virtualScroll = isDefined(this.virtualScroll)
+      ? this.virtualScroll
+      : isDefined(config.disableVirtualScroll) ? !config.disableVirtualScroll : false;
+    this.openOnEnter = isDefined(this.openOnEnter) ? this.openOnEnter : config.openOnEnter;
+    this.appendTo = this.appendTo || config.appendTo;
+    this.bindValue = this.bindValue || config.bindValue;
+  }
+}

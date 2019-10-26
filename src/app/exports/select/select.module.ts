@@ -1,25 +1,50 @@
-/**
- * Created by chenlei on 2018/5/22.
- */
-import {OverlayModule} from '@angular/cdk/overlay';
 import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
-import {OptionContainerComponent} from './option-container.component';
-import {ContainerPipe} from './option-container.pipe';
-import {OptionGroupComponent} from './option-group.component';
-import {OptionLiComponent} from './option-li.component';
-import {OptionComponent} from './option.component';
-import {OptionPipe, SubOptionPipe} from './option.pipe';
-import {SelectTopControlComponent} from './select-top-control.component';
-import {SelectUnselectableDirective} from './select-unselectable.directive';
-import {SelectComponent} from './select.component';
+import {SelectDropdown} from './select.dropdown';
+import {SelectOption} from './select.option';
+import {SelectComponent, SELECTION_MODEL_FACTORY} from './select.component';
+import {NgFooterTemplateDirective, NgHeaderTemplateDirective, NgItemLabelDirective, NgLabelTemplateDirective, NgLoadingSpinnerTemplateDirective, NgLoadingTextTemplateDirective, NgMultiLabelTemplateDirective, NgNotFoundTemplateDirective, NgOptgroupTemplateDirective, NgOptionTemplateDirective, NgTagTemplateDirective, NgTypeToSearchTemplateDirective} from './select.directive';
+import {DefaultSelectionModelFactory} from './select.model';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, OverlayModule],
-  declarations: [OptionComponent, SelectComponent, OptionContainerComponent, OptionGroupComponent,
-    OptionLiComponent, SelectTopControlComponent, SelectUnselectableDirective, ContainerPipe, OptionPipe, SubOptionPipe],
-  exports: [OptionComponent, SelectComponent, OptionContainerComponent, OptionGroupComponent, SelectTopControlComponent]
+  declarations: [
+    SelectDropdown,
+    SelectOption,
+    SelectComponent,
+    NgOptgroupTemplateDirective,
+    NgOptionTemplateDirective,
+    NgLabelTemplateDirective,
+    NgMultiLabelTemplateDirective,
+    NgHeaderTemplateDirective,
+    NgFooterTemplateDirective,
+    NgNotFoundTemplateDirective,
+    NgTypeToSearchTemplateDirective,
+    NgLoadingTextTemplateDirective,
+    NgTagTemplateDirective,
+    NgLoadingSpinnerTemplateDirective,
+    NgItemLabelDirective
+  ],
+  imports: [
+    CommonModule
+  ],
+  exports: [
+    SelectComponent,
+    SelectOption,
+    NgOptgroupTemplateDirective,
+    NgOptionTemplateDirective,
+    NgLabelTemplateDirective,
+    NgMultiLabelTemplateDirective,
+    NgHeaderTemplateDirective,
+    NgFooterTemplateDirective,
+    NgNotFoundTemplateDirective,
+    NgTypeToSearchTemplateDirective,
+    NgLoadingTextTemplateDirective,
+    NgTagTemplateDirective,
+    NgLoadingSpinnerTemplateDirective
+  ],
+  providers: [
+    {provide: SELECTION_MODEL_FACTORY, useValue: DefaultSelectionModelFactory}
+  ]
 })
 export class SelectModule {
 }
