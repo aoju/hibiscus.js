@@ -27,8 +27,7 @@ export class ModalContentComponent implements OnDestroy {
   addContent<T>(options: ModalOptions, dismiss: EventEmitter<any>) {
     const componentFactoryResolver = options.componentFactoryResolver || this.componentFactoryResolver;
     const componentFactory = componentFactoryResolver.resolveComponentFactory(options.component);
-    this.modalContentRef = this.modalContentContainer
-      .createComponent(componentFactory, this.modalContentContainer.length, options.injector || this.injector);
+    this.modalContentRef = this.modalContentContainer.createComponent(componentFactory, this.modalContentContainer.length, options.injector || this.injector);
     const instance: Modal = this.modalContentRef.instance;
     instance.dismiss = dismiss;
     this.handleResolve(options, instance);
